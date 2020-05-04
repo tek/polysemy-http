@@ -1,0 +1,9 @@
+version: 0.1.0.0
+description: Please see the README on GitLab at <https://gitlab.tryp.io/haskell/bodhi>
+license: OtherLicense
+license-file: LICENSE
+author: "Torsten Schmits"
+maintainer: "tek@tryp.io"
+copyright: "2019 Torsten Schmits"
+category: Crime
+build-type: Simple

@@ -1,0 +1,60 @@
+name: http-client-polysemy
+<<: !include hpack/meta.yaml
+synopsis: Polysemy effect for http-client
+defaults:
+  local: hpack/defaults.yaml
+
+library:
+  source-dirs: lib
+  other-modules: Prelude
+
+when:
+  - condition: impl(ghcjs)
+    then:
+      dependencies: []
+    else:
+      dependencies:
+        - polysemy-plugin
+      ghc-options:
+        - -fplugin=Polysemy.Plugin
+
+tests:
+  http-client-polysemy-unit:
+    <<: !include hpack/unit.yaml
+    dependencies:
+      - http-client-polysemy
+  http-client-polysemy-integration:
+    <<: !include hpack/integration.yaml
+    dependencies:
+      - http-client-polysemy
+
+dependencies:
+  - aeson
+  - ansi-terminal
+  - base-noprelude >= 4.7 && < 5
+  - bytestring
+  - case-insensitive
+  - co-log-core
+  - co-log-polysemy
+  - composition
+  - connection
+  - containers
+  - data-default
+  - either
+  - hedgehog
+  - http-client
+  - http-client-tls
+  - http-conduit
+  - http-types
+  - lens
+  - lifted-base
+  - mono-traversable
+  - polysemy
+  - regex-with-pcre
+  - relude
+  - streaming
+  - string-interpolate
+  - tasty
+  - tasty-hedgehog
+  - template-haskell
+  - text
