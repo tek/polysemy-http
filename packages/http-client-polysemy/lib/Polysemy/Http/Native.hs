@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Native where
+module Polysemy.Http.Native where
 
 import Control.Exception.Lifted (try)
 import Data.CaseInsensitive (foldedCase)
@@ -6,8 +6,8 @@ import qualified Data.CaseInsensitive as CaseInsensitive
 import Network.Connection (settingDisableCertificateValidation)
 import Network.HTTP.Client (BodyReader, Manager, httpLbs, newManager, responseClose, responseOpen)
 import Network.HTTP.Client.TLS (mkManagerSettings)
-import Network.HTTP.Polysemy.Data.Log (Log)
-import qualified Network.HTTP.Polysemy.Data.Log as Log
+import Polysemy.Http.Data.Log (Log)
+import qualified Polysemy.Http.Data.Log as Log
 import Network.HTTP.Simple (
   defaultRequest,
   getResponseBody,
@@ -27,13 +27,13 @@ import qualified Network.HTTP.Types as N (statusCode)
 import Polysemy (interpretH, pureT, runT)
 import Polysemy.Resource (Resource, bracket)
 
-import Network.HTTP.Polysemy.Data.Header (Header(Header))
-import Network.HTTP.Polysemy.Data.Http (Http)
-import qualified Network.HTTP.Polysemy.Data.Http as Http
-import Network.HTTP.Polysemy.Data.HttpError (HttpError)
-import qualified Network.HTTP.Polysemy.Data.HttpError as HttpError
-import Network.HTTP.Polysemy.Data.Request (Request(Request), methodUpper)
-import Network.HTTP.Polysemy.Data.Response (Response(Response))
+import Polysemy.Http.Data.Header (Header(Header))
+import Polysemy.Http.Data.Http (Http)
+import qualified Polysemy.Http.Data.Http as Http
+import Polysemy.Http.Data.HttpError (HttpError)
+import qualified Polysemy.Http.Data.HttpError as HttpError
+import Polysemy.Http.Data.Request (Request(Request), methodUpper)
+import Polysemy.Http.Data.Response (Response(Response))
 
 nativeRequest :: Request -> N.Request
 nativeRequest (Request method host tls path headers query body) =

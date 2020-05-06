@@ -1,19 +1,19 @@
-module Network.HTTP.Polysemy.Http where
+module Polysemy.Http.Http where
 
 import Control.Lens (over)
 import qualified Data.ByteString as ByteString
 import Polysemy.Error (fromEither, runError)
 import Polysemy.Resource (Resource, bracket)
 
-import Network.HTTP.Polysemy.Data.Http (Http)
-import qualified Network.HTTP.Polysemy.Data.Http as Http
-import Network.HTTP.Polysemy.Data.HttpError (HttpError)
-import Network.HTTP.Polysemy.Data.Request (Request)
-import qualified Network.HTTP.Polysemy.Data.Request as Request
-import Network.HTTP.Polysemy.Data.Response (Response(Response))
-import Network.HTTP.Polysemy.Data.StreamChunk (StreamChunk(StreamChunk))
-import Network.HTTP.Polysemy.Data.StreamEvent (StreamEvent)
-import qualified Network.HTTP.Polysemy.Data.StreamEvent as StreamEvent
+import Polysemy.Http.Data.Http (Http)
+import qualified Polysemy.Http.Data.Http as Http
+import Polysemy.Http.Data.HttpError (HttpError)
+import Polysemy.Http.Data.Request (Request)
+import qualified Polysemy.Http.Data.Request as Request
+import Polysemy.Http.Data.Response (Response(Response))
+import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
+import Polysemy.Http.Data.StreamEvent (StreamEvent)
+import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
 
 jsonContentType :: (Text, Text)
 jsonContentType =

@@ -2,7 +2,7 @@ module UrlTest where
 
 import Hedgehog (Property, property, (===))
 
-import Network.HTTP.Polysemy.Data.Request (parseUrl)
+import Polysemy.Http.Data.Request (parseUrl)
 
 test_urlRE :: Property
 test_urlRE =

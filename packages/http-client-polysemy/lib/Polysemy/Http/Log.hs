@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Log where
+module Polysemy.Http.Log where
 
 import Colog.Core (LogAction(LogAction), Severity, cmapM)
 import qualified Colog.Core as Severity (Severity(Error, Info, Debug, Warning))
@@ -8,7 +8,7 @@ import qualified Data.ByteString.Char8 as BS8
 import GHC.Stack (SrcLoc(SrcLoc), callStack, popCallStack, srcLocModule, srcLocStartLine)
 import System.Console.ANSI (Color (..), ColorIntensity (Vivid), ConsoleLayer (Foreground), SGR (..), setSGRCode)
 
-import Network.HTTP.Polysemy.Data.Log (Log(..))
+import Polysemy.Http.Data.Log (Log(..))
 
 data Message =
   Message {

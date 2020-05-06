@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 60cb6d95e8a9351e1761e92b39936760c498b1bb80352371634c326c5ef48185
+-- hash: bb7d349169d7cb1f37dc0c2a900c7fe160882fd6c51b40bf9892b6c795ed8c3a
 
 name:           http-client-polysemy
 version:        0.1.0.0
@@ -20,22 +20,22 @@ build-type:     Simple
 
 library
   exposed-modules:
-      Network.HTTP.Polysemy
-      Network.HTTP.Polysemy.AesonEntity
-      Network.HTTP.Polysemy.Data.Entity
-      Network.HTTP.Polysemy.Data.Header
-      Network.HTTP.Polysemy.Data.Http
-      Network.HTTP.Polysemy.Data.HttpError
-      Network.HTTP.Polysemy.Data.Log
-      Network.HTTP.Polysemy.Data.Request
-      Network.HTTP.Polysemy.Data.Response
-      Network.HTTP.Polysemy.Data.StreamChunk
-      Network.HTTP.Polysemy.Data.StreamEvent
-      Network.HTTP.Polysemy.Http
-      Network.HTTP.Polysemy.Log
-      Network.HTTP.Polysemy.Native
-      Network.HTTP.Polysemy.Prelude
-      Network.HTTP.Polysemy.Strict
+      Polysemy.Http
+      Polysemy.Http.AesonEntity
+      Polysemy.Http.Data.Entity
+      Polysemy.Http.Data.Header
+      Polysemy.Http.Data.Http
+      Polysemy.Http.Data.HttpError
+      Polysemy.Http.Data.Log
+      Polysemy.Http.Data.Request
+      Polysemy.Http.Data.Response
+      Polysemy.Http.Data.StreamChunk
+      Polysemy.Http.Data.StreamEvent
+      Polysemy.Http.Http
+      Polysemy.Http.Log
+      Polysemy.Http.Native
+      Polysemy.Http.Prelude
+      Polysemy.Http.Strict
   other-modules:
       Prelude
   hs-source-dirs:

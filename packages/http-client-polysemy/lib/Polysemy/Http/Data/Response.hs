@@ -1,9 +1,9 @@
-module Network.HTTP.Polysemy.Data.Response where
+module Polysemy.Http.Data.Response where
 
 import Network.HTTP.Client (BodyReader)
 import qualified Text.Show as Text (Show(show))
 
-import Network.HTTP.Polysemy.Data.Header (Header)
+import Polysemy.Http.Data.Header (Header)
 
 data Response b =
   Response {

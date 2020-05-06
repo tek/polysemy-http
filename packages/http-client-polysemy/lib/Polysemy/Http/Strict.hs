@@ -1,13 +1,13 @@
-module Network.HTTP.Polysemy.Strict where
+module Polysemy.Http.Strict where
 
 import Polysemy (interpretH, pureT)
 import Polysemy.Internal.Tactics hiding (liftT)
 
-import Network.HTTP.Polysemy.Data.Header (Header(Header))
-import Network.HTTP.Polysemy.Data.Http (Http)
-import qualified Network.HTTP.Polysemy.Data.Http as Http
-import Network.HTTP.Polysemy.Data.HttpError (HttpError)
-import Network.HTTP.Polysemy.Data.Response (Response(Response))
+import Polysemy.Http.Data.Header (Header(Header))
+import Polysemy.Http.Data.Http (Http)
+import qualified Polysemy.Http.Data.Http as Http
+import Polysemy.Http.Data.HttpError (HttpError)
+import Polysemy.Http.Data.Response (Response(Response))
 
 takeResponse ::
   Member (State [Response LByteString]) r =>

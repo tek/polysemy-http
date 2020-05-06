@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Data.Entity where
+module Polysemy.Http.Data.Entity where
 
 import Data.Aeson (FromJSON(parseJSON), withObject, (.:))
 import Prelude hiding ((.:))

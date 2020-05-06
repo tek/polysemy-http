@@ -1,8 +1,8 @@
-module Network.HTTP.Polysemy.Data.Http where
+module Polysemy.Http.Data.Http where
 
-import Network.HTTP.Polysemy.Data.HttpError (HttpError)
-import Network.HTTP.Polysemy.Data.Request (Request)
-import Network.HTTP.Polysemy.Data.Response (Response)
+import Polysemy.Http.Data.HttpError (HttpError)
+import Polysemy.Http.Data.Request (Request)
+import Polysemy.Http.Data.Response (Response)
 
 data Http c m a where
   Request :: Request -> Http c m (Either HttpError (Response LByteString))

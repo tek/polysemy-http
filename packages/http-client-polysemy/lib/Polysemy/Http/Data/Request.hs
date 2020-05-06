@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Data.Request where
+module Polysemy.Http.Data.Request where
 
 import Control.Lens (makeClassy)
 import Prelude hiding (get)

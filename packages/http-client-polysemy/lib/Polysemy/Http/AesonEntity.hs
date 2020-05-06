@@ -1,10 +1,10 @@
-module Network.HTTP.Polysemy.AesonEntity where
+module Polysemy.Http.AesonEntity where
 
 import Data.Aeson (FromJSON, ToJSON, eitherDecode', encode)
 import Polysemy (Sem, interpret)
 
-import Network.HTTP.Polysemy.Data.Entity (EntityDecode, EntityEncode, EntityError(EntityError))
-import qualified Network.HTTP.Polysemy.Data.Entity as Entity (EntityDecode(Decode), EntityEncode(Encode))
+import Polysemy.Http.Data.Entity (EntityDecode, EntityEncode, EntityError(EntityError))
+import qualified Polysemy.Http.Data.Entity as Entity (EntityDecode(Decode), EntityEncode(Encode))
 
 interpretEntityEncodeAeson ::
   ToJSON d =>

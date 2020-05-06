@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Data.StreamChunk where
+module Polysemy.Http.Data.StreamChunk where
 
 newtype StreamChunk =
   StreamChunk ByteString

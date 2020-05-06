@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Data.HttpError where
+module Polysemy.Http.Data.HttpError where
 
 data HttpError =
   AuthFailed Text

@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Data.Log where
+module Polysemy.Http.Data.Log where
 
 import Polysemy.Internal (send)
 

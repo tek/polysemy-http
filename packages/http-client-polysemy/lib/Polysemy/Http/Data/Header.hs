@@ -1,4 +1,4 @@
-module Network.HTTP.Polysemy.Data.Header where
+module Polysemy.Http.Data.Header where
 
 data Header =
   Header {

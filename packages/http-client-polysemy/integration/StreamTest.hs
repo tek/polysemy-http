@@ -2,20 +2,20 @@ module StreamTest where
 
 import qualified Data.Text as Text
 import Hedgehog (Property, property, (===))
-import Network.HTTP.Polysemy.Log (interpretLogStdout)
+import Polysemy.Http.Log (interpretLogStdout)
 import Polysemy (embedToFinal, runFinal)
 import Polysemy.Error (runError)
 import Polysemy.Resource (resourceToIOFinal)
 import Polysemy.State (runState)
 
-import Network.HTTP.Polysemy.Data.HttpError (HttpError)
-import Network.HTTP.Polysemy.Data.Request (Request)
-import qualified Network.HTTP.Polysemy.Data.Request as Request
-import Network.HTTP.Polysemy.Data.StreamChunk (StreamChunk(StreamChunk))
-import Network.HTTP.Polysemy.Data.StreamEvent (StreamEvent)
-import qualified Network.HTTP.Polysemy.Data.StreamEvent as StreamEvent
-import qualified Network.HTTP.Polysemy.Http as Http
-import Network.HTTP.Polysemy.Native (interpretHttpNative)
+import Polysemy.Http.Data.HttpError (HttpError)
+import Polysemy.Http.Data.Request (Request)
+import qualified Polysemy.Http.Data.Request as Request
+import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
+import Polysemy.Http.Data.StreamEvent (StreamEvent)
+import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
+import qualified Polysemy.Http.Http as Http
+import Polysemy.Http.Native (interpretHttpNative)
 
 req :: Request
 req =

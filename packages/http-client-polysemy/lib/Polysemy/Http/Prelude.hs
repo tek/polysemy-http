@@ -1,7 +1,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Network.HTTP.Polysemy.Prelude (
-  module Network.HTTP.Polysemy.Prelude,
+module Polysemy.Http.Prelude (
+  module Polysemy.Http.Prelude,
   module Data.Aeson,
   module Data.Aeson.TH,
   module Data.Composition,
