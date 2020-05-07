@@ -8,11 +8,17 @@ data Method =
   Get
   |
   Post
+  |
+  Put
+  |
+  Head
   deriving (Eq, Show)
 
 methodUpper :: Method -> Text
 methodUpper Get = "GET"
 methodUpper Post = "POST"
+methodUpper Put = "PUT"
+methodUpper Head = "HEAD"
 
 data Request =
   Request {
