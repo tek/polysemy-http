@@ -2,14 +2,14 @@
   nixpkgs ? import <nixpkgs>,
 }:
 let
+  tryp = import (fetchTarball "https://gitlab.tryp.io/nix/hs/-/archive/2089571474cae1fa4e5144c6384e719f9b7693f5.tar.gz");
   base = ./.;
-  compiler = "ghc865";
-  project = import ./ops/nix/project.nix { inherit base; };
-  pkgs = import ./ops/nix/nixpkgs.nix { inherit nixpkgs project compiler base; };
-  ghc = pkgs.haskell.packages.${compiler};
-  ghci = import ./ops/nix/ghci.nix { inherit project pkgs; };
-  ghcid = import ./ops/nix/ghcid.nix { inherit project pkgs ghci compiler; };
-  tags = import ./ops/nix/tags.nix { inherit project compiler pkgs; };
-in tags // {
-  inherit pkgs project ghci ghcid compiler ghc;
-}
+  packages = { http-client-polysemy = base + /packages/http-client-polysemy; };
+  overrides = import ./ops/nix/overrides.nix { inherit base; inherit (tryp) hackage; };
+  project = tryp.project {
+    inherit packages overrides base;
+    ghciArgs = ["-hide-package" "base"];
+    cabal2nixOptions = "--no-hpack";
+  };
+  tags = import ./ops/nix/tags.nix { inherit (project) compiler; project = project.sets.all; pkgs = project.pkgs; };
+in tags // project

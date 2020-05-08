@@ -1,11 +1,11 @@
 {
-  pkgs,
-  project,
   base,
+  hackage,
 }:
 self: super:
 let
-  hack = import ./hackage.nix { inherit pkgs; } self super;
+  pkgs = self.callPackage ({pkgs, ...}: pkgs) {};
+  hack = hackage { inherit pkgs self super; };
   inherit (hack) pack notest;
   inherit (pkgs.lib.attrsets) mapAttrs;
   versions = [
@@ -14,8 +14,6 @@ let
     (pack "polysemy-plugin" "0.2.5.0" "0jnps8kwxd0hakis5ph77r45mv1qnkxdf5506shcjb1zmxqmxpjv")
   ];
   versionOverrides = builtins.listToAttrs versions;
-  local =
-    mapAttrs (n: s: notest (self.callCabal2nixWithOptions n s "--no-hpack" {})) project.packages.all.abs;
   isLocal =
     builtins.match "${toString base}.*";
-in versionOverrides // local
+in versionOverrides
