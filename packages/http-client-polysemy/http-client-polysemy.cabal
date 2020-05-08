@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bb7d349169d7cb1f37dc0c2a900c7fe160882fd6c51b40bf9892b6c795ed8c3a
+-- hash: 6a0c04a964aec8acf27674b496c3ab41b26837acde83963f22524b8b2642f5d0
 
 name:           http-client-polysemy
 version:        0.1.0.0
@@ -27,12 +27,14 @@ library
       Polysemy.Http.Data.Http
       Polysemy.Http.Data.HttpError
       Polysemy.Http.Data.Log
+      Polysemy.Http.Data.Manager
       Polysemy.Http.Data.Request
       Polysemy.Http.Data.Response
       Polysemy.Http.Data.StreamChunk
       Polysemy.Http.Data.StreamEvent
       Polysemy.Http.Http
       Polysemy.Http.Log
+      Polysemy.Http.Manager
       Polysemy.Http.Native
       Polysemy.Http.Prelude
       Polysemy.Http.Strict
