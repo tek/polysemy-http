@@ -1,5 +1,5 @@
 {
-  project,
+  packages,
   pkgs,
   compiler,
 }:
@@ -8,7 +8,7 @@ let
   withPrefix =
     name: dir: pkgs.haskell.packages.${compiler}.${name} // { tagsPrefix = "packages/${dir}"; };
   targets =
-    pkgs.lib.attrsets.mapAttrsToList withPrefix project.packages.all.abs;
+    pkgs.lib.attrsets.mapAttrsToList withPrefix packages.byPath;
 in {
   projectTags =
     tags.combined.all { inherit targets; };

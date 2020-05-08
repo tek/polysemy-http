@@ -11,5 +11,5 @@ let
     ghciArgs = ["-hide-package" "base"];
     cabal2nixOptions = "--no-hpack";
   };
-  tags = import ./ops/nix/tags.nix { inherit (project) compiler; project = project.sets.all; pkgs = project.pkgs; };
+  tags = import ./ops/nix/tags.nix { inherit (project) compiler; packages = project.sets.all; pkgs = project.pkgs; };
 in tags // project
