@@ -1,5 +1,5 @@
 let
-  main = import ./. {};
+  main = import ./.;
 in
   main.ghcid.shell // {
     inherit (main) ghcid;
