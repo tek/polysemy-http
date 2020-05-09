@@ -27,17 +27,24 @@ takeChunk (chunk : rest) =
 takeChunk [] =
   pure ""
 
-interpretHttpLocalWithState ::
+streamResponse :: Response Int
+streamResponse =
+  Response 200 1 [
+    Header "content-disposition" [qt|filename="file.txt"|],
+    Header "content-length" "5000000"
+    ]
+
+interpretHttpStrictWithState ::
   Members [Embed IO, State [ByteString], State [Response LByteString], Error HttpError] r =>
   InterpreterFor (Http Int) r
-interpretHttpLocalWithState =
+interpretHttpStrictWithState =
   interpretH $ \case
     Http.Request _ ->
       liftT . takeResponse =<< raise get
     Http.Stream _ handler -> do
       handle <- bindT handler
-      resp <- pureT (Response 200 1 [Header "content-disposition" [qt|filename="file.txt"|]])
-      raise (interpretHttpLocalWithState (handle resp))
+      resp <- pureT streamResponse
+      raise (interpretHttpStrictWithState (handle resp))
     Http.ConsumeChunk _ ->
       liftT . fmap Right . takeChunk =<< raise get
 
@@ -47,4 +54,4 @@ interpretHttpStrict ::
   [ByteString] ->
   InterpreterFor (Http Int) r
 interpretHttpStrict responses chunks =
-  evalState chunks . evalState responses . interpretHttpLocalWithState . raiseUnder . raiseUnder
+  evalState chunks . evalState responses . interpretHttpStrictWithState . raiseUnder . raiseUnder
