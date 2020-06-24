@@ -14,6 +14,7 @@ interpretEntityEncodeAeson =
   interpret $ \case
     Entity.Encode a ->
       pure (encode a)
+{-# INLINE interpretEntityEncodeAeson #-}
 
 interpretEntityDecodeAeson ::
   FromJSON d =>
@@ -23,3 +24,4 @@ interpretEntityDecodeAeson =
   interpret $ \case
     Entity.Decode body ->
       pure . mapLeft (EntityError (decodeUtf8 body) . toText) $ eitherDecode' body
+{-# INLINE interpretEntityDecodeAeson #-}

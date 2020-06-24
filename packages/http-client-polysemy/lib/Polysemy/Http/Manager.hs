@@ -14,6 +14,7 @@ interpretManagerWith ::
 interpretManagerWith manager = do
   interpret $ \case
     Get -> pure manager
+{-# INLINE interpretManagerWith #-}
 
 interpretManager ::
   Member (Embed IO) r =>
@@ -24,3 +25,4 @@ interpretManager sem = do
   where
     settings =
       mkManagerSettings def { settingDisableCertificateValidation = True } Nothing
+{-# INLINE interpretManager #-}

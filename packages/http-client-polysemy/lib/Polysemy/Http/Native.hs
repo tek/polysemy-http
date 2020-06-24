@@ -1,8 +1,8 @@
 module Polysemy.Http.Native where
 
 import Control.Exception.Lifted (try)
-import Data.CaseInsensitive (foldedCase)
 import qualified Data.CaseInsensitive as CaseInsensitive
+import Data.CaseInsensitive (foldedCase)
 import Network.Connection (settingDisableCertificateValidation)
 import Network.HTTP.Client (BodyReader, httpLbs, newManager, responseClose, responseOpen)
 import qualified Network.HTTP.Client as HTTP (Manager)
@@ -24,17 +24,17 @@ import Network.HTTP.Simple (
 import qualified Network.HTTP.Simple as N (Request, Response)
 import qualified Network.HTTP.Types as N (statusCode)
 import Polysemy (interpretH, pureT, runT)
-import Polysemy.Http.Data.Log (Log)
 import qualified Polysemy.Http.Data.Log as Log
+import Polysemy.Http.Data.Log (Log)
 import Polysemy.Resource (Resource, bracket)
 
 import Polysemy.Http.Data.Header (Header(Header))
-import Polysemy.Http.Data.Http (Http)
 import qualified Polysemy.Http.Data.Http as Http
-import Polysemy.Http.Data.HttpError (HttpError)
+import Polysemy.Http.Data.Http (Http)
 import qualified Polysemy.Http.Data.HttpError as HttpError
-import Polysemy.Http.Data.Manager (Manager)
+import Polysemy.Http.Data.HttpError (HttpError)
 import qualified Polysemy.Http.Data.Manager as Manager
+import Polysemy.Http.Data.Manager (Manager)
 import Polysemy.Http.Data.Request (Request(Request), methodUpper)
 import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Manager (interpretManager)
@@ -105,9 +105,11 @@ interpretHttpNativeWith =
           Left (HttpError.ChunkFailed (show e))
         convertError (Right a) =
           Right a
+{-# INLINE interpretHttpNativeWith #-}
 
 interpretHttpNative ::
   Members [Embed IO, Log, Resource] r =>
   InterpreterFor (Http BodyReader) r
 interpretHttpNative =
   interpretManager . interpretHttpNativeWith . raiseUnder
+{-# INLINE interpretHttpNative #-}

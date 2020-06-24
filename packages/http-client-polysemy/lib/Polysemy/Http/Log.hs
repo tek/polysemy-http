@@ -89,6 +89,7 @@ runCologStdout ::
   InterpreterFor (Colog.Log Message) r
 runCologStdout =
   runLogAction @IO richMessageAction
+{-# INLINE runCologStdout #-}
 
 toColog ::
   HasCallStack =>
@@ -107,6 +108,7 @@ toColog =
       log Severity.Error msg
     ErrorPlus msg detailed ->
       log Severity.Error msg *> traverse_ (log Severity.Debug) detailed
+{-# INLINE toColog #-}
 
 interpretLogStdout ::
   Member (Embed IO) r =>
@@ -114,3 +116,4 @@ interpretLogStdout ::
   Sem r a
 interpretLogStdout =
   runCologStdout . toColog . raiseUnder
+{-# INLINE interpretLogStdout #-}

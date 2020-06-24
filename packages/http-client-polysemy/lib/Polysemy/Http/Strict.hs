@@ -4,8 +4,8 @@ import Polysemy (interpretH, pureT)
 import Polysemy.Internal.Tactics hiding (liftT)
 
 import Polysemy.Http.Data.Header (Header(Header))
-import Polysemy.Http.Data.Http (Http)
 import qualified Polysemy.Http.Data.Http as Http
+import Polysemy.Http.Data.Http (Http)
 import Polysemy.Http.Data.HttpError (HttpError)
 import Polysemy.Http.Data.Response (Response(Response))
 
@@ -47,6 +47,7 @@ interpretHttpStrictWithState =
       raise (interpretHttpStrictWithState (handle resp))
     Http.ConsumeChunk _ ->
       liftT . fmap Right . takeChunk =<< raise get
+{-# INLINE interpretHttpStrictWithState #-}
 
 interpretHttpStrict ::
   Members [Embed IO, Error HttpError] r =>
@@ -55,3 +56,4 @@ interpretHttpStrict ::
   InterpreterFor (Http Int) r
 interpretHttpStrict responses chunks =
   evalState chunks . evalState responses . interpretHttpStrictWithState . raiseUnder . raiseUnder
+{-# INLINE interpretHttpStrict #-}
