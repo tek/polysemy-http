@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6a0c04a964aec8acf27674b496c3ab41b26837acde83963f22524b8b2642f5d0
+-- hash: 2da4c497b7f6e7239c98c7defaf7b8aca6fae3629db4b30f510e4c635554a821
 
 name:           http-client-polysemy
 version:        0.1.0.0
@@ -132,6 +132,7 @@ test-suite http-client-polysemy-unit
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
+      ResponseTest
       UrlTest
       Paths_http_client_polysemy
   hs-source-dirs:
