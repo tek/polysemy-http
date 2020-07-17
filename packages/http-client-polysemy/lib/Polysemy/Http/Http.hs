@@ -39,7 +39,7 @@ streamLoop process response@(Response _ body _) handle =
       handleChunk =<< fromEither =<< Http.consumeChunk body
     handleChunk (ByteString.null -> True) =
       process (StreamEvent.Result response handle)
-    handleChunk chunk =
+    handleChunk !chunk =
       process (StreamEvent.Chunk handle (StreamChunk chunk)) *> spin
 
 streamHandler ::
