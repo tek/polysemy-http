@@ -5,15 +5,15 @@ import qualified Data.ByteString as ByteString
 import Polysemy.Error (fromEither, runError)
 import Polysemy.Resource (Resource, bracket)
 
-import Polysemy.Http.Data.Http (Http)
 import qualified Polysemy.Http.Data.Http as Http
+import Polysemy.Http.Data.Http (Http)
 import Polysemy.Http.Data.HttpError (HttpError)
-import Polysemy.Http.Data.Request (Request)
 import qualified Polysemy.Http.Data.Request as Request
+import Polysemy.Http.Data.Request (Request)
 import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
-import Polysemy.Http.Data.StreamEvent (StreamEvent)
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
+import Polysemy.Http.Data.StreamEvent (StreamEvent)
 
 jsonContentType :: (Text, Text)
 jsonContentType =
@@ -39,8 +39,9 @@ streamLoop process response@(Response _ body _) handle =
       handleChunk =<< fromEither =<< Http.consumeChunk body
     handleChunk (ByteString.null -> True) =
       process (StreamEvent.Result response handle)
-    handleChunk !chunk =
-      process (StreamEvent.Chunk handle (StreamChunk chunk)) *> spin
+    handleChunk !chunk = do
+      process (StreamEvent.Chunk handle (StreamChunk chunk))
+      spin
 
 streamHandler ::
   ∀ o r c h .
