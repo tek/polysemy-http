@@ -23,7 +23,7 @@ import Network.HTTP.Simple (
   )
 import qualified Network.HTTP.Simple as N (Request, Response)
 import qualified Network.HTTP.Types as N (statusCode)
-import Polysemy (interpretH, pureT, runT)
+import Polysemy (Tactical, interpretH, pureT, runT)
 import qualified Polysemy.Http.Data.Log as Log
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Resource (Resource, bracket)
@@ -67,17 +67,43 @@ convertResponse response =
     header (foldedCase -> decodeUtf8 -> name, decodeUtf8 -> value) =
       Header name value
 
+internalError ::
+  Member (Embed IO) r =>
+  IO a ->
+  Sem r (Either HttpError a)
+internalError =
+  tryHoist HttpError.Internal
+
 executeRequest ::
   Member (Embed IO) r =>
   HTTP.Manager ->
   Request ->
   Sem r (Either HttpError (Response LByteString))
 executeRequest manager request =
-  bimap err convertResponse <$> embed (try (httpLbs (nativeRequest request) manager))
+  fmap convertResponse <$> internalError (httpLbs (nativeRequest request) manager)
+
+httpStream ::
+  Members [Embed IO, Log, Resource, Manager] r =>
+  Request ->
+  (Response BodyReader -> m (Either HttpError a)) ->
+  Tactical (Http BodyReader) m r (Either HttpError a)
+httpStream request handler =
+  bracket acquire release use
   where
-    err :: SomeException -> HttpError
-    err =
-      HttpError.Unexpected . show
+    acquire = do
+      manager <- Manager.get
+      internalError (responseOpen (nativeRequest request) manager)
+    release (Right response) =
+      tryAny (responseClose response) >>= traverseLeft closeFailed
+    release (Left err) =
+      unit
+    use (Right response) = do
+      raise . interpretHttpNativeWith =<< runT (handler (convertResponse response))
+    use (Left err) =
+      pureT (Left err)
+    closeFailed err =
+      Log.error [qt|closing response failed: #{err}|]
+{-# INLINE httpStream #-}
 
 interpretHttpNativeWith ::
   Members [Embed IO, Log, Resource, Manager] r =>
@@ -89,15 +115,7 @@ interpretHttpNativeWith =
       manager <- Manager.get
       liftT $ executeRequest manager request
     Http.Stream request handler ->
-      bracket acquire release use
-      where
-        acquire = do
-          manager <- Manager.get
-          embed $ responseOpen (nativeRequest request) manager
-        release response =
-          embed $ responseClose response
-        use response = do
-          raise . interpretHttpNativeWith =<< runT (handler (convertResponse response))
+      httpStream request handler
     Http.ConsumeChunk body ->
       pureT =<< convertError <$> embed (try body)
       where

@@ -163,6 +163,15 @@ tryThrow ::
 tryThrow f =
   fromEither <=< tryHoist f
 
+traverseLeft ::
+  Applicative m =>
+  (a -> m b) ->
+  Either a b ->
+  m b
+traverseLeft f =
+  either f pure
+{-# INLINE traverseLeft #-}
+
 defaultJson :: TH.Name -> TH.Q [TH.Dec]
 defaultJson =
   deriveJSON defaultOptions

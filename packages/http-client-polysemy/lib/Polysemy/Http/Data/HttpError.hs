@@ -9,7 +9,7 @@ data HttpError =
   |
   ChunkFailed Text
   |
-  Unexpected Text
+  Internal Text
   |
   FileSystem Text
   deriving (Eq, Show)
