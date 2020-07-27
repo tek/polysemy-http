@@ -16,6 +16,7 @@ interpretManagerWith manager = do
     Get -> pure manager
 {-# INLINE interpretManagerWith #-}
 
+-- TODO enable cert validation
 interpretManager ::
   Member (Embed IO) r =>
   InterpreterFor Manager r

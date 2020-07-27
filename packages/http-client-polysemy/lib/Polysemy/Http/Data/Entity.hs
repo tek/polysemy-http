@@ -12,11 +12,13 @@ data EntityError =
 
 data EntityEncode d m a where
   Encode :: d -> EntityEncode d m LByteString
+  EncodeStrict :: d -> EntityEncode d m ByteString
 
 makeSem ''EntityEncode
 
 data EntityDecode d m a where
   Decode :: LByteString -> EntityDecode d m (Either EntityError d)
+  DecodeStrict :: ByteString -> EntityDecode d m (Either EntityError d)
 
 makeSem ''EntityDecode
 

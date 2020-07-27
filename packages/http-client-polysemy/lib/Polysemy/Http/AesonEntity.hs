@@ -1,10 +1,10 @@
 module Polysemy.Http.AesonEntity where
 
-import Data.Aeson (FromJSON, ToJSON, eitherDecode', encode)
+import Data.Aeson (FromJSON, ToJSON, eitherDecode', eitherDecodeStrict', encode)
 import Polysemy (Sem, interpret)
 
 import Polysemy.Http.Data.Entity (EntityDecode, EntityEncode, EntityError(EntityError))
-import qualified Polysemy.Http.Data.Entity as Entity (EntityDecode(Decode), EntityEncode(Encode))
+import qualified Polysemy.Http.Data.Entity as Entity (EntityDecode(..), EntityEncode(..))
 
 interpretEntityEncodeAeson ::
   ToJSON d =>
@@ -14,7 +14,18 @@ interpretEntityEncodeAeson =
   interpret $ \case
     Entity.Encode a ->
       pure (encode a)
+    Entity.EncodeStrict a ->
+      pure (toStrict (encode a))
 {-# INLINE interpretEntityEncodeAeson #-}
+
+decodeWith ::
+  ConvertUtf8 Text s =>
+  (s -> Either String a) ->
+  s ->
+  Sem r (Either EntityError a)
+decodeWith dec body =
+  pure . mapLeft (EntityError (decodeUtf8 body) . toText) $ dec body
+{-# INLINE decodeWith #-}
 
 interpretEntityDecodeAeson ::
   FromJSON d =>
@@ -23,5 +34,7 @@ interpretEntityDecodeAeson ::
 interpretEntityDecodeAeson =
   interpret $ \case
     Entity.Decode body ->
-      pure . mapLeft (EntityError (decodeUtf8 body) . toText) $ eitherDecode' body
+      decodeWith eitherDecode' body
+    Entity.DecodeStrict body ->
+      decodeWith eitherDecodeStrict' body
 {-# INLINE interpretEntityDecodeAeson #-}
