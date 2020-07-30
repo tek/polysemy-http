@@ -5,5 +5,5 @@ license-file: LICENSE
 author: "Torsten Schmits"
 maintainer: "tek@tryp.io"
 copyright: "2019 Torsten Schmits"
-category: Crime
+category: Http
 build-type: Simple
