@@ -2,14 +2,17 @@
   base,
 }:
 let
-  hs = import (fetchTarball "https://gitlab.tryp.io/nix/hs/-/archive/9ca9ed9b741508edb96c397197cebf7da417b3d5.tar.gz");
-  packages = { http-client-polysemy = base + /packages/http-client-polysemy; };
-  overrides = import ./overrides.nix { inherit (hs) hackage; };
+  # hsSrc = fetchTarball "https://gitlab.tryp.io/nix/hs/-/archive/a38d2e20468e84e17249330bc38b60e17910cc07.tar.gz";
+  hsSrc = ../../../../nix/tryp-hs;
+  hs = import hsSrc { inherit base; };
+  packages = { polysemy-http = base + /packages/polysemy-http; };
   project = hs.project {
-    inherit packages overrides base;
+    inherit packages base;
+    compiler = "ghc8101";
+    overrides = import ./overrides.nix;
     ghciArgs = ["-hide-package" "base"];
     cabal2nixOptions = "--no-hpack";
     options_ghc = "-fplugin=Polysemy.Plugin";
   };
-  tags = hs.tags { packages = project.sets.all; inherit (project) ghc; packageDir = "packages"; };
+  tags = hs.util.tags { packages = project.sets.all; inherit (project) ghc; packageDir = "packages"; };
 in tags // project

@@ -1,16 +1,27 @@
 {
+  pkgs,
   hackage,
 }:
 self: super:
 let
-  pkgs = self.callPackage ({pkgs, ...}: pkgs) {};
-  hack = hackage { inherit pkgs self super; };
-  inherit (hack) pack;
+  inherit (hackage) pack thunk cabal2nix subPkg github;
+
+  base-noprelude = github {
+    owner = "tek";
+    repo = "base-noprelude";
+    rev = "d6ad765adca25c2efb06110dae854113fe1cd733";
+    sha256 = "0ffv2i29q05p5jza2jl1jzrfg0z7z6fw4ix7ay4h4ppzkzakk0ib";
+  };
+
   versions = [
-    (pack "polysemy" "1.3.0.0" "1p75i56qpl0v79vrlzw04117czzgwhn1l0vadvka8m7drmcvwsf6")
-    (pack "co-log-polysemy" "0.0.1.1" "0frp0p4nk37vdqmgnw851v6z1185rhvwsfl973dc1gw4jvmfd8b8")
-    (pack "polysemy-plugin" "0.2.5.0" "0jnps8kwxd0hakis5ph77r45mv1qnkxdf5506shcjb1zmxqmxpjv")
-    (pack "string-interpolate" "0.2.1.0" "0747bfzafcrrjl7grisv1cbvq1fblzmn37r9daknbnm988h9wann")
   ];
   versionOverrides = builtins.listToAttrs versions;
-in versionOverrides
+
+  polysemySrc = thunk "polysemy";
+  custom = {
+    inherit base-noprelude;
+    polysemy = cabal2nix "polysemy" polysemySrc;
+    polysemy-plugin = subPkg "polysemy-plugin" "polysemy-plugin" polysemySrc;
+  };
+in
+  versionOverrides // custom

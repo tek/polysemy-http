@@ -1,4 +1,4 @@
-name: http-client-polysemy
+name: polysemy-http
 <<: !include hpack/meta.yaml
 synopsis: Polysemy effect for http-client
 defaults:
@@ -19,14 +19,14 @@ when:
         - -fplugin=Polysemy.Plugin
 
 tests:
-  http-client-polysemy-unit:
+  polysemy-http-unit:
     <<: !include hpack/unit.yaml
     dependencies:
-      - http-client-polysemy
-  http-client-polysemy-integration:
+      - polysemy-http
+  polysemy-http-integration:
     <<: !include hpack/integration.yaml
     dependencies:
-      - http-client-polysemy
+      - polysemy-http
 
 dependencies:
   - aeson

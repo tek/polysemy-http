@@ -1,16 +1,14 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.2.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: 2da4c497b7f6e7239c98c7defaf7b8aca6fae3629db4b30f510e4c635554a821
 
-name:           http-client-polysemy
+name:           polysemy-http
 version:        0.1.0.0
 synopsis:       Polysemy effect for http-client
 description:    Please see the README on GitLab at <https://gitlab.tryp.io/haskell/bodhi>
-category:       Crime
+category:       Http
 author:         Torsten Schmits
 maintainer:     tek@tryp.io
 copyright:      2019 Torsten Schmits
@@ -80,12 +78,12 @@ library
         polysemy-plugin
   default-language: Haskell2010
 
-test-suite http-client-polysemy-integration
+test-suite polysemy-http-integration
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
       StreamTest
-      Paths_http_client_polysemy
+      Paths_polysemy_http
   hs-source-dirs:
       integration
   default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
@@ -105,7 +103,6 @@ test-suite http-client-polysemy-integration
     , either
     , hedgehog
     , http-client
-    , http-client-polysemy
     , http-client-tls
     , http-conduit
     , http-types
@@ -113,6 +110,7 @@ test-suite http-client-polysemy-integration
     , lifted-base
     , mono-traversable
     , polysemy
+    , polysemy-http
     , regex-with-pcre
     , relude
     , streaming
@@ -128,13 +126,13 @@ test-suite http-client-polysemy-integration
         polysemy-plugin
   default-language: Haskell2010
 
-test-suite http-client-polysemy-unit
+test-suite polysemy-http-unit
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
       ResponseTest
       UrlTest
-      Paths_http_client_polysemy
+      Paths_polysemy_http
   hs-source-dirs:
       test
   default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
@@ -154,7 +152,6 @@ test-suite http-client-polysemy-unit
     , either
     , hedgehog
     , http-client
-    , http-client-polysemy
     , http-client-tls
     , http-conduit
     , http-types
@@ -162,6 +159,7 @@ test-suite http-client-polysemy-unit
     , lifted-base
     , mono-traversable
     , polysemy
+    , polysemy-http
     , regex-with-pcre
     , relude
     , streaming
