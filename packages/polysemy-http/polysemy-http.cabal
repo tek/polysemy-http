@@ -44,7 +44,7 @@ library
   build-depends:
       aeson
     , ansi-terminal
-    , base-noprelude >=4.7 && <5
+    , base-noprelude
     , bytestring
     , case-insensitive
     , co-log-core
@@ -91,7 +91,7 @@ test-suite polysemy-http-integration
   build-depends:
       aeson
     , ansi-terminal
-    , base-noprelude >=4.7 && <5
+    , base-noprelude
     , bytestring
     , case-insensitive
     , co-log-core
@@ -140,7 +140,7 @@ test-suite polysemy-http-unit
   build-depends:
       aeson
     , ansi-terminal
-    , base-noprelude >=4.7 && <5
+    , base-noprelude
     , bytestring
     , case-insensitive
     , co-log-core

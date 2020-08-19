@@ -31,7 +31,7 @@ tests:
 dependencies:
   - aeson
   - ansi-terminal
-  - base-noprelude >= 4.7 && < 5
+  - base-noprelude
   - bytestring
   - case-insensitive
   - co-log-core
