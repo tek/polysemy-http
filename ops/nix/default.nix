@@ -19,5 +19,6 @@ let
     ghciArgs = ["-hide-package" "base"];
     cabal2nixOptions = "--no-hpack";
     options_ghc = "-fplugin=Polysemy.Plugin";
+    packageDir = "packages";
   };
 in project
