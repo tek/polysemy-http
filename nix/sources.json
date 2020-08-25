@@ -30,9 +30,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "tryp-hs": {
-        "ref": "master",
-        "repo": "git@gitlab.tryp.io:nix/hs",
-        "rev": "667be80280df6f286d98e701fef2e7a910cda723",
-        "type": "git"
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "tek",
+        "repo": "tryp-hs",
+        "rev": "4961022a5f0c867980daa52358b08f17c3d81e7e",
+        "sha256": "0m90gl95c6p3yapngnsqh04g63g5h1qfjf7sw03czqha9grpgv9w",
+        "type": "tarball",
+        "url": "https://github.com/tek/tryp-hs/archive/4961022a5f0c867980daa52358b08f17c3d81e7e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
