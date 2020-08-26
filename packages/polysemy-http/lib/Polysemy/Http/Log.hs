@@ -74,15 +74,17 @@ log severity text =
     stack =
       popCallStack (popCallStack callStack)
 
+-- |No-op interpreter for 'Log'
 interpretLogNull ::
   InterpreterFor Log r
 interpretLogNull =
-  interpret $ \case
+  interpret \case
     Debug _ -> unit
     Info _ -> unit
     Warn _ -> unit
     Error _ -> unit
     ErrorPlus _ _ -> unit
+{-# INLINE interpretLogNull #-}
 
 runCologStdout ::
   Member (Embed IO) r =>
@@ -97,7 +99,7 @@ toColog ::
   Sem (Log : r) a ->
   Sem r a
 toColog =
-  interpret $ \case
+  interpret \case
     Debug msg ->
       log Severity.Debug msg
     Info msg ->
@@ -110,6 +112,7 @@ toColog =
       log Severity.Error msg *> traverse_ (log Severity.Debug) detailed
 {-# INLINE toColog #-}
 
+-- |Default interpreter for 'Log' that uses 'Colog.Log' to print to stdout
 interpretLogStdout ::
   Member (Embed IO) r =>
   Sem (Log : r) a ->

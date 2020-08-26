@@ -6,6 +6,7 @@ import Polysemy (Sem, interpret)
 import Polysemy.Http.Data.Entity (EntityDecode, EntityEncode, EntityError(EntityError))
 import qualified Polysemy.Http.Data.Entity as Entity (EntityDecode(..), EntityEncode(..))
 
+-- |Interpreter for 'EntityEncode' that uses Aeson.
 interpretEntityEncodeAeson ::
   ToJSON d =>
   Sem (EntityEncode d : r) a ->
@@ -27,6 +28,7 @@ decodeWith dec body =
   pure . mapLeft (EntityError (decodeUtf8 body) . toText) $ dec body
 {-# INLINE decodeWith #-}
 
+-- |Interpreter for 'EntityDecode' that uses Aeson.
 interpretEntityDecodeAeson ::
   FromJSON d =>
   Sem (EntityDecode d : r) a ->

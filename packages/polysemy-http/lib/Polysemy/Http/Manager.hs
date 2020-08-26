@@ -1,6 +1,5 @@
 module Polysemy.Http.Manager where
 
-import Network.Connection (settingDisableCertificateValidation)
 import Network.HTTP.Client (newManager)
 import qualified Network.HTTP.Client as HTTP (Manager)
 import Network.HTTP.Client.TLS (mkManagerSettings)
@@ -12,11 +11,10 @@ interpretManagerWith ::
   HTTP.Manager ->
   InterpreterFor Manager r
 interpretManagerWith manager = do
-  interpret $ \case
-    Get -> pure manager
+  interpret \ Get -> pure manager
 {-# INLINE interpretManagerWith #-}
 
--- TODO enable cert validation
+-- |Trivial interpreter with a globally shared 'Manager' instance.
 interpretManager ::
   Member (Embed IO) r =>
   InterpreterFor Manager r
@@ -25,5 +23,5 @@ interpretManager sem = do
   interpretManagerWith manager sem
   where
     settings =
-      mkManagerSettings def { settingDisableCertificateValidation = True } Nothing
+      mkManagerSettings def Nothing
 {-# INLINE interpretManager #-}

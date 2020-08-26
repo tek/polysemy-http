@@ -45,6 +45,7 @@ import Polysemy.Http.Data.Request (
 import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Manager (interpretManager)
 
+-- |Converts a 'Request' to a native 'N.Request'.
 nativeRequest :: Request -> N.Request
 nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) headers query (Body body)) =
   cons defaultRequest
@@ -91,6 +92,9 @@ executeRequest ::
 executeRequest manager request =
   fmap convertResponse <$> internalError (httpLbs (nativeRequest request) manager)
 
+-- |Default handler for 'Http.Stream'.
+-- Uses 'bracket' to acquire and close the connection, calling 'StreamEvent.Acquire' and 'StreamEvent.Release' in the
+-- corresponding phases.
 httpStream ::
   Members [Embed IO, Log, Resource, Manager] r =>
   Request ->
@@ -114,6 +118,7 @@ httpStream request handler =
       Log.error [qt|closing response failed: #{err}|]
 {-# INLINE httpStream #-}
 
+-- |Same as 'interpretHttpNative', but the interpretation of 'Manager' is left to the user.
 interpretHttpNativeWith ::
   Members [Embed IO, Log, Resource, Manager] r =>
   InterpreterFor (Http BodyReader) r
@@ -131,6 +136,9 @@ interpretHttpNativeWith =
       pureT =<< mapLeft HttpError.ChunkFailed <$> tryAny body
 {-# INLINE interpretHttpNativeWith #-}
 
+-- |Interpret 'Http BodyReader' using the native 'Network.HTTP.Client' implementation.
+-- 'BodyReader' is an alias for 'IO ByteString', it is how http-client represents chunks.
+-- This uses the default interpreter for 'Manager'.
 interpretHttpNative ::
   Members [Embed IO, Log, Resource] r =>
   InterpreterFor (Http BodyReader) r

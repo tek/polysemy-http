@@ -49,6 +49,9 @@ interpretHttpStrictWithState =
       liftT . fmap Right . takeChunk =<< raise get
 {-# INLINE interpretHttpStrictWithState #-}
 
+-- |In-Memory interpreter for 'Http'.
+-- The first parameter is a list of 'Response'. When a request is made, one response is popped of the head and returned.
+-- If the list is exhausted, a 502 response is returned.
 interpretHttpStrict ::
   Members [Embed IO, Error HttpError] r =>
   [Response LByteString] ->

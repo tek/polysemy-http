@@ -2,7 +2,9 @@ module Polysemy.Http.Data.Log where
 
 import Polysemy.Internal (send)
 
-data Log m a where
+-- |An effect that wraps 'Colog.Polysemy.Log' for less boilerplate
+-- Constructors are manual because 'HasCallStack' is always in scope
+data Log :: Effect where
   Debug :: HasCallStack => Text -> Log m ()
   Info :: HasCallStack => Text -> Log m ()
   Warn :: HasCallStack => Text -> Log m ()
