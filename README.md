@@ -118,7 +118,29 @@ The `handle` is an arbitrary identifier that the user can return from
 
 # Entity
 
-TODO
+The library also provides effects for request and response entity de/encoding,
+`EntityDecode d m a` and `EntityEncode d m a`, making it possible to abstract
+over json implementations or content types using interpreters.
+Since the effects are parameterized by the codec data type, one interpreter per
+type must be used.
+
+Implementations for [aeson] are available as `interpretEntityDecodeAeson` and
+`interpretEntityEncodeAeson`:
+
+```haskell
+import Polysemy (run)
+import qualified Polysemy.Http as Http
+import Polysemy.Http (interpretEntityDecodeAeson)
+
+data Dat { a :: Maybe Int, b :: Text }
+deriving (Show, FromJSON)
+
+main :: IO
+main =
+  print $ run $ interpretEntityDecodeAeson $ Http.decode "{ \"b\": \"hello\" }"
+```
+
+There is not integration with the `Http` effect for this.
 
 # Testing
 
@@ -127,7 +149,6 @@ there is a convenience interpreter named `interpretHttpStrict` that allows you
 to specify a list of responses and chunks that should be produced:
 
 ```haskell
-
 main :: IO ()
 main = do
   result <- runM $

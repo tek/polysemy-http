@@ -11,7 +11,7 @@ interpretEntityEncodeAeson ::
   Sem (EntityEncode d : r) a ->
   Sem r a
 interpretEntityEncodeAeson =
-  interpret $ \case
+  interpret \case
     Entity.Encode a ->
       pure (encode a)
     Entity.EncodeStrict a ->
@@ -32,7 +32,7 @@ interpretEntityDecodeAeson ::
   Sem (EntityDecode d : r) a ->
   Sem r a
 interpretEntityDecodeAeson =
-  interpret $ \case
+  interpret \case
     Entity.Decode body ->
       decodeWith eitherDecode' body
     Entity.DecodeStrict body ->
