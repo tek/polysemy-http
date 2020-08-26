@@ -22,6 +22,8 @@ main = do
 
 # API
 
+## Request
+
 The effect constructor `Http.request` takes an argument of type
 `Polysemy.Http.Data.Request.Request`:
 
@@ -55,10 +57,38 @@ produces.
 The port field is intended for nonstandard ports – if it is `Nothing`, the port
 will be determined from `tls`.
 
+## Response
+
+`Http.request` returns `Either HttpError (Response LByteString)`, with
+`Polysemy.Http.Data.Response.Response` looking like this:
+
+```haskell
+data Response b =
+  Response {
+    status :: Status,
+    body :: b,
+    headers :: [Header]
+  }
+
+data Header =
+  Header {
+    name :: HeaderName,
+    value :: HeaderValue
+  }
+```
+
+`Status` is from `http-types`, because it has some helpful combinators. Its
+`Header` is just an alias, so this newtype is provided.
+The parameter `b` is intended to allow you to write interpreters that produce
+`Text` or something else, for example for [#testing].
+
 # Streaming
 
 # Entity
 
+# Testing
+
 [Polysemy]: https://hackage.haskell.org/package/polysemy
 [http-client]: https://hackage.haskell.org/package/http-client
+[http-types]: https://hackage.haskell.org/package/http-types
 [aeson]: https://hackage.haskell.org/package/aeson

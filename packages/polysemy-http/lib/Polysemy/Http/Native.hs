@@ -19,13 +19,12 @@ import Network.HTTP.Simple (
   setRequestSecure,
   )
 import qualified Network.HTTP.Simple as N (Request, Response)
-import qualified Network.HTTP.Types as N (statusCode)
 import Polysemy (Tactical, interpretH, runT)
 import qualified Polysemy.Http.Data.Log as Log
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Resource (Resource, bracket)
 
-import Polysemy.Http.Data.Header (Header(Header))
+import Polysemy.Http.Data.Header (Header(Header), unHeaderName, unHeaderValue)
 import qualified Polysemy.Http.Data.Http as Http
 import Polysemy.Http.Data.Http (Http)
 import qualified Polysemy.Http.Data.HttpError as HttpError
@@ -39,8 +38,6 @@ import Polysemy.Http.Data.Request (
   Request(Request),
   Tls(Tls),
   methodUpper,
-  unHeaderName,
-  unHeaderValue,
   unPort,
   unQueryKey,
   unQueryValue,
@@ -72,12 +69,12 @@ nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) hea
 
 convertResponse :: N.Response b -> Response b
 convertResponse response =
-  Response (N.statusCode (getResponseStatus response)) (getResponseBody response) headers
+  Response (getResponseStatus response) (getResponseBody response) headers
   where
     headers =
       header <$> getResponseHeaders response
     header (foldedCase -> decodeUtf8 -> name, decodeUtf8 -> value) =
-      Header name value
+      Header (fromString name) (fromString value)
 
 internalError ::
   Member (Embed IO) r =>

@@ -4,11 +4,12 @@ import Control.Lens ((%~))
 import qualified Data.ByteString as ByteString
 import Polysemy.Resource (Resource, bracket)
 
+import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
 import qualified Polysemy.Http.Data.Http as Http
 import Polysemy.Http.Data.Http (Http)
 import Polysemy.Http.Data.HttpError (HttpError)
 import qualified Polysemy.Http.Data.Request as Request
-import Polysemy.Http.Data.Request (HeaderName, HeaderValue, Request)
+import Polysemy.Http.Data.Request (Request)
 import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent

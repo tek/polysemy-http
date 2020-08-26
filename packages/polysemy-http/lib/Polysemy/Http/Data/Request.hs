@@ -3,6 +3,8 @@ module Polysemy.Http.Data.Request where
 import Control.Lens (makeClassy)
 import qualified Data.Text as Text
 
+import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
+
 data Method =
   Get
   |
@@ -67,16 +69,6 @@ newtype Tls =
 
 newtype Path =
   Path { unPath :: Text }
-  deriving (Eq, Show)
-  deriving newtype (IsString)
-
-newtype HeaderName =
-  HeaderName { unHeaderName :: Text }
-  deriving (Eq, Show)
-  deriving newtype (IsString)
-
-newtype HeaderValue =
-  HeaderValue { unHeaderValue :: Text }
   deriving (Eq, Show)
   deriving newtype (IsString)
 

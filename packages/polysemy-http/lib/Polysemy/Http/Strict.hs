@@ -16,7 +16,7 @@ takeResponse ::
 takeResponse (response : rest) =
   Right response <$ put rest
 takeResponse [] =
-  pure (Right (Response 502 "test responses exhausted" []))
+  pure (Right (Response (toEnum 502) "test responses exhausted" []))
 
 takeChunk ::
   Member (State [ByteString]) r =>
@@ -29,7 +29,7 @@ takeChunk [] =
 
 streamResponse :: Response Int
 streamResponse =
-  Response 200 1 [
+  Response (toEnum 200) 1 [
     Header "content-disposition" [qt|filename="file.txt"|],
     Header "content-length" "5000000"
     ]
