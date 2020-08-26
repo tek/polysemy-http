@@ -32,12 +32,24 @@ import qualified Polysemy.Http.Data.HttpError as HttpError
 import Polysemy.Http.Data.HttpError (HttpError)
 import qualified Polysemy.Http.Data.Manager as Manager
 import Polysemy.Http.Data.Manager (Manager)
-import Polysemy.Http.Data.Request (Request(Request), methodUpper)
+import Polysemy.Http.Data.Request (
+  Body(Body),
+  Host(Host),
+  Path(Path),
+  Request(Request),
+  Tls(Tls),
+  methodUpper,
+  unHeaderName,
+  unHeaderValue,
+  unPort,
+  unQueryKey,
+  unQueryValue,
+  )
 import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Manager (interpretManager)
 
 nativeRequest :: Request -> N.Request
-nativeRequest (Request method host portOverride tls path headers query body) =
+nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) headers query (Body body)) =
   cons defaultRequest
   where
     cons =
@@ -50,13 +62,13 @@ nativeRequest (Request method host portOverride tls path headers query body) =
       setRequestQueryString queryParam .
       setRequestBodyLBS body
     queryParam =
-      second Just . bimap encodeUtf8 encodeUtf8 <$> query
+      bimap (encodeUtf8 . unQueryKey) (fmap (encodeUtf8 . unQueryValue)) <$> query
     scheme =
       if tls then setRequestSecure True else id
     port =
-      fromMaybe (if tls then 443 else 80) portOverride
+      maybe (if tls then 443 else 80) unPort portOverride
     encodedHeaders =
-      bimap (CaseInsensitive.mk . encodeUtf8) encodeUtf8 <$> headers
+      bimap (CaseInsensitive.mk . encodeUtf8 . unHeaderName) (encodeUtf8 . unHeaderValue) <$> headers
 
 convertResponse :: N.Response b -> Response b
 convertResponse response =

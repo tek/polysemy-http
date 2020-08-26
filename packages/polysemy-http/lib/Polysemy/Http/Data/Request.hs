@@ -1,8 +1,7 @@
 module Polysemy.Http.Data.Request where
 
 import Control.Lens (makeClassy)
-import Prelude hiding (get)
-import Text.RE.PCRE.Text (RE, re, (=~))
+import qualified Data.Text as Text
 
 data Method =
   Get
@@ -11,60 +10,102 @@ data Method =
   |
   Put
   |
+  Delete
+  |
   Head
+  |
+  Trace
+  |
+  Connect
+  |
+  Options
+  |
+  Patch
+  |
+  Custom Text
   deriving (Eq, Show)
 
+instance IsString Method where
+  fromString = \case
+    "GET" -> Get
+    "POST" -> Post
+    "PUT" -> Put
+    "DELETE" -> Delete
+    "HEAD" -> Head
+    "TRACE" -> Trace
+    "CONNECT" -> Connect
+    "OPTIONS" -> Options
+    "PATCH" -> Patch
+    "get" -> Get
+    "post" -> Post
+    "put" -> Put
+    "delete" -> Delete
+    "head" -> Head
+    "trace" -> Trace
+    "connect" -> Connect
+    "options" -> Options
+    "patch" -> Patch
+    a -> Custom (toText a)
+
 methodUpper :: Method -> Text
-methodUpper Get = "GET"
-methodUpper Post = "POST"
-methodUpper Put = "PUT"
-methodUpper Head = "HEAD"
+methodUpper = \case
+  Custom n -> Text.toUpper n
+  a -> Text.toUpper (show a)
+
+newtype Host =
+  Host { unHost :: Text }
+  deriving (Eq, Show)
+  deriving newtype (IsString)
+
+newtype Port =
+  Port { unPort :: Int }
+  deriving (Eq, Show)
+
+newtype Tls =
+  Tls { unTls :: Bool }
+  deriving (Eq, Show)
+
+newtype Path =
+  Path { unPath :: Text }
+  deriving (Eq, Show)
+  deriving newtype (IsString)
+
+newtype HeaderName =
+  HeaderName { unHeaderName :: Text }
+  deriving (Eq, Show)
+  deriving newtype (IsString)
+
+newtype HeaderValue =
+  HeaderValue { unHeaderValue :: Text }
+  deriving (Eq, Show)
+  deriving newtype (IsString)
+
+newtype QueryKey =
+  QueryKey { unQueryKey :: Text }
+  deriving (Eq, Show)
+  deriving newtype (IsString)
+
+newtype QueryValue =
+  QueryValue { unQueryValue :: Text }
+  deriving (Eq, Show)
+  deriving newtype (IsString)
+
+newtype Body =
+  Body { unBody :: LByteString }
+  deriving (Eq, Show)
+  deriving newtype (IsString)
 
 data Request =
   Request {
     _method :: Method,
-    _host :: Text,
-    _port :: Maybe Int,
-    _tls :: Bool,
-    _path :: Text,
-    _headers :: [(Text, Text)],
-    _query :: [(Text, Text)],
-    _body :: LByteString
+    _host :: Host,
+    _port :: Maybe Port,
+    _tls :: Tls,
+    _path :: Path,
+    _headers :: [(HeaderName, HeaderValue)],
+    _query :: [(QueryKey, Maybe QueryValue)],
+    _body :: Body
   }
   deriving (Eq, Show)
 
 makeClassy ''Request
-
-urlRE :: RE
-urlRE =
-  [re|^(https://)?([^/]+)/(.*)|]
-
-parseUrl :: Text -> Either Text (Text, Text)
-parseUrl url =
-  extract (url =~ urlRE :: (Text, Text, Text, [Text]))
-  where
-    extract (_, _, _, [_, host', path']) =
-      Right (host', path')
-    extract _ =
-      Left [qt|invalid url: #{url}|]
-
-get ::
-  Text ->
-  Text ->
-  Request
-get host' path' =
-  Request Get host' Nothing True path' [] [] ""
-
-post ::
-  Text ->
-  Text ->
-  LByteString ->
-  Request
-post host' path' =
-  Request Post host' Nothing True path' [] []
-
-getUrl ::
-  Text ->
-  Either Text Request
-getUrl url =
-  uncurry get <$> parseUrl url

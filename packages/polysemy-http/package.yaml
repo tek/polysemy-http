@@ -42,7 +42,6 @@ dependencies:
   - lifted-base
   - mono-traversable
   - polysemy
-  - regex-with-pcre
   - relude
   - streaming
   - string-interpolate

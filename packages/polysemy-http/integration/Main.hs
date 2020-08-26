@@ -1,15 +1,17 @@
 module Main where
 
 import Test.Tasty (TestTree, defaultMain, testGroup)
-import Test.Tasty.Hedgehog (testProperty)
 
-import StreamTest (test_httpStream)
+import Polysemy.Http.RequestTest (test_request)
+import Polysemy.Http.StreamTest (test_httpStream)
+import Polysemy.Http.Test (unitTest)
 
 tests :: TestTree
 tests =
-  testGroup "all" [
-    testProperty "streaming http response handler" test_httpStream
-    ]
+  testGroup "integration" [
+    unitTest "simple request" test_request,
+    unitTest "streaming http response handler" test_httpStream
+  ]
 
 main :: IO ()
 main =

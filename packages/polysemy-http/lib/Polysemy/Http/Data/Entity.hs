@@ -1,8 +1,5 @@
 module Polysemy.Http.Data.Entity where
 
-import Data.Aeson (FromJSON(parseJSON), withObject, (.:))
-import Prelude hiding ((.:))
-
 data EntityError =
   EntityError {
     body :: Text,

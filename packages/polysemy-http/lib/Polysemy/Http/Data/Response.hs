@@ -27,7 +27,6 @@ statusInterval low high s | low <= s && s < high =
 statusInterval _ _ _ =
   Nothing
 
-
 pattern Info ::
   Int ->
   b ->

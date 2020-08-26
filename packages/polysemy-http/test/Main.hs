@@ -2,15 +2,14 @@ module Main where
 
 import Polysemy.Http.Test (unitTest)
 import Test.Tasty (TestTree, defaultMain, testGroup)
-import Test.Tasty.Hedgehog (testProperty)
 
-import ResponseTest (test_statusPattern)
-import UrlTest (test_urlRE)
+import Polysemy.Http.ResponseTest (test_statusPattern)
+import Polysemy.Http.UrlTest (test_url)
 
 tests :: TestTree
 tests =
-  testGroup "all" [
-    unitTest "url regex" test_urlRE,
+  testGroup "unit" [
+    unitTest "url parser" test_url,
     unitTest "status pattern" test_statusPattern
     ]
 

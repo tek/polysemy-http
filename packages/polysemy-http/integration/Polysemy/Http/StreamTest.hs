@@ -10,32 +10,33 @@ import Polysemy.State (runState)
 
 import Polysemy.Http.Data.HttpError (HttpError)
 import qualified Polysemy.Http.Data.Request as Request
-import Polysemy.Http.Data.Request (Request)
+import Polysemy.Http.Data.Request (Port(Port), Request, Tls(Tls))
 import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
 import Polysemy.Http.Data.StreamEvent (StreamEvent)
 import qualified Polysemy.Http.Http as Http
 import Polysemy.Http.Native (interpretHttpNative)
+import qualified Polysemy.Http.Request as Request
 import Polysemy.Http.Server (withServer)
 import Polysemy.Http.Test (UnitTest)
 
 req :: Int -> Request
 req port =
   Request.get "localhost" "stream"
-  & Request.port .~ Just port
-  & Request.tls .~ False
+  & Request.port .~ Just (Port port)
+  & Request.tls .~ Tls False
 
 handle ::
   Members [Embed IO, State [Int]] r =>
   StreamEvent () (IO ByteString) () a ->
   Sem r (Either HttpError a)
-handle (StreamEvent.Acquire _) = do
+handle (StreamEvent.Acquire _) =
   pure (Right ())
 handle (StreamEvent.Chunk _ (StreamChunk c)) =
   Right () <$ modify (ByteString.length c :)
-handle (StreamEvent.Result _ _) = do
+handle (StreamEvent.Result _ _) =
   pure (Right ())
-handle (StreamEvent.Release _) = do
+handle (StreamEvent.Release _) =
   pure (Right ())
 
 runRequest ::
