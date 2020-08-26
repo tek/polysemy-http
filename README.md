@@ -118,6 +118,8 @@ The `handle` is an arbitrary identifier that the user can return from
 
 # Entity
 
+TODO
+
 # Testing
 
 Polysemy makes it very easy to switch the native interpreter for a mock, and
