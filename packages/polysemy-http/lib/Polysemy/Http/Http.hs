@@ -1,8 +1,7 @@
 module Polysemy.Http.Http where
 
-import Control.Lens (over)
+import Control.Lens ((%~))
 import qualified Data.ByteString as ByteString
-import Polysemy.Error (fromEither, runError)
 import Polysemy.Resource (Resource, bracket)
 
 import qualified Polysemy.Http.Data.Http as Http
@@ -24,7 +23,7 @@ jsonRequest ::
   Request ->
   Sem r (Either HttpError (Response LByteString))
 jsonRequest =
-  Http.request . over Request.headers (jsonContentType :)
+  Http.request . (Request.headers %~ (jsonContentType :))
 
 streamLoop ::
   Members [Http c, Error HttpError] r =>

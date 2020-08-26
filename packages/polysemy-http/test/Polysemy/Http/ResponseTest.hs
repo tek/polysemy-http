@@ -1,9 +1,10 @@
-module ResponseTest where
+module Polysemy.Http.ResponseTest where
 
-import Hedgehog (Property, property, (===))
+import Hedgehog ((===))
 
 import qualified Polysemy.Http.Data.Response as Response
 import Polysemy.Http.Data.Response (Response(Response))
+import Polysemy.Http.Test (UnitTest)
 
 response :: Response ()
 response =
@@ -15,6 +16,6 @@ match = \case
   Response.Client _ _ _ -> 1
   _ -> 2
 
-test_statusPattern :: Property
+test_statusPattern :: UnitTest
 test_statusPattern =
-  property $ 1 === match response
+  1 === match response

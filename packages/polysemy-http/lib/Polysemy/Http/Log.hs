@@ -5,7 +5,7 @@ import qualified Colog.Core as Severity (Severity(Error, Info, Debug, Warning))
 import qualified Colog.Polysemy as Colog (Log, log)
 import Colog.Polysemy.Effect (runLogAction)
 import qualified Data.ByteString.Char8 as BS8
-import GHC.Stack (SrcLoc(SrcLoc), callStack, popCallStack, srcLocModule, srcLocStartLine)
+import GHC.Stack (SrcLoc(SrcLoc), popCallStack, srcLocModule, srcLocStartLine)
 import System.Console.ANSI (Color (..), ColorIntensity (Vivid), ConsoleLayer (Foreground), SGR (..), setSGRCode)
 
 import Polysemy.Http.Data.Log (Log(..))

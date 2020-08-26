@@ -1,15 +1,27 @@
 # About
 
-This Haskell library provides a [Polysemy] effect for running HTTP requests.
+This Haskell library provides a [Polysemy] effect for running HTTP requests with [http-client].
 
-# Usage
+# Example
 
 ```haskell
-import qualified Polysemy.Http.Data.Http as Http
-import qualified Polysemy.Http.Data.Request as Request
+import Polysemy (runM, resourceToIO)
+import qualified Polysemy.Http as Http
+import Polysemy.Http (interpretHttpNative, interpretLogStdout)
 
 main :: IO ()
-main =
-  interpretHttpNative $
-  Http.Request (Request.get "hackage.haskell.org" "package/polysemy-http")
+main = do
+  result <- runM $
+    resourceToIO $
+    interpretLogStdout $
+    interpretHttpNative $
+    Http.request (Http.get "hackage.haskell.org" "package/polysemy-http")
+  print result
 ```
+
+# API
+
+# Streaming
+
+[Polysemy]: https://hackage.haskell.org/package/polysemy
+[http-client]: https://hackage.haskell.org/package/http-client

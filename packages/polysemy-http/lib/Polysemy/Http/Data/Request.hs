@@ -24,6 +24,7 @@ data Request =
   Request {
     _method :: Method,
     _host :: Text,
+    _port :: Maybe Int,
     _tls :: Bool,
     _path :: Text,
     _headers :: [(Text, Text)],
@@ -52,7 +53,15 @@ get ::
   Text ->
   Request
 get host' path' =
-  Request Get host' True path' [] [] ""
+  Request Get host' Nothing True path' [] [] ""
+
+post ::
+  Text ->
+  Text ->
+  LByteString ->
+  Request
+post host' path' =
+  Request Post host' Nothing True path' [] []
 
 getUrl ::
   Text ->

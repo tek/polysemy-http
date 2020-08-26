@@ -1,4 +1,4 @@
-cabal-version: 1.12
+cabal-version: 2.2
 
 -- This file has been generated from package.yaml by hpack version 0.34.2.
 --
@@ -7,14 +7,19 @@ cabal-version: 1.12
 name:           polysemy-http
 version:        0.1.0.0
 synopsis:       Polysemy effect for http-client
-description:    Please see the README on GitLab at <https://gitlab.tryp.io/haskell/bodhi>
+description:    Polysemy effect for http-client
 category:       Http
 author:         Torsten Schmits
 maintainer:     tek@tryp.io
 copyright:      2019 Torsten Schmits
-license:        OtherLicense
+license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
+
+flag dev
+  description: add test dependencies to main project to satisfy ghci(de)
+  manual: True
+  default: False
 
 library
   exposed-modules:
@@ -40,7 +45,7 @@ library
       Prelude
   hs-source-dirs:
       lib
-  default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
+  default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
   build-depends:
       aeson
     , ansi-terminal
@@ -65,6 +70,9 @@ library
     , polysemy
     , regex-with-pcre
     , relude
+    , servant
+    , servant-client
+    , servant-server
     , streaming
     , string-interpolate
     , tasty
@@ -76,66 +84,26 @@ library
     ghc-options: -fplugin=Polysemy.Plugin
     build-depends:
         polysemy-plugin
-  default-language: Haskell2010
-
-test-suite polysemy-http-integration
-  type: exitcode-stdio-1.0
-  main-is: Main.hs
-  other-modules:
-      StreamTest
-      Paths_polysemy_http
-  hs-source-dirs:
-      integration
-  default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      aeson
-    , ansi-terminal
-    , base-noprelude
-    , bytestring
-    , case-insensitive
-    , co-log-core
-    , co-log-polysemy
-    , composition
-    , connection
-    , containers
-    , data-default
-    , either
-    , hedgehog
-    , http-client
-    , http-client-tls
-    , http-conduit
-    , http-types
-    , lens
-    , lifted-base
-    , mono-traversable
-    , polysemy
-    , polysemy-http
-    , regex-with-pcre
-    , relude
-    , streaming
-    , string-interpolate
-    , tasty
-    , tasty-hedgehog
-    , template-haskell
-    , text
-  if impl(ghcjs)
-  else
-    ghc-options: -fplugin=Polysemy.Plugin
+  if flag(dev)
     build-depends:
-        polysemy-plugin
+        servant
+      , servant-client
+      , servant-server
+      , tasty
+      , tasty-hedgehog
   default-language: Haskell2010
 
 test-suite polysemy-http-unit
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
-      ResponseTest
-      UrlTest
+      Polysemy.Http.ResponseTest
+      Polysemy.Http.Test
+      Polysemy.Http.UrlTest
       Paths_polysemy_http
   hs-source-dirs:
       test
-  default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
+  default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
@@ -162,6 +130,9 @@ test-suite polysemy-http-unit
     , polysemy-http
     , regex-with-pcre
     , relude
+    , servant
+    , servant-client
+    , servant-server
     , streaming
     , string-interpolate
     , tasty
@@ -173,4 +144,11 @@ test-suite polysemy-http-unit
     ghc-options: -fplugin=Polysemy.Plugin
     build-depends:
         polysemy-plugin
+  if flag(dev)
+    build-depends:
+        servant
+      , servant-client
+      , servant-server
+      , tasty
+      , tasty-hedgehog
   default-language: Haskell2010

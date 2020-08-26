@@ -175,7 +175,3 @@ traverseLeft f =
 defaultJson :: TH.Name -> TH.Q [TH.Dec]
 defaultJson =
   deriveJSON defaultOptions
-
-type family Jsons (r :: [*]) :: Constraint where
-  Jsons '[] = ()
-  Jsons (a ': r) = (FromJSON a, ToJSON a, Jsons r)

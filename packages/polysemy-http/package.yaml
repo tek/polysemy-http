@@ -1,32 +1,24 @@
 name: polysemy-http
-<<: !include hpack/meta.yaml
+version: 0.1.0.0
+description: Polysemy effect for http-client
+license: BSD-2-Clause-Patent
+license-file: LICENSE
+author: "Torsten Schmits"
+maintainer: "tek@tryp.io"
+copyright: "2019 Torsten Schmits"
+category: Http
+build-type: Simple
 synopsis: Polysemy effect for http-client
-defaults:
-  local: hpack/defaults.yaml
 
 library:
   source-dirs: lib
   other-modules: Prelude
 
-when:
-  - condition: impl(ghcjs)
-    then:
-      dependencies: []
-    else:
-      dependencies:
-        - polysemy-plugin
-      ghc-options:
-        - -fplugin=Polysemy.Plugin
-
-tests:
-  polysemy-http-unit:
-    <<: !include hpack/unit.yaml
-    dependencies:
-      - polysemy-http
-  polysemy-http-integration:
-    <<: !include hpack/integration.yaml
-    dependencies:
-      - polysemy-http
+flags:
+  dev:
+    description: add test dependencies to main project to satisfy ghci(de)
+    default: False
+    manual: True
 
 dependencies:
   - aeson
@@ -54,7 +46,96 @@ dependencies:
   - relude
   - streaming
   - string-interpolate
-  - tasty
-  - tasty-hedgehog
   - template-haskell
   - text
+  # TODO remove when the flag problem is solved
+  - servant
+  - servant-server
+  - servant-client
+  - tasty
+  - tasty-hedgehog
+
+when:
+  - condition: impl(ghcjs)
+    then:
+      dependencies: []
+    else:
+      dependencies:
+        - polysemy-plugin
+      ghc-options:
+        - -fplugin=Polysemy.Plugin
+  - condition: flag(dev)
+    dependencies:
+      - servant
+      - servant-server
+      - servant-client
+      - tasty
+      - tasty-hedgehog
+
+tests:
+  polysemy-http-unit:
+    main: Main.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - polysemy-http
+      - servant
+      - servant-server
+      - tasty
+      - tasty-hedgehog
+
+default-extensions:
+  - AllowAmbiguousTypes
+  - ApplicativeDo
+  - BangPatterns
+  - BinaryLiterals
+  - BlockArguments
+  - ConstraintKinds
+  - DataKinds
+  - DefaultSignatures
+  - DeriveAnyClass
+  - DeriveDataTypeable
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveTraversable
+  - DerivingVia
+  - DoAndIfThenElse
+  - EmptyDataDecls
+  - ExistentialQuantification
+  - FlexibleContexts
+  - FlexibleInstances
+  - FunctionalDependencies
+  - GADTs
+  - GeneralizedNewtypeDeriving
+  - InstanceSigs
+  - KindSignatures
+  - LambdaCase
+  - MultiParamTypeClasses
+  - MultiWayIf
+  - NamedFieldPuns
+  - OverloadedStrings
+  - PackageImports
+  - PartialTypeSignatures
+  - PatternGuards
+  - PatternSynonyms
+  - PolyKinds
+  - QuantifiedConstraints
+  - QuasiQuotes
+  - RankNTypes
+  - RecordWildCards
+  - RecursiveDo
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TemplateHaskell
+  - TupleSections
+  - TypeApplications
+  - TypeFamilies
+  - TypeOperators
+  - TypeSynonymInstances
+  - UndecidableInstances
+  - UnicodeSyntax
+  - ViewPatterns

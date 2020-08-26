@@ -1,12 +1,9 @@
 module Polysemy.Http.Native where
 
-import Control.Exception.Lifted (try)
 import qualified Data.CaseInsensitive as CaseInsensitive
 import Data.CaseInsensitive (foldedCase)
-import Network.Connection (settingDisableCertificateValidation)
-import Network.HTTP.Client (BodyReader, httpLbs, newManager, responseClose, responseOpen)
+import Network.HTTP.Client (BodyReader, httpLbs, responseClose, responseOpen)
 import qualified Network.HTTP.Client as HTTP (Manager)
-import Network.HTTP.Client.TLS (mkManagerSettings)
 import Network.HTTP.Simple (
   defaultRequest,
   getResponseBody,
@@ -23,7 +20,7 @@ import Network.HTTP.Simple (
   )
 import qualified Network.HTTP.Simple as N (Request, Response)
 import qualified Network.HTTP.Types as N (statusCode)
-import Polysemy (Tactical, interpretH, pureT, runT)
+import Polysemy (Tactical, interpretH, runT)
 import qualified Polysemy.Http.Data.Log as Log
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Resource (Resource, bracket)
@@ -40,7 +37,7 @@ import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Manager (interpretManager)
 
 nativeRequest :: Request -> N.Request
-nativeRequest (Request method host tls path headers query body) =
+nativeRequest (Request method host portOverride tls path headers query body) =
   cons defaultRequest
   where
     cons =
@@ -48,13 +45,16 @@ nativeRequest (Request method host tls path headers query body) =
       setRequestMethod (encodeUtf8 $ methodUpper method) .
       setRequestHeaders encodedHeaders .
       setRequestHost (encodeUtf8 host) .
+      setRequestPort port .
       setRequestPath (encodeUtf8 path) .
       setRequestQueryString queryParam .
       setRequestBodyLBS body
     queryParam =
       second Just . bimap encodeUtf8 encodeUtf8 <$> query
     scheme =
-      if tls then setRequestSecure True . setRequestPort 443 else id
+      if tls then setRequestSecure True else id
+    port =
+      fromMaybe (if tls then 443 else 80) portOverride
     encodedHeaders =
       bimap (CaseInsensitive.mk . encodeUtf8) encodeUtf8 <$> headers
 
@@ -95,7 +95,7 @@ httpStream request handler =
       internalError (responseOpen (nativeRequest request) manager)
     release (Right response) =
       tryAny (responseClose response) >>= traverseLeft closeFailed
-    release (Left err) =
+    release (Left _) =
       unit
     use (Right response) = do
       raise . interpretHttpNativeWith =<< runT (handler (convertResponse response))
@@ -111,18 +111,15 @@ interpretHttpNativeWith ::
 interpretHttpNativeWith =
   interpretH $ \case
     Http.Request request -> do
-      Log.debug $ "http request: " <> show request
+      Log.debug $ [qt|http request: #{request}|]
       manager <- Manager.get
-      liftT $ executeRequest manager request
+      liftT do
+        response <- executeRequest manager request
+        response <$ Log.debug [qt|http response: #{response}|]
     Http.Stream request handler ->
       httpStream request handler
     Http.ConsumeChunk body ->
-      pureT =<< convertError <$> embed (try body)
-      where
-        convertError (Left (e :: SomeException)) =
-          Left (HttpError.ChunkFailed (show e))
-        convertError (Right a) =
-          Right a
+      pureT =<< mapLeft HttpError.ChunkFailed <$> tryAny body
 {-# INLINE interpretHttpNativeWith #-}
 
 interpretHttpNative ::

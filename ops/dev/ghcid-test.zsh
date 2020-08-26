@@ -10,4 +10,5 @@ nix-shell --pure -A 'ghcid.run' \
   --argstr name $name \
   --argstr 'type' $type_ \
   --argstr 'runner' $runner \
+  --arg 'flags' '["dev"]' \
   --run exit
