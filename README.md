@@ -84,9 +84,57 @@ The parameter `b` is intended to allow you to write interpreters that produce
 
 # Streaming
 
+The higher-order constructor `Http.stream` opens and closes the request
+manually and passes the response to a handler function.
+The function `streamResponse` provides a simpler interface for this mechanism
+that runs a loop that passes individual chunks produced by [http-client] to
+a callback handler of type `∀ x . StreamEvent o c h x -> Sem r x` that should
+look like this:
+
+```haskell
+handle ::
+  StreamEvent () (IO ByteString) () a ->
+  Sem r a
+handle = \case
+  StreamEvent.Acquire (Response status body headers) ->
+    undefined
+  StreamEvent.Chunk handle (StreamChunk c) ->
+    undefined
+  StreamEvent.Result (Response status body headers) handle ->
+    undefined
+  StreamEvent.Release handle ->
+    undefined
+```
+
+If you were e.g. to write the data to disk, you would open the file in the
+`Acquire` block, write the `ByteString` `c` in `Chunk`, and close the file in
+`Release`.
+The callbacks are wrapped in `Resource.bracket`, so `Release` is guaranteed to
+be called (as much as `Resource` is reliable).
+The `Result` block is called when the transfer is complete; its returned value
+is finally returned from `streamHandler.`
+The `handle` is an arbitrary identifier that the user can return from
+`Acquire`; it is not needed for the machinery and may be `()`.
+
 # Entity
 
 # Testing
+
+Polysemy makes it very easy to switch the native interpreter for a mock, and
+there is a convenience interpreter named `interpretHttpStrict` that allows you
+to specify a list of responses and chunks that should be produced:
+
+```haskell
+
+main :: IO ()
+main = do
+  result <- runM $
+    resourceToIO $
+    interpretLogStdout $
+    interpretHttpStrict [Response (toEnum 200) "foo" []] [] $
+    Http.request (Http.get "hackage.haskell.org" "package/polysemy-http")
+  print result
+```
 
 [Polysemy]: https://hackage.haskell.org/package/polysemy
 [http-client]: https://hackage.haskell.org/package/http-client

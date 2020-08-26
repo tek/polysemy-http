@@ -29,15 +29,16 @@ req port =
 handle ::
   Members [Embed IO, State [Int]] r =>
   StreamEvent () (IO ByteString) () a ->
-  Sem r (Either HttpError a)
-handle (StreamEvent.Acquire _) =
-  pure (Right ())
-handle (StreamEvent.Chunk _ (StreamChunk c)) =
-  Right () <$ modify (ByteString.length c :)
-handle (StreamEvent.Result _ _) =
-  pure (Right ())
-handle (StreamEvent.Release _) =
-  pure (Right ())
+  Sem r a
+handle = \case
+  StreamEvent.Acquire _ ->
+    unit
+  StreamEvent.Chunk _ (StreamChunk c) ->
+    modify (ByteString.length c :)
+  StreamEvent.Result _ _ ->
+    unit
+  StreamEvent.Release _ ->
+    unit
 
 runRequest ::
   Int ->

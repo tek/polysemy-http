@@ -60,7 +60,7 @@ streamHandler process response = do
 streamResponse ::
   Members [Http c, Error HttpError, Resource] r =>
   Request ->
-  (∀ x . StreamEvent o c h x -> Sem r (Either HttpError x)) ->
+  (∀ x . StreamEvent o c h x -> Sem r x) ->
   Sem r o
 streamResponse request process =
-  fromEither =<< Http.stream request (runError . streamHandler (fromEither <=< raise . process))
+  fromEither =<< Http.stream request (runError . streamHandler (raise . process))
