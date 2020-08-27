@@ -72,11 +72,28 @@ tests:
         mixin:
           - hiding (Prelude)
           - (Polysemy.Http.Prelude as Prelude)
+      - tasty
+      - tasty-hedgehog
+  polysemy-http-integration:
+    main: Main.hs
+    source-dirs: integration
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - hedgehog
+      - network
+      - name: polysemy-http
+        mixin:
+          - hiding (Prelude)
+          - (Polysemy.Http.Prelude as Prelude)
       - servant
       - servant-server
       - servant-client
       - tasty
       - tasty-hedgehog
+      - warp
 
 default-extensions:
   - AllowAmbiguousTypes
