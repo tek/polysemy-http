@@ -20,6 +20,5 @@ let
     options_ghc = "-fplugin=Polysemy.Plugin";
     packageDir = "packages";
   };
-  cabal = import ./cabal.nix { inherit (project) ghcid; };
 in
-  project // { inherit cabal; }
+  project
