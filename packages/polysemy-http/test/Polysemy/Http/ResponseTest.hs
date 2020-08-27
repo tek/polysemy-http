@@ -8,7 +8,7 @@ import Polysemy.Http.Test (UnitTest)
 
 response :: Response ()
 response =
-  Response 404 () []
+  Response (toEnum 404) () []
 
 match :: Response a -> Int
 match = \case

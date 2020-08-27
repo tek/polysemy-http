@@ -33,7 +33,7 @@ stream ::
   Sem r (Either HttpError a)
 
 consumeChunk ::
-  ∀ c r a .
+  ∀ c r .
   Member (Http c) r =>
   c ->
   Sem r (Either HttpError ByteString)

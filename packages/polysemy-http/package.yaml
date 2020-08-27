@@ -13,12 +13,8 @@ synopsis: Polysemy effect for http-client
 library:
   source-dirs: lib
   other-modules: Prelude
-
-flags:
-  dev:
-    description: add test dependencies to main project to satisfy ghci(de)
-    default: False
-    manual: True
+  generated-exposed-modules:
+    - Paths_polysemy_http
 
 dependencies:
   - aeson
@@ -43,13 +39,6 @@ dependencies:
   - string-interpolate
   - template-haskell
   - text
-  # TODO remove when the flag problem is solved
-  # - hedgehog
-  # - servant
-  # - servant-server
-  # - servant-client
-  # - tasty
-  # - tasty-hedgehog
 
 when:
   - condition: impl(ghcjs)
@@ -63,14 +52,6 @@ when:
         - -O2
         - -flate-specialise
         - -fspecialise-aggressively
-  - condition: flag(dev)
-    dependencies:
-      - hedgehog
-      - servant
-      - servant-server
-      - servant-client
-      - tasty
-      - tasty-hedgehog
 
 tests:
   polysemy-http-unit:
@@ -81,9 +62,14 @@ tests:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
-      - polysemy-http
+      - hedgehog
+      - name: polysemy-http
+        mixin:
+          - hiding (Prelude)
+          - (Polysemy.Http.Prelude as Prelude)
       - servant
       - servant-server
+      - servant-client
       - tasty
       - tasty-hedgehog
 

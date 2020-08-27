@@ -7,6 +7,7 @@ module Polysemy.Http (
   -- * Request and Response
   module Polysemy.Http.Data.Request,
   module Polysemy.Http.Data.Response,
+  module Polysemy.Http.Data.Header,
   module Polysemy.Http.Request,
   -- * Streaming
   module Polysemy.Http.Http,
@@ -48,10 +49,21 @@ import Polysemy.Http.Data.Entity (
   encode,
   encodeStrict,
   )
+import Polysemy.Http.Data.Header (Header(Header), HeaderName(HeaderName), HeaderValue(HeaderValue))
 import Polysemy.Http.Data.Http (Http, request, stream)
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Http.Data.Manager (Manager)
-import Polysemy.Http.Data.Request (Method(..), Request(..))
+import Polysemy.Http.Data.Request (
+  Body(Body),
+  Host(Host),
+  Method(..),
+  Path(Path),
+  Port(Port),
+  QueryKey(QueryKey),
+  QueryValue(QueryValue),
+  Request(..),
+  Tls(Tls),
+  )
 import Polysemy.Http.Data.Response (
   Response(..),
   pattern Client,

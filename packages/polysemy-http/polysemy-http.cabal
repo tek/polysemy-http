@@ -16,11 +16,6 @@ license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
 
-flag dev
-  description: add test dependencies to main project to satisfy ghci(de)
-  manual: True
-  default: False
-
 library
   exposed-modules:
       Polysemy.Http
@@ -36,14 +31,18 @@ library
       Polysemy.Http.Data.StreamChunk
       Polysemy.Http.Data.StreamEvent
       Polysemy.Http.Http
+      Polysemy.Http.Json
       Polysemy.Http.Log
       Polysemy.Http.Manager
       Polysemy.Http.Native
       Polysemy.Http.Prelude
       Polysemy.Http.Request
       Polysemy.Http.Strict
+      Paths_polysemy_http
   other-modules:
       Prelude
+  autogen-modules:
+      Paths_polysemy_http
   hs-source-dirs:
       lib
   default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
@@ -75,14 +74,6 @@ library
     ghc-options: -fplugin=Polysemy.Plugin -O2 -flate-specialise -fspecialise-aggressively
     build-depends:
         polysemy-plugin
-  if flag(dev)
-    build-depends:
-        hedgehog
-      , servant
-      , servant-client
-      , servant-server
-      , tasty
-      , tasty-hedgehog
   default-language: Haskell2010
 
 test-suite polysemy-http-unit
@@ -109,6 +100,7 @@ test-suite polysemy-http-unit
     , containers
     , data-default
     , either
+    , hedgehog
     , http-client
     , http-client-tls
     , http-conduit
@@ -119,23 +111,19 @@ test-suite polysemy-http-unit
     , polysemy-http
     , relude
     , servant
+    , servant-client
     , servant-server
     , string-interpolate
     , tasty
     , tasty-hedgehog
     , template-haskell
     , text
+  mixins:
+      polysemy-http hiding (Prelude)
+    , polysemy-http (Polysemy.Http.Prelude as Prelude)
   if impl(ghcjs)
   else
     ghc-options: -fplugin=Polysemy.Plugin -O2 -flate-specialise -fspecialise-aggressively
     build-depends:
         polysemy-plugin
-  if flag(dev)
-    build-depends:
-        hedgehog
-      , servant
-      , servant-client
-      , servant-server
-      , tasty
-      , tasty-hedgehog
   default-language: Haskell2010

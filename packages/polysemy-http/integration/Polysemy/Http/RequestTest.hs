@@ -11,7 +11,7 @@ import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Body(Body), Port(Port), Tls(Tls))
 import qualified Polysemy.Http.Data.Response as Response
 import Polysemy.Http.Data.Response (Response)
-import Polysemy.Http.Http (jsonContentType)
+import Polysemy.Http.Json (jsonContentType)
 import Polysemy.Http.Log (interpretLogNull)
 import Polysemy.Http.Native (interpretHttpNative)
 import qualified Polysemy.Http.Request as Request

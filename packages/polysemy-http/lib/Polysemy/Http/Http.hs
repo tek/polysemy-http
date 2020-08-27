@@ -1,30 +1,16 @@
 module Polysemy.Http.Http where
 
-import Control.Lens ((%~))
 import qualified Data.ByteString as ByteString
 import Polysemy.Resource (Resource, bracket)
 
-import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
 import qualified Polysemy.Http.Data.Http as Http
 import Polysemy.Http.Data.Http (Http)
 import Polysemy.Http.Data.HttpError (HttpError)
-import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Request)
 import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
 import Polysemy.Http.Data.StreamEvent (StreamEvent)
-
-jsonContentType :: (HeaderName, HeaderValue)
-jsonContentType =
-  ("content-type", "application/json")
-
-jsonRequest ::
-  Member (Http c) r =>
-  Request ->
-  Sem r (Either HttpError (Response LByteString))
-jsonRequest =
-  Http.request . (Request.headers %~ (jsonContentType :))
 
 streamLoop ::
   Members [Http c, Error HttpError] r =>
