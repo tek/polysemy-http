@@ -27,5 +27,6 @@ in {
   sdist = pkgCommand "v2-sdist -o ${buildDir}";
   uploadSrc = command "upload ${buildDir}/polysemy-http-?.?.?.?.tar.gz";
   uploadDoc = command "upload -d ${buildDir}/*docs.tar.gz";
+  uploadDocPublish = command "upload -d --publish ${buildDir}/*docs.tar.gz";
   publish = command "upload --publish ${buildDir}/polysemy-http-?.?.?.?.tar.gz";
 }

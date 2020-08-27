@@ -4,8 +4,8 @@
 let
   niv = import "${toString base}/nix/sources.nix";
   nixpkgsSrc = niv.nixpkgs;
-  hsSrc = ../../../../nix/tryp-hs;
-  # hsSrc = niv.tryp-hs;
+  # hsSrc = ../../../../nix/tryp-hs;
+  hsSrc = niv.tryp-hs;
 
   nixpkgs = import nixpkgsSrc;
   hs = import hsSrc { inherit base; };
