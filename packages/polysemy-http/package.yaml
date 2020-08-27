@@ -1,18 +1,21 @@
 name: polysemy-http
 version: 0.1.0.0
-description: Polysemy effect for http-client
+synopsis: Polysemy effect for http-client
 license: BSD-2-Clause-Patent
 license-file: LICENSE
 author: "Torsten Schmits"
 maintainer: "tek@tryp.io"
-copyright: "2019 Torsten Schmits"
-category: Http
+copyright: "2020 Torsten Schmits"
+category: Network
 build-type: Simple
-synopsis: Polysemy effect for http-client
+
+extra-source-files:
+  - README.md
 
 library:
   source-dirs: lib
-  other-modules: Prelude
+  other-modules:
+    - Prelude
   generated-exposed-modules:
     - Paths_polysemy_http
 
