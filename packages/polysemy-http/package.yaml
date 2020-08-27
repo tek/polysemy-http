@@ -44,12 +44,12 @@ dependencies:
   - template-haskell
   - text
   # TODO remove when the flag problem is solved
-  - hedgehog
-  - servant
-  - servant-server
-  - servant-client
-  - tasty
-  - tasty-hedgehog
+  # - hedgehog
+  # - servant
+  # - servant-server
+  # - servant-client
+  # - tasty
+  # - tasty-hedgehog
 
 when:
   - condition: impl(ghcjs)

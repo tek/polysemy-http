@@ -59,7 +59,6 @@ library
     , containers
     , data-default
     , either
-    , hedgehog
     , http-client
     , http-client-tls
     , http-conduit
@@ -68,12 +67,7 @@ library
     , mono-traversable
     , polysemy
     , relude
-    , servant
-    , servant-client
-    , servant-server
     , string-interpolate
-    , tasty
-    , tasty-hedgehog
     , template-haskell
     , text
   if impl(ghcjs)
@@ -115,7 +109,6 @@ test-suite polysemy-http-unit
     , containers
     , data-default
     , either
-    , hedgehog
     , http-client
     , http-client-tls
     , http-conduit
@@ -126,7 +119,6 @@ test-suite polysemy-http-unit
     , polysemy-http
     , relude
     , servant
-    , servant-client
     , servant-server
     , string-interpolate
     , tasty

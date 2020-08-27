@@ -88,27 +88,32 @@ The higher-order constructor `Http.stream` opens and closes the request
 manually and passes the response to a handler function.
 The function `streamResponse` provides a simpler interface for this mechanism
 that runs a loop that passes individual chunks produced by [http-client] to
-a callback handler of type `∀ x . StreamEvent o c h x -> Sem r x` that should
+a callback handler of type `∀ x . StreamEvent r c h x -> Sem r x` that should
 look like this:
 
 ```haskell
 handle ::
-  StreamEvent () (IO ByteString) () a ->
+  StreamEvent Double (IO ByteString) Int a ->
   Sem r a
 handle = \case
   StreamEvent.Acquire (Response status body headers) ->
-    undefined
+    pure 1
   StreamEvent.Chunk handle (StreamChunk c) ->
-    undefined
+    pure ()
   StreamEvent.Result (Response status body headers) handle ->
-    undefined
+    pure 5.5
   StreamEvent.Release handle ->
-    undefined
+    pure ()
+
+run :: Sem r Double
+run =
+  Http.streamResponse (Request.get "host.com" "path/to/file") handle
 ```
 
 If you were e.g. to write the data to disk, you would open the file in the
 `Acquire` block, write the `ByteString` `c` in `Chunk`, and close the file in
 `Release`.
+The parameter `h` could then be `Handle`.
 The callbacks are wrapped in `Resource.bracket`, so `Release` is guaranteed to
 be called (as much as `Resource` is reliable).
 The `Result` block is called when the transfer is complete; its returned value

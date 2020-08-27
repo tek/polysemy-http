@@ -1,15 +1,34 @@
 module Polysemy.Http (
+  -- $intro
   module Polysemy.Http.Data.Http,
+  -- * Interpreters
   module Polysemy.Http.Native,
   module Polysemy.Http.Strict,
+  -- * Request and Response
   module Polysemy.Http.Data.Request,
   module Polysemy.Http.Data.Response,
   module Polysemy.Http.Request,
+  -- * Streaming
   module Polysemy.Http.Http,
   module Polysemy.Http.Data.StreamEvent,
-  module Polysemy.Http.Data.Entity,
+  -- * Entity
+  EntityDecode,
+  decode,
+  decodeStrict,
+  EntityEncode,
+  encode,
+  encodeStrict,
+  Entities,
+  Decode,
+  Encode,
+  Decoders,
+  Encoders,
+  EntityError(EntityError),
   module Polysemy.Http.AesonEntity,
+  -- * Utilities
+  -- ** Connection Pool
   module Polysemy.Http.Data.Manager,
+  -- ** Logging
   module Polysemy.Http.Data.Log,
   module Polysemy.Http.Log,
 ) where
@@ -23,7 +42,7 @@ import Polysemy.Http.Data.Entity (
   Entities,
   EntityDecode,
   EntityEncode,
-  EntityError,
+  EntityError(EntityError),
   decode,
   decodeStrict,
   encode,
@@ -47,3 +66,21 @@ import Polysemy.Http.Log (interpretLogNull, interpretLogStdout)
 import Polysemy.Http.Native (interpretHttpNative)
 import Polysemy.Http.Request (delete, deleteUrl, get, getUrl, post, postUrl, put, putUrl)
 import Polysemy.Http.Strict (interpretHttpStrict)
+
+-- $intro
+-- A basic 'Polysemy' effect abstracting HTTP requests:
+--
+-- @
+-- import Polysemy (resourceToIO, runM)
+-- import qualified Polysemy.Http as Http
+-- import Polysemy.Http (interpretHttpNative, interpretLogStdout)
+--
+-- main :: IO ()
+-- main = do
+--   result <- runM $
+--     resourceToIO $
+--     interpretLogStdout $
+--     interpretHttpNative $
+--     Http.request (Http.get "hackage.haskell.org" "package\/polysemy-http")
+--   print result
+-- @

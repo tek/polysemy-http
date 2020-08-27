@@ -1,5 +1,7 @@
 module Polysemy.Http.Data.Entity where
 
+import Polysemy (makeSem_)
+
 -- |Generic error type for decoders.
 data EntityError =
   EntityError {
@@ -13,20 +15,51 @@ data EntityEncode d :: Effect where
   Encode :: d -> EntityEncode d m LByteString
   EncodeStrict :: d -> EntityEncode d m ByteString
 
-makeSem ''EntityEncode
+makeSem_ ''EntityEncode
+
+-- |Lazily encode a value of type @d@ to a 'LByteString'
+encode ::
+  ∀ d r .
+  Member (EntityEncode d) r =>
+  d ->
+  Sem r LByteString
+
+-- |Strictly encode a value of type @d@ to a 'ByteString'
+encodeStrict ::
+  ∀ d r .
+  Member (EntityEncode d) r =>
+  d ->
+  Sem r ByteString
 
 -- |Abstraction of json decoding, potentially usable for other content types like xml.
 data EntityDecode d :: Effect where
   Decode :: LByteString -> EntityDecode d m (Either EntityError d)
   DecodeStrict :: ByteString -> EntityDecode d m (Either EntityError d)
 
-makeSem ''EntityDecode
+makeSem_ ''EntityDecode
+
+-- |Lazily decode a 'LByteString' to a value of type @d@
+decode ::
+  ∀ d r .
+  Member (EntityDecode d) r =>
+  LByteString ->
+  Sem r (Either EntityError d)
+
+-- |Strictly decode a 'ByteString' to a value of type @d@
+decodeStrict ::
+  ∀ d r .
+  Member (EntityDecode d) r =>
+  ByteString ->
+  Sem r (Either EntityError d)
 
 -- |Marker type to be used with 'Entities'
 data Encode a
+
+-- |Marker type to be used with 'Entities'
 data Decode a
 
 -- |Convenience constraint for requiring multiple entity effects, to be used like 'Polysemy.Members'.
+--
 -- @
 -- foo :: Entities [Encode Int, Decode Double] r => Sem r ()
 -- @
@@ -36,6 +69,7 @@ type family Entities es r :: Constraint where
   Entities (Decode d ': ds) r = (Member (EntityDecode d) r, Entities ds r)
 
 -- |Convenience constraint for requiring multiple encoders.
+--
 -- @
 -- foo :: Encoders [Int, Double] r => Sem r ()
 -- @
@@ -44,6 +78,7 @@ type family Encoders es r :: Constraint where
   Encoders (d ': ds) r = (Member (EntityEncode d) r, Encoders ds r)
 
 -- |Convenience constraint for requiring multiple decoders.
+--
 -- @
 -- foo :: Decoders [Int, Double] r => Sem r ()
 -- @

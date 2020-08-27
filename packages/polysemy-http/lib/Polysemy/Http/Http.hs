@@ -60,6 +60,23 @@ streamHandler process response = do
 -- |Initiate a request and stream the response, calling 'process' after connecting, for every chunk, after closing the
 -- connection, and for the return value.
 -- 'StreamEvent' is used to indicate the stage of the request cycle.
+--
+-- @
+-- handle ::
+--   StreamEvent Double (IO ByteString) Int a ->
+--   Sem r a
+-- handle = \\case
+--   StreamEvent.Acquire (Response status body headers) ->
+--     pure 1
+--   StreamEvent.Chunk handle (StreamChunk c) ->
+--     pure ()
+--   StreamEvent.Result (Response status body headers) handle ->
+--     pure 5.5
+--   StreamEvent.Release handle ->
+--     pure ()
+-- @
+-- >>> runInterpreters $ streamResponse (Http.get "host.com" "path/to/file") handle
+-- 5.5
 streamResponse ::
   Members [Http c, Error HttpError, Resource] r =>
   Request ->
