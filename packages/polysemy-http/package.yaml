@@ -1,6 +1,7 @@
 name: polysemy-http
 version: 0.1.0.0
 synopsis: Polysemy effect for http-client
+description: See Readme
 license: BSD-2-Clause-Patent
 license-file: LICENSE
 author: "Torsten Schmits"
@@ -20,28 +21,29 @@ library:
     - Paths_polysemy_http
 
 dependencies:
-  - aeson
-  - ansi-terminal
-  - base-noprelude
-  - bytestring
-  - case-insensitive
-  - co-log-core
-  - co-log-polysemy
-  - composition
-  - containers
-  - data-default
-  - either
-  - http-client
-  - http-client-tls
-  - http-conduit
-  - http-types
-  - lens
-  - mono-traversable
-  - polysemy
-  - relude
-  - string-interpolate
-  - template-haskell
-  - text
+  - aeson >= 1.4.7
+  - ansi-terminal >= 0.10.3
+  - base-noprelude >= 4.13.0
+  - bytestring >= 0.10.10
+  - case-insensitive >= 1.2.1
+  - co-log-core >= 0.2.1
+  - co-log-polysemy >= 0.0.1
+  - composition >= 1.0.2
+  - containers >= 0.6.2
+  - data-default >= 0.7.1
+  - either >= 5.0.1
+  - http-client >= 0.6.4
+  - http-client-tls >= 0.3.5
+  - http-conduit >= 2.3.7
+  - http-types >= 0.12.3
+  - lens >= 4.19.2
+  - mono-traversable >= 1.0.15
+  - polysemy >= 1.3.0
+  - polysemy-plugin >= 0.2.5
+  - relude >= 0.7.0
+  - string-interpolate >= 0.2.1
+  - template-haskell >= 2.16.0
+  - text >= 1.2.3
 
 when:
   - condition: impl(ghcjs)

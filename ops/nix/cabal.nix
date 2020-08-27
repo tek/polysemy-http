@@ -16,10 +16,14 @@ let
   shell "cabal ${args}";
   pkgCommand = args:
   command "${args} ${bd} polysemy-http";
-  docOptions = "--enable-documentation --haddock-for-hackage --haddock-options '--hide Paths_polysemy_http'"
+  docOptions = "--enable-documentation --haddock-for-hackage --haddock-options '--hide Paths_polysemy_http'";
 in {
   build = pkgCommand "v2-build ${docOptions}";
   doc = pkgCommand "v2-haddock ${docOptions}";
+  genBounds = shell ''
+    cd packages/polysemy-http
+    cabal gen-bounds
+  '';
   sdist = pkgCommand "v2-sdist -o ${buildDir}";
   uploadSrc = command "upload ${buildDir}/polysemy-http-?.?.?.?.tar.gz";
   uploadDoc = command "upload -d ${buildDir}/*docs.tar.gz";

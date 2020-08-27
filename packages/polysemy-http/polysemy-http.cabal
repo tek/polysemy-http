@@ -7,6 +7,7 @@ cabal-version: 2.2
 name:           polysemy-http
 version:        0.1.0.0
 synopsis:       Polysemy effect for http-client
+description:    See Readme
 category:       Network
 author:         Torsten Schmits
 maintainer:     tek@tryp.io
@@ -48,28 +49,29 @@ library
       lib
   default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
   build-depends:
-      aeson
-    , ansi-terminal
-    , base-noprelude
-    , bytestring
-    , case-insensitive
-    , co-log-core
-    , co-log-polysemy
-    , composition
-    , containers
-    , data-default
-    , either
-    , http-client
-    , http-client-tls
-    , http-conduit
-    , http-types
-    , lens
-    , mono-traversable
-    , polysemy
-    , relude
-    , string-interpolate
-    , template-haskell
-    , text
+      aeson >=1.4.7
+    , ansi-terminal >=0.10.3
+    , base-noprelude >=4.13.0
+    , bytestring >=0.10.10
+    , case-insensitive >=1.2.1
+    , co-log-core >=0.2.1
+    , co-log-polysemy >=0.0.1
+    , composition >=1.0.2
+    , containers >=0.6.2
+    , data-default >=0.7.1
+    , either >=5.0.1
+    , http-client >=0.6.4
+    , http-client-tls >=0.3.5
+    , http-conduit >=2.3.7
+    , http-types >=0.12.3
+    , lens >=4.19.2
+    , mono-traversable >=1.0.15
+    , polysemy >=1.3.0
+    , polysemy-plugin >=0.2.5
+    , relude >=0.7.0
+    , string-interpolate >=0.2.1
+    , template-haskell >=2.16.0
+    , text >=1.2.3
   if impl(ghcjs)
   else
     ghc-options: -fplugin=Polysemy.Plugin -O2 -flate-specialise -fspecialise-aggressively
@@ -90,35 +92,36 @@ test-suite polysemy-http-unit
   default-extensions: AllowAmbiguousTypes ApplicativeDo BangPatterns BinaryLiterals BlockArguments ConstraintKinds DataKinds DefaultSignatures DeriveAnyClass DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DerivingVia DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PackageImports PartialTypeSignatures PatternGuards PatternSynonyms PolyKinds QuantifiedConstraints QuasiQuotes RankNTypes RecordWildCards RecursiveDo ScopedTypeVariables StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies TypeOperators TypeSynonymInstances UndecidableInstances UnicodeSyntax ViewPatterns
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson
-    , ansi-terminal
-    , base-noprelude
-    , bytestring
-    , case-insensitive
-    , co-log-core
-    , co-log-polysemy
-    , composition
-    , containers
-    , data-default
-    , either
+      aeson >=1.4.7
+    , ansi-terminal >=0.10.3
+    , base-noprelude >=4.13.0
+    , bytestring >=0.10.10
+    , case-insensitive >=1.2.1
+    , co-log-core >=0.2.1
+    , co-log-polysemy >=0.0.1
+    , composition >=1.0.2
+    , containers >=0.6.2
+    , data-default >=0.7.1
+    , either >=5.0.1
     , hedgehog
-    , http-client
-    , http-client-tls
-    , http-conduit
-    , http-types
-    , lens
-    , mono-traversable
-    , polysemy
+    , http-client >=0.6.4
+    , http-client-tls >=0.3.5
+    , http-conduit >=2.3.7
+    , http-types >=0.12.3
+    , lens >=4.19.2
+    , mono-traversable >=1.0.15
+    , polysemy >=1.3.0
     , polysemy-http
-    , relude
+    , polysemy-plugin >=0.2.5
+    , relude >=0.7.0
     , servant
     , servant-client
     , servant-server
-    , string-interpolate
+    , string-interpolate >=0.2.1
     , tasty
     , tasty-hedgehog
-    , template-haskell
-    , text
+    , template-haskell >=2.16.0
+    , text >=1.2.3
   mixins:
       polysemy-http hiding (Prelude)
     , polysemy-http (Polysemy.Http.Prelude as Prelude)
