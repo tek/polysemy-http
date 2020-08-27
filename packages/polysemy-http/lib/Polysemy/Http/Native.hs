@@ -136,8 +136,8 @@ interpretHttpNativeWith =
       pureT =<< mapLeft HttpError.ChunkFailed <$> tryAny body
 {-# INLINE interpretHttpNativeWith #-}
 
--- |Interpret 'Http BodyReader' using the native 'Network.HTTP.Client' implementation.
--- 'BodyReader' is an alias for 'IO ByteString', it is how http-client represents chunks.
+-- |Interpret @'Http' 'BodyReader'@ using the native 'Network.HTTP.Client' implementation.
+-- 'BodyReader' is an alias for @'IO' 'ByteString'@, it is how http-client represents chunks.
 -- This uses the default interpreter for 'Manager'.
 interpretHttpNative ::
   Members [Embed IO, Log, Resource] r =>

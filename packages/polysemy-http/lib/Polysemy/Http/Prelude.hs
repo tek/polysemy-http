@@ -31,6 +31,7 @@ import GHC.IO.Unsafe (unsafePerformIO)
 import Language.Haskell.TH.Quote (QuasiQuoter)
 import qualified Language.Haskell.TH.Syntax as TH
 import Polysemy (
+  Effect,
   Embed,
   InterpreterFor,
   Member,

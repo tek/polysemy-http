@@ -29,25 +29,22 @@ dependencies:
   - co-log-core
   - co-log-polysemy
   - composition
-  - connection
   - containers
   - data-default
   - either
-  - hedgehog
   - http-client
   - http-client-tls
   - http-conduit
   - http-types
   - lens
-  - lifted-base
   - mono-traversable
   - polysemy
   - relude
-  - streaming
   - string-interpolate
   - template-haskell
   - text
   # TODO remove when the flag problem is solved
+  - hedgehog
   - servant
   - servant-server
   - servant-client
@@ -63,8 +60,12 @@ when:
         - polysemy-plugin
       ghc-options:
         - -fplugin=Polysemy.Plugin
+        - -O2
+        - -flate-specialise
+        - -fspecialise-aggressively
   - condition: flag(dev)
     dependencies:
+      - hedgehog
       - servant
       - servant-server
       - servant-client
