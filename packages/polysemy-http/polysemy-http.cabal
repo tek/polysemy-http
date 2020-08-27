@@ -17,6 +17,7 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
+    Changelog.md
 
 library
   exposed-modules:

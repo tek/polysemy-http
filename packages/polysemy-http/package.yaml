@@ -12,6 +12,7 @@ build-type: Simple
 
 extra-source-files:
   - README.md
+  - Changelog.md
 
 library:
   source-dirs: lib
