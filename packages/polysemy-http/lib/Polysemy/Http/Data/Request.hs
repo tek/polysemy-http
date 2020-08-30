@@ -76,7 +76,11 @@ newtype Tls =
 newtype Path =
   Path { unPath :: Text }
   deriving (Eq, Show)
-  deriving newtype (IsString)
+  deriving newtype (IsString, Monoid)
+
+instance Semigroup Path where
+  Path l <> Path r =
+    Path (Text.dropWhileEnd ('/' ==) l <> "/" <> Text.dropWhile ('/' ==) r)
 
 -- |The key of a query parameter.
 newtype QueryKey =
