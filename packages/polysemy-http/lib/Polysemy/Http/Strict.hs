@@ -35,7 +35,7 @@ streamResponse =
     ]
 
 interpretHttpStrictWithState ::
-  Members [Embed IO, State [ByteString], State [Response LByteString], Error HttpError] r =>
+  Members [State [ByteString], State [Response LByteString], Embed IO] r =>
   InterpreterFor (Http Int) r
 interpretHttpStrictWithState =
   interpretH $ \case
@@ -53,10 +53,14 @@ interpretHttpStrictWithState =
 -- The first parameter is a list of 'Response'. When a request is made, one response is popped of the head and returned.
 -- If the list is exhausted, a 502 response is returned.
 interpretHttpStrict ::
-  Members [Embed IO, Error HttpError] r =>
+  Member (Embed IO) r =>
   [Response LByteString] ->
   [ByteString] ->
   InterpreterFor (Http Int) r
 interpretHttpStrict responses chunks =
-  evalState chunks . evalState responses . interpretHttpStrictWithState . raiseUnder . raiseUnder
+  evalState chunks .
+  evalState responses .
+  interpretHttpStrictWithState .
+  raiseUnder .
+  raiseUnder
 {-# INLINE interpretHttpStrict #-}
