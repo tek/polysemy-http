@@ -1,8 +1,11 @@
-module Polysemy.Http.Data.Response where
+module Polysemy.Http.Data.Response (
+  module Polysemy.Http.Data.Response,
+  Status(Status),
+) where
 
 import Network.HTTP.Client (BodyReader)
 import Network.HTTP.Types (
-  Status,
+  Status(Status),
   statusIsClientError,
   statusIsInformational,
   statusIsRedirection,
