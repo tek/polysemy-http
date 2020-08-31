@@ -38,7 +38,7 @@ interpretHttpStrictWithState ::
   Members [State [ByteString], State [Response LByteString], Embed IO] r =>
   InterpreterFor (Http Int) r
 interpretHttpStrictWithState =
-  interpretH $ \case
+  interpretH \case
     Http.Request _ ->
       liftT . takeResponse =<< raise get
     Http.Stream _ handler -> do

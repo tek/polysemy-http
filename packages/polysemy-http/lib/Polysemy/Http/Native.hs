@@ -123,7 +123,7 @@ interpretHttpNativeWith ::
   Members [Embed IO, Log, Resource, Manager] r =>
   InterpreterFor (Http BodyReader) r
 interpretHttpNativeWith =
-  interpretH $ \case
+  interpretH \case
     Http.Request request -> do
       Log.debug $ [qt|http request: #{request}|]
       manager <- Manager.get

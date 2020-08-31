@@ -9,6 +9,7 @@ module Polysemy.Http (
   module Polysemy.Http.Data.Response,
   module Polysemy.Http.Data.Header,
   module Polysemy.Http.Request,
+  HttpError(..),
   -- * Streaming
   module Polysemy.Http.Http,
   module Polysemy.Http.Data.StreamEvent,
@@ -51,6 +52,7 @@ import Polysemy.Http.Data.Entity (
   )
 import Polysemy.Http.Data.Header (Header(Header), HeaderName(HeaderName), HeaderValue(HeaderValue))
 import Polysemy.Http.Data.Http (Http, request, stream)
+import Polysemy.Http.Data.HttpError (HttpError(..))
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Http.Data.Manager (Manager)
 import Polysemy.Http.Data.Request (
