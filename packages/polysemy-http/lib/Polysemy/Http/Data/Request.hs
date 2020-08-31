@@ -1,6 +1,9 @@
+{-# OPTIONS_GHC -fclear-plugins #-}
+
 module Polysemy.Http.Data.Request where
 
 import Control.Lens (makeClassy)
+import Data.Aeson (parseJSON, toJSON)
 import qualified Data.Text as Text
 
 import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
@@ -27,6 +30,8 @@ data Method =
   |
   Custom Text
   deriving (Eq, Show)
+
+defaultJson ''Method
 
 instance IsString Method where
   fromString = \case
@@ -62,15 +67,21 @@ newtype Host =
   deriving (Eq, Show)
   deriving newtype (IsString)
 
+defaultJson ''Host
+
 -- |Request port.
 newtype Port =
   Port { unPort :: Int }
   deriving (Eq, Show)
 
+defaultJson ''Port
+
 -- |A flag that indicates whether a request should use TLS.
 newtype Tls =
   Tls { unTls :: Bool }
   deriving (Eq, Show)
+
+defaultJson ''Tls
 
 -- |Rrequest path.
 newtype Path =
@@ -82,17 +93,23 @@ instance Semigroup Path where
   Path l <> Path r =
     Path (Text.dropWhileEnd ('/' ==) l <> "/" <> Text.dropWhile ('/' ==) r)
 
+defaultJson ''Path
+
 -- |The key of a query parameter.
 newtype QueryKey =
   QueryKey { unQueryKey :: Text }
   deriving (Eq, Show)
   deriving newtype (IsString)
 
+defaultJson ''QueryKey
+
 -- |The value of a query parameter.
 newtype QueryValue =
   QueryValue { unQueryValue :: Text }
   deriving (Eq, Show)
   deriving newtype (IsString)
+
+defaultJson ''QueryValue
 
 -- |Request body, using 'LByteString' because it is what 'Aeson.encode' produces.
 newtype Body =

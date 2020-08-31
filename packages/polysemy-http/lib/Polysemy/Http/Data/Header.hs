@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -fclear-plugins #-}
+
 module Polysemy.Http.Data.Header where
 
 -- |The name of a header.
@@ -6,11 +8,15 @@ newtype HeaderName =
   deriving (Eq, Show)
   deriving newtype (IsString)
 
+defaultJson ''HeaderName
+
 -- |The value of a header.
 newtype HeaderValue =
   HeaderValue { unHeaderValue :: Text }
   deriving (Eq, Show)
   deriving newtype (IsString)
+
+defaultJson ''HeaderValue
 
 -- |An HTTP header.
 data Header =
@@ -19,3 +25,5 @@ data Header =
     value :: HeaderValue
   }
   deriving (Eq, Show)
+
+defaultJson ''Header
