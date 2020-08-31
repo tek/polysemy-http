@@ -50,21 +50,21 @@ import Polysemy.Http.Data.Entity (
   encode,
   encodeStrict,
   )
-import Polysemy.Http.Data.Header (Header(Header), HeaderName(HeaderName), HeaderValue(HeaderValue))
+import Polysemy.Http.Data.Header (Header(..), HeaderName(..), HeaderValue(..))
 import Polysemy.Http.Data.Http (Http, request, stream)
 import Polysemy.Http.Data.HttpError (HttpError(..))
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Http.Data.Manager (Manager)
 import Polysemy.Http.Data.Request (
-  Body(Body),
-  Host(Host),
+  Body(..),
+  Host(..),
   Method(..),
-  Path(Path),
-  Port(Port),
-  QueryKey(QueryKey),
-  QueryValue(QueryValue),
+  Path(..),
+  Port(..),
+  QueryKey(..),
+  QueryValue(..),
   Request(..),
-  Tls(Tls),
+  Tls(..),
   )
 import Polysemy.Http.Data.Response (
   Response(..),
