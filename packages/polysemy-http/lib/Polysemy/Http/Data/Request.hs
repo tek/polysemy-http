@@ -3,7 +3,6 @@
 module Polysemy.Http.Data.Request where
 
 import Control.Lens (makeClassy)
-import Data.Aeson (parseJSON, toJSON)
 import qualified Data.Text as Text
 
 import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
@@ -64,7 +63,7 @@ methodUpper = \case
 -- |Request host name.
 newtype Host =
   Host { unHost :: Text }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
 defaultJson ''Host
@@ -72,21 +71,21 @@ defaultJson ''Host
 -- |Request port.
 newtype Port =
   Port { unPort :: Int }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
 
 defaultJson ''Port
 
 -- |A flag that indicates whether a request should use TLS.
 newtype Tls =
   Tls { unTls :: Bool }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
 
 defaultJson ''Tls
 
 -- |Rrequest path.
 newtype Path =
   Path { unPath :: Text }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
   deriving newtype (IsString, Monoid)
 
 instance Semigroup Path where
@@ -98,7 +97,7 @@ defaultJson ''Path
 -- |The key of a query parameter.
 newtype QueryKey =
   QueryKey { unQueryKey :: Text }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
 defaultJson ''QueryKey
@@ -106,7 +105,7 @@ defaultJson ''QueryKey
 -- |The value of a query parameter.
 newtype QueryValue =
   QueryValue { unQueryValue :: Text }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
 defaultJson ''QueryValue
@@ -114,7 +113,7 @@ defaultJson ''QueryValue
 -- |Request body, using 'LByteString' because it is what 'Aeson.encode' produces.
 newtype Body =
   Body { unBody :: LByteString }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
 -- |HTTP request parameters, used by 'Polysemy.Http.Data.Http'.
@@ -129,6 +128,6 @@ data Request =
     _query :: [(QueryKey, Maybe QueryValue)],
     _body :: Body
   }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
 
 makeClassy ''Request

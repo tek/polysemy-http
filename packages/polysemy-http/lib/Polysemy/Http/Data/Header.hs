@@ -5,7 +5,7 @@ module Polysemy.Http.Data.Header where
 -- |The name of a header.
 newtype HeaderName =
   HeaderName { unHeaderName :: Text }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
 defaultJson ''HeaderName
@@ -13,7 +13,7 @@ defaultJson ''HeaderName
 -- |The value of a header.
 newtype HeaderValue =
   HeaderValue { unHeaderValue :: Text }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
 defaultJson ''HeaderValue
@@ -24,6 +24,6 @@ data Header =
     name :: HeaderName,
     value :: HeaderValue
   }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
 
 defaultJson ''Header
