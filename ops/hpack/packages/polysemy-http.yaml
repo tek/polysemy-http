@@ -24,7 +24,7 @@ library:
 dependencies:
   - aeson >= 1.4.7
   - ansi-terminal >= 0.10.3
-  - base-noprelude >= 4.13.0
+  - base-noprelude >= 4.12.0
   - bytestring >= 0.10.10
   - case-insensitive >= 1.2.1
   - co-log-core >= 0.2.1
