@@ -1,5 +1,3 @@
-{-# OPTIONS_GHC -fclear-plugins #-}
-
 module Polysemy.Http.Data.Header where
 
 -- |The name of a header.

@@ -1,5 +1,3 @@
-{-# OPTIONS_GHC -fclear-plugins #-}
-
 module Polysemy.Http.Data.Request where
 
 import Control.Lens (makeClassy)

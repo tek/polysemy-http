@@ -1,5 +1,3 @@
-{-# OPTIONS_GHC -fclear-plugins #-}
-
 module Polysemy.Http.Server where
 
 import Control.Concurrent (ThreadId, forkIO, killThread)
