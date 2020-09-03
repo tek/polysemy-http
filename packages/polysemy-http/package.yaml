@@ -46,18 +46,11 @@ dependencies:
   - template-haskell >= 2.14.0
   - text >= 1.2.3
 
-when:
-  - condition: impl(ghcjs)
-    then:
-      dependencies: []
-    else:
-      dependencies:
-        - polysemy-plugin
-      ghc-options:
-        - -fplugin=Polysemy.Plugin
-        - -O2
-        - -flate-specialise
-        - -fspecialise-aggressively
+ghc-options:
+  - -fplugin=Polysemy.Plugin
+  - -O2
+  - -flate-specialise
+  - -fspecialise-aggressively
 
 tests:
   polysemy-http-unit:
