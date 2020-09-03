@@ -8,9 +8,9 @@ base=${0:a:h:h}
 
 gen()
 {
-  pushd $base/$1
+  pushd $1
   hpack $args
   popd
 }
 
-for m (${0:h:h}/packages/*) gen $m
+for m ($base/packages/*) gen $m
