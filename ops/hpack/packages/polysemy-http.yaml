@@ -1,6 +1,7 @@
 name: polysemy-http
 version: 0.2.0.1
 synopsis: Polysemy effect for http-client
+github: tek/polysemy-http
 description: Please see the README on Github at <https://github.com/tek/polysemy-http>
 license: BSD-2-Clause-Patent
 license-file: LICENSE

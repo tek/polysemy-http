@@ -9,6 +9,8 @@ version:        0.2.0.1
 synopsis:       Polysemy effect for http-client
 description:    Please see the README on Github at <https://github.com/tek/polysemy-http>
 category:       Network
+homepage:       https://github.com/tek/polysemy-http#readme
+bug-reports:    https://github.com/tek/polysemy-http/issues
 author:         Torsten Schmits
 maintainer:     tek@tryp.io
 copyright:      2020 Torsten Schmits
@@ -18,6 +20,10 @@ build-type:     Simple
 extra-source-files:
     README.md
     Changelog.md
+
+source-repository head
+  type: git
+  location: https://github.com/tek/polysemy-http
 
 library
   exposed-modules:
