@@ -74,7 +74,7 @@ library
     , http-types >=0.12.3
     , lens >=4
     , polysemy >=1.3.0
-    , polysemy-plugin >=0.2.5
+    , polysemy-plugin >=0.2.5.1 && <0.3
     , relude >=0.5 && <0.8
     , string-interpolate >=0.2.1
     , template-haskell >=2.14.0
@@ -119,7 +119,7 @@ test-suite polysemy-http-integration
     , network
     , polysemy >=1.3.0
     , polysemy-http
-    , polysemy-plugin >=0.2.5
+    , polysemy-plugin >=0.2.5.1 && <0.3
     , relude >=0.5 && <0.8
     , servant
     , servant-client
@@ -170,7 +170,7 @@ test-suite polysemy-http-unit
     , lens >=4
     , polysemy >=1.3.0
     , polysemy-http
-    , polysemy-plugin >=0.2.5
+    , polysemy-plugin >=0.2.5.1 && <0.3
     , relude >=0.5 && <0.8
     , string-interpolate >=0.2.1
     , tasty
