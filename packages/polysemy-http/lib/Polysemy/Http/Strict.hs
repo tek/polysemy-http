@@ -1,12 +1,11 @@
 module Polysemy.Http.Strict where
 
-import Polysemy (interpretH, pureT)
+import Polysemy (interpretH)
 import Polysemy.Internal.Tactics hiding (liftT)
 
 import Polysemy.Http.Data.Header (Header(Header))
 import qualified Polysemy.Http.Data.Http as Http
 import Polysemy.Http.Data.Http (Http)
-import Polysemy.Http.Data.HttpError (HttpError)
 import Polysemy.Http.Data.Response (Response(Response))
 
 takeResponse ::

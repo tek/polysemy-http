@@ -25,7 +25,10 @@ library:
 dependencies:
   - aeson >= 1.4.4.0
   - ansi-terminal >= 0.9.1
-  - base-noprelude >= 4 && < 5
+  - name: base
+    version: ">= 4 && < 5"
+    mixin:
+      - hiding (Prelude)
   - bytestring
   - case-insensitive >= 1.2
   - co-log-core >= 0.2.1
@@ -51,6 +54,7 @@ ghc-options:
   - -O2
   - -flate-specialise
   - -fspecialise-aggressively
+  - -Wall
 
 tests:
   polysemy-http-unit:

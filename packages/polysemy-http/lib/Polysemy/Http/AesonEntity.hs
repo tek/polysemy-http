@@ -1,7 +1,6 @@
 module Polysemy.Http.AesonEntity where
 
-import Data.Aeson (FromJSON, ToJSON, eitherDecode', eitherDecodeStrict', encode)
-import Polysemy (Sem, interpret)
+import Data.Aeson (eitherDecode', eitherDecodeStrict', encode)
 
 import Polysemy.Http.Data.Entity (EntityDecode, EntityEncode, EntityError(EntityError))
 import qualified Polysemy.Http.Data.Entity as Entity (EntityDecode(..), EntityEncode(..))
