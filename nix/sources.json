@@ -12,10 +12,16 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "ref": "bodhi",
-        "repo": "git@gitlab.tryp.io:nix/nixpkgs",
-        "rev": "41f90ca6709e241ce33afaa9332629883c3f290d",
-        "type": "git"
+        "branch": "nixos-20.09",
+        "description": "Nix Packages collection",
+        "homepage": null,
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "be92e21e2519143f8c6ea70fa8052deff5126ce5",
+        "sha256": "007cnvivw5y1505frq7dlwwmgzkxyb9dq3jlj8sw0r3zm00mzpr0",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/be92e21e2519143f8c6ea70fa8052deff5126ce5.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "polysemy": {
         "branch": "master",
