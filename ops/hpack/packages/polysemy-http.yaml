@@ -51,10 +51,13 @@ dependencies:
 
 ghc-options:
   - -fplugin=Polysemy.Plugin
-  - -O2
   - -flate-specialise
   - -fspecialise-aggressively
   - -Wall
+
+when:
+  - condition: 'impl(ghc < 8.10)'
+    ghc-options: -O2
 
 tests:
   polysemy-http-unit:
