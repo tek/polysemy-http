@@ -1,3 +1,10 @@
 cradle:
-  bios:
-    program: hie-bios.sh
+  cabal:
+    - path: "./packages/polysemy-http/lib"
+      component: "lib:polysemy-http"
+
+    - path: "./packages/polysemy-http/test"
+      component: "polysemy-http:test:polysemy-http-unit"
+
+    - path: "./packages/polysemy-http/integration"
+      component: "polysemy-http:test:polysemy-http-integration"

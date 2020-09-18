@@ -21,7 +21,7 @@ let
       options_ghc = "-fplugin=Polysemy.Plugin";
     };
     ghcid = {
-      prelude = base + /packages/polysemy-http/lib/Prelude.hs;
+      prelude = "${toString base}/packages/polysemy-http/lib/Prelude.hs";
     };
     packageDir = "packages";
     cabal2nixOptions = "--no-hpack";
