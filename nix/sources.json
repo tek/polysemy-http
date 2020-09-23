@@ -12,15 +12,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "nixos-20.09",
+        "branch": "nixos-20.03",
         "description": "Nix Packages collection",
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "be92e21e2519143f8c6ea70fa8052deff5126ce5",
-        "sha256": "007cnvivw5y1505frq7dlwwmgzkxyb9dq3jlj8sw0r3zm00mzpr0",
+        "rev": "773ef5ae78339db744b917c2b35d28812028bd8c",
+        "sha256": "0j07y007g2yk2mmp56xhdbwhjlnpdmp1lvsmx5nzfakcp8n3q7ci",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/be92e21e2519143f8c6ea70fa8052deff5126ce5.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/773ef5ae78339db744b917c2b35d28812028bd8c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "polysemy": {
@@ -41,10 +41,10 @@
         "homepage": null,
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "1e457ff5ae6594ac575ceb2d07256e40d964709a",
-        "sha256": "1ag84c73n6cdyd9pjcf7hijk7r2gxqr50yngg28ph2lcicr4pk27",
+        "rev": "dac2f11a40c4bb021df81c080dffacc878fd6384",
+        "sha256": "0mcxahqv4qfvcjcl5prld9xg1nv5fckaa69nxp6rw301gbmrxr23",
         "type": "tarball",
-        "url": "https://github.com/tek/tryp-hs/archive/1e457ff5ae6594ac575ceb2d07256e40d964709a.tar.gz",
+        "url": "https://github.com/tek/tryp-hs/archive/dac2f11a40c4bb021df81c080dffacc878fd6384.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
