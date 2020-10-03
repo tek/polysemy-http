@@ -8,7 +8,21 @@ module Polysemy.Http (
   module Polysemy.Http.Data.Request,
   module Polysemy.Http.Data.Response,
   module Polysemy.Http.Data.Header,
-  module Polysemy.Http.Request,
+  withPort,
+  withTls,
+  simple,
+  get,
+  post,
+  put,
+  delete,
+  fromUrl,
+  getUrl,
+  postUrl,
+  putUrl,
+  deleteUrl,
+  cookie,
+  addCookies,
+  addCookie,
   HttpError(..),
   -- * Streaming
   module Polysemy.Http.Http,
@@ -78,8 +92,25 @@ import Polysemy.Http.Data.StreamEvent (StreamEvent(..))
 import Polysemy.Http.Http (streamResponse)
 import Polysemy.Http.Log (interpretLogNull, interpretLogStdout)
 import Polysemy.Http.Native (interpretHttpNative)
-import Polysemy.Http.Request (delete, deleteUrl, get, getUrl, post, postUrl, put, putUrl)
+import Polysemy.Http.Request (
+  addCookie,
+  addCookies,
+  cookie,
+  delete,
+  deleteUrl,
+  fromUrl,
+  get,
+  getUrl,
+  post,
+  postUrl,
+  put,
+  putUrl,
+  simple,
+  withPort,
+  withTls,
+  )
 import Polysemy.Http.Strict (interpretHttpStrict)
+import Prelude hiding (get, put)
 
 -- $intro
 -- A basic 'Polysemy' effect abstracting HTTP requests:

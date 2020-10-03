@@ -19,7 +19,7 @@ import Network.Socket (
   withSocketsDo,
   )
 import qualified Network.Wai.Handler.Warp as Warp
-import Servant (Get, Handler, JSON, PlainText, Post, ReqBody, ServerT, serve, (:<|>)((:<|>)), (:>))
+import Servant (Header, Get, Handler, JSON, PlainText, Post, ReqBody, ServerT, serve, (:<|>)((:<|>)), (:>))
 import Servant.Client (BaseUrl(BaseUrl), Client, ClientEnv, ClientM, Scheme(Http), client, mkClientEnv, runClientM)
 
 freePort ::
@@ -49,6 +49,8 @@ type Api =
   "add" :> ReqBody '[JSON] Payload :> Post '[JSON] Int
   :<|>
   "stream" :> Get '[PlainText] Text
+  :<|>
+  "cookie" :> Header "cookie" Text :> Get '[PlainText] Text
 
 apiClient :: Client ClientM Api
 apiClient =
@@ -71,6 +73,8 @@ server =
   (\ (Payload a b) -> pure (a + b))
   :<|>
   pure (Text.replicate (10 * 8192) "x")
+  :<|>
+  (\ cookies -> pure (fromMaybe "no cookies" cookies))
 
 forkServer :: IO (ThreadId, Int)
 forkServer = do

@@ -1,8 +1,15 @@
 module Polysemy.Http.Request where
 
+import Control.Lens ((%~))
 import qualified Data.Text as Text
-import Prelude hiding (get)
+import Data.Time (UTCTime(UTCTime))
+import Network.HTTP.Client (Cookie(Cookie))
+import Network.HTTP.Client.Internal (CookieJar(CJ, expose))
+import Prelude hiding (get, put)
 
+import Data.Time.Calendar (fromGregorian)
+import Data.Time.Clock.POSIX (posixSecondsToUTCTime)
+import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Body, Host(Host), Method(..), Path(Path), Port(Port), Request(Request), Tls(Tls))
 
 invalidScheme ::
@@ -48,6 +55,7 @@ parseUrl url = do
   (host, port) <- parseHostPort url (split ":" hostPort)
   pure (tls, host, port, Path (fromMaybe "" path))
 
+-- |Create a request with empty headers, query and cookies.
 withPort ::
   Maybe Port ->
   Tls ->
@@ -57,8 +65,9 @@ withPort ::
   Body ->
   Request
 withPort port tls method host path =
-  Request method host port tls path [] []
+  Request method host port tls path [] (CJ []) []
 
+-- |Create a request with default port and empty headers, query and cookies.
 withTls ::
   Tls ->
   Method ->
@@ -69,6 +78,7 @@ withTls ::
 withTls =
   withPort Nothing
 
+-- |Create a TLS request with default port and empty headers, query and cookies.
 simple ::
   Method ->
   Host ->
@@ -78,6 +88,7 @@ simple ::
 simple =
   withTls (Tls True)
 
+-- |Create a TLS GET request with default port and empty headers, query and cookies.
 get ::
   Host ->
   Path ->
@@ -85,6 +96,7 @@ get ::
 get host path =
   simple Get host path ""
 
+-- |Create a TLS POST request with default port and empty headers, query and cookies.
 post ::
   Host ->
   Path ->
@@ -93,6 +105,7 @@ post ::
 post host path =
   simple Post host path
 
+-- |Create a TLS PUT request with default port and empty headers, query and cookies.
 put ::
   Host ->
   Path ->
@@ -101,6 +114,7 @@ put ::
 put host path =
   simple Put host path
 
+-- |Create a TLS DELETE request with default port and empty headers, query and cookies.
 delete ::
   Host ->
   Path ->
@@ -108,6 +122,7 @@ delete ::
 delete host path =
   simple Delete host path ""
 
+-- |Parse the URL and create a request or return a parse error.
 fromUrl ::
   Method ->
   Body ->
@@ -117,12 +132,14 @@ fromUrl method body url = do
   (tls, host, port, path) <- parseUrl url
   pure (withPort port tls method host path body)
 
+-- |Parse URL for a GET.
 getUrl ::
   Text ->
   Either Text Request
 getUrl =
   fromUrl Get ""
 
+-- |Parse URL for a POST.
 postUrl ::
   Body ->
   Text ->
@@ -130,6 +147,7 @@ postUrl ::
 postUrl =
   fromUrl Post
 
+-- |Parse URL for a PUT.
 putUrl ::
   Body ->
   Text ->
@@ -137,8 +155,47 @@ putUrl ::
 putUrl =
   fromUrl Put
 
+-- |Parse URL for a DELETE.
 deleteUrl ::
   Text ->
   Either Text Request
 deleteUrl =
   fromUrl Delete ""
+
+neverExpire :: UTCTime
+neverExpire =
+  UTCTime (fromGregorian 9999 1 1) 0
+
+epoch :: UTCTime
+epoch =
+  posixSecondsToUTCTime 0
+
+-- |Create a cookie with default values.
+cookie ::
+  Text ->
+  Text ->
+  Text ->
+  Cookie
+cookie domain name value =
+  Cookie (encodeUtf8 name) (encodeUtf8 value) neverExpire (encodeUtf8 domain) "/" epoch epoch False False False False
+
+-- |Add multiple cookies to a request.
+addCookies ::
+  [Cookie] ->
+  Request ->
+  Request
+addCookies cookies =
+  Request.cookies %~ update
+  where
+    update =
+      CJ . (cookies <>) . expose
+
+-- |Add a cookie to a request, using default values.
+addCookie ::
+  Text ->
+  Text ->
+  Text ->
+  Request ->
+  Request
+addCookie domain name value =
+  addCookies (pure (cookie domain name value))

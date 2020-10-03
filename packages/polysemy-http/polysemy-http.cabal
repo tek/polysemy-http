@@ -79,6 +79,7 @@ library
     , string-interpolate >=0.2.1
     , template-haskell >=2.14.0
     , text >=1.2.3
+    , time
   mixins:
       base hiding (Prelude)
   if impl(ghc < 8.10)
@@ -89,6 +90,7 @@ test-suite polysemy-http-integration
   type: exitcode-stdio-1.0
   main-is: Main.hs
   other-modules:
+      Polysemy.Http.CookieTest
       Polysemy.Http.RequestTest
       Polysemy.Http.Server
       Polysemy.Http.StreamTest
@@ -129,6 +131,7 @@ test-suite polysemy-http-integration
     , tasty-hedgehog
     , template-haskell >=2.14.0
     , text >=1.2.3
+    , time
     , warp
   mixins:
       base hiding (Prelude)
@@ -177,6 +180,7 @@ test-suite polysemy-http-unit
     , tasty-hedgehog
     , template-haskell >=2.14.0
     , text >=1.2.3
+    , time
   mixins:
       base hiding (Prelude)
     , polysemy-http hiding (Prelude)

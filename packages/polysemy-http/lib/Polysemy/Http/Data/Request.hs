@@ -2,6 +2,7 @@ module Polysemy.Http.Data.Request where
 
 import Control.Lens (makeClassy)
 import qualified Data.Text as Text
+import Network.HTTP.Client.Internal (CookieJar)
 
 import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
 
@@ -123,6 +124,7 @@ data Request =
     _tls :: Tls,
     _path :: Path,
     _headers :: [(HeaderName, HeaderValue)],
+    _cookies :: CookieJar,
     _query :: [(QueryKey, Maybe QueryValue)],
     _body :: Body
   }

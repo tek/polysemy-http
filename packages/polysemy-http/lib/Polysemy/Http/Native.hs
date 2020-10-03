@@ -2,23 +2,9 @@ module Polysemy.Http.Native where
 
 import qualified Data.CaseInsensitive as CaseInsensitive
 import Data.CaseInsensitive (foldedCase)
+import qualified Network.HTTP.Client as HTTP
 import Network.HTTP.Client (BodyReader, httpLbs, responseClose, responseOpen)
-import qualified Network.HTTP.Client as HTTP (Manager)
-import Network.HTTP.Simple (
-  defaultRequest,
-  getResponseBody,
-  getResponseHeaders,
-  getResponseStatus,
-  setRequestBodyLBS,
-  setRequestHeaders,
-  setRequestHost,
-  setRequestMethod,
-  setRequestPath,
-  setRequestPort,
-  setRequestQueryString,
-  setRequestSecure,
-  )
-import qualified Network.HTTP.Simple as N (Request, Response)
+import Network.HTTP.Client.Internal (CookieJar(CJ))
 import Polysemy (Tactical, interpretH, runT)
 import qualified Polysemy.Http.Data.Log as Log
 import Polysemy.Http.Data.Log (Log)
@@ -46,34 +32,32 @@ import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Manager (interpretManager)
 
 -- |Converts a 'Request' to a native 'N.Request'.
-nativeRequest :: Request -> N.Request
-nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) headers query (Body body)) =
-  cons defaultRequest
+nativeRequest :: Request -> HTTP.Request
+nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) headers (CJ cookies) query (Body body)) =
+  HTTP.setQueryString queryParams HTTP.defaultRequest {
+    HTTP.host = encodeUtf8 host,
+    HTTP.port = port,
+    HTTP.secure = tls,
+    HTTP.method = encodeUtf8 (methodUpper method),
+    HTTP.requestHeaders = encodedHeaders,
+    HTTP.path = encodeUtf8 path,
+    HTTP.requestBody = HTTP.RequestBodyLBS body,
+    HTTP.cookieJar = CJ . toList <$> nonEmpty cookies
+  }
   where
-    cons =
-      scheme .
-      setRequestMethod (encodeUtf8 $ methodUpper method) .
-      setRequestHeaders encodedHeaders .
-      setRequestHost (encodeUtf8 host) .
-      setRequestPort port .
-      setRequestPath (encodeUtf8 path) .
-      setRequestQueryString queryParam .
-      setRequestBodyLBS body
-    queryParam =
+    queryParams =
       bimap (encodeUtf8 . unQueryKey) (fmap (encodeUtf8 . unQueryValue)) <$> query
-    scheme =
-      if tls then setRequestSecure True else id
     port =
       maybe (if tls then 443 else 80) unPort portOverride
     encodedHeaders =
       bimap (CaseInsensitive.mk . encodeUtf8 . unHeaderName) (encodeUtf8 . unHeaderValue) <$> headers
 
-convertResponse :: N.Response b -> Response b
+convertResponse :: HTTP.Response b -> Response b
 convertResponse response =
-  Response (getResponseStatus response) (getResponseBody response) headers
+  Response (HTTP.responseStatus response) (HTTP.responseBody response) headers
   where
     headers =
-      header <$> getResponseHeaders response
+      header <$> HTTP.responseHeaders response
     header (foldedCase -> decodeUtf8 -> name, decodeUtf8 -> value) =
       Header (fromString name) (fromString value)
 
