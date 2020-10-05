@@ -36,6 +36,7 @@ data Request =
     _tls :: Tls,
     _path :: Path,
     _headers :: [(HeaderName, HeaderValue)],
+    _cookies :: CookieJar,
     _query :: [(QueryKey, Maybe QueryValue)],
     _body :: Body
   }
