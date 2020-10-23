@@ -54,10 +54,7 @@ ghc-options:
   - -flate-specialise
   - -fspecialise-aggressively
   - -Wall
-
-when:
-  - condition: 'impl(ghc < 8.10)'
-    ghc-options: -O2
+  - -O2
 
 tests:
   polysemy-http-unit:

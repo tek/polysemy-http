@@ -14,7 +14,7 @@ let
 
   project = hs.project {
     inherit nixpkgs packages base;
-    compiler = "ghc884";
+    compiler = "ghc8102";
     overrides = import ./overrides.nix niv;
     ghci = {
       basicArgs = ["-Wall" "-Werror"];
