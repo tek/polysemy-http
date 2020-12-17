@@ -65,7 +65,7 @@ import Polysemy.Http.Data.Entity (
   encodeStrict,
   )
 import Polysemy.Http.Data.Header (Header(..), HeaderName(..), HeaderValue(..))
-import Polysemy.Http.Data.Http (Http, request, stream)
+import Polysemy.Http.Data.Http (Http, request, response, stream)
 import Polysemy.Http.Data.HttpError (HttpError(..))
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Http.Data.Manager (Manager)
