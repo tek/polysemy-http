@@ -1,4 +1,16 @@
 {
+    "co-log": {
+        "branch": "main",
+        "description": "📓 Flexible and configurable modern #Haskell logging framework",
+        "homepage": "https://kowainik.github.io/projects/co-log",
+        "owner": "kowainik",
+        "repo": "co-log",
+        "rev": "38ebc84de3e937cf3f94570485a064837d537b18",
+        "sha256": "0pnwhv8qm5q5l7hsfclj0qlaxh3wdy05yz70q7g0cm4dpzb1na53",
+        "type": "tarball",
+        "url": "https://github.com/kowainik/co-log/archive/38ebc84de3e937cf3f94570485a064837d537b18.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
@@ -29,10 +41,10 @@
         "homepage": "",
         "owner": "polysemy-research",
         "repo": "polysemy",
-        "rev": "3399de172b34891180f8967eb4fdfd2b556b5723",
-        "sha256": "0wkxhnm1xm37wpy9w8viy3xcxcg344lm0zlaqlqgx2hhn5l0p20h",
+        "rev": "478c86e080f38334f7ea5b0259f900916db58c33",
+        "sha256": "0vpfc7w90gyj60ydzpjz9wilm28hcl8lbiwicw5qj1rnzj3lfy66",
         "type": "tarball",
-        "url": "https://github.com/polysemy-research/polysemy/archive/3399de172b34891180f8967eb4fdfd2b556b5723.tar.gz",
+        "url": "https://github.com/polysemy-research/polysemy/archive/478c86e080f38334f7ea5b0259f900916db58c33.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "tryp-hs": {
@@ -41,10 +53,10 @@
         "homepage": null,
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "dac2f11a40c4bb021df81c080dffacc878fd6384",
-        "sha256": "0mcxahqv4qfvcjcl5prld9xg1nv5fckaa69nxp6rw301gbmrxr23",
+        "rev": "7e09922245a35d44ab2aab972adb02d36ae4d0e8",
+        "sha256": "0fq58k88brzgc8y0na9i970n230sgg2y3a51qf05ykksq05q267s",
         "type": "tarball",
-        "url": "https://github.com/tek/tryp-hs/archive/dac2f11a40c4bb021df81c080dffacc878fd6384.tar.gz",
+        "url": "https://github.com/tek/tryp-hs/archive/7e09922245a35d44ab2aab972adb02d36ae4d0e8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

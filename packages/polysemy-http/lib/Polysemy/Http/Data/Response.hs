@@ -28,7 +28,7 @@ data Response b =
   }
   deriving (Eq, Show)
 
-instance {-# OVERLAPPING #-} Show (Response BodyReader) where
+instance {-# overlapping #-} Show (Response BodyReader) where
   show (Response s _ hs) =
     [qt|StreamingResponse { status :: #{s}, headers :: #{hs} }|]
 

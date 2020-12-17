@@ -11,11 +11,11 @@ import Polysemy.Http.Data.Response (Response(Response))
 takeResponse ::
   Member (State [Response LByteString]) r =>
   [Response LByteString] ->
-  Sem r (Either a (Response LByteString))
+  Sem r (Response LByteString)
 takeResponse (response : rest) =
-  Right response <$ put rest
+  response <$ put rest
 takeResponse [] =
-  pure (Right (Response (toEnum 502) "test responses exhausted" []))
+  pure (Response (toEnum 502) "test responses exhausted" [])
 
 takeChunk ::
   Member (State [ByteString]) r =>
@@ -35,27 +35,31 @@ streamResponse =
 
 interpretHttpStrictWithState ::
   Members [State [ByteString], State [Response LByteString], Embed IO] r =>
-  InterpreterFor (Http Int) r
+  InterpreterFor (Http (Response LByteString) Int) r
 interpretHttpStrictWithState =
   interpretH \case
+    Http.Response _ f -> do
+      res <- liftT . takeResponse =<< raise get
+      fmap Right <$> bindTSimple f res
     Http.Request _ ->
-      liftT . takeResponse =<< raise get
+      liftT . fmap Right . takeResponse =<< raise get
     Http.Stream _ handler -> do
       handle <- bindT handler
       resp <- pureT streamResponse
-      raise (interpretHttpStrictWithState (handle resp))
+      fmap Right <$> raise (interpretHttpStrictWithState (handle resp))
     Http.ConsumeChunk _ ->
       liftT . fmap Right . takeChunk =<< raise get
 {-# INLINE interpretHttpStrictWithState #-}
 
 -- |In-Memory interpreter for 'Http'.
--- The first parameter is a list of 'Response'. When a request is made, one response is popped of the head and returned.
--- If the list is exhausted, a 502 response is returned.
 interpretHttpStrict ::
   Member (Embed IO) r =>
+  -- |When a request is made, one response is popped of the head and returned.
+  --   If the list is exhausted, a 502 response is returned.
   [Response LByteString] ->
+  -- |Chunks used for streaming responses.
   [ByteString] ->
-  InterpreterFor (Http Int) r
+  InterpreterFor (Http (Response LByteString) Int) r
 interpretHttpStrict responses chunks =
   evalState chunks .
   evalState responses .

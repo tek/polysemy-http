@@ -16,6 +16,7 @@ let
   versionOverrides = builtins.listToAttrs versions;
 
   custom = {
+    co-log-polysemy = subPkg "co-log-polysemy" "co-log-polysemy" niv.co-log;
     polysemy = cabal2nix "polysemy" niv.polysemy;
     polysemy-plugin = subPkg "polysemy-plugin" "polysemy-plugin" niv.polysemy;
   };

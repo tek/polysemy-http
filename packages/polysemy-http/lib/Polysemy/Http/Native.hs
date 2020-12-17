@@ -5,7 +5,7 @@ import Data.CaseInsensitive (foldedCase)
 import qualified Network.HTTP.Client as HTTP
 import Network.HTTP.Client (BodyReader, httpLbs, responseClose, responseOpen)
 import Network.HTTP.Client.Internal (CookieJar(CJ))
-import Polysemy (Tactical, interpretH, runT)
+import Polysemy (getInitialStateT, interpretH, runTSimple)
 import qualified Polysemy.Http.Data.Log as Log
 import Polysemy.Http.Data.Log (Log)
 import Polysemy.Resource (Resource, bracket)
@@ -76,15 +76,12 @@ executeRequest ::
 executeRequest manager request =
   fmap convertResponse <$> internalError (httpLbs (nativeRequest request) manager)
 
--- |Default handler for 'Http.Stream'.
--- Uses 'bracket' to acquire and close the connection, calling 'StreamEvent.Acquire' and 'StreamEvent.Release' in the
--- corresponding phases.
-httpStream ::
+withResponse ::
   Members [Embed IO, Log, Resource, Manager] r =>
   Request ->
-  (Response BodyReader -> m (Either HttpError a)) ->
-  Tactical (Http BodyReader) m r (Either HttpError a)
-httpStream request handler =
+  (HTTP.Response BodyReader -> Sem r a) ->
+  Sem r (Either HttpError a)
+withResponse request f =
   bracket acquire release use
   where
     acquire = do
@@ -95,29 +92,44 @@ httpStream request handler =
     release (Left _) =
       unit
     use (Right response) = do
-      raise . interpretHttpNativeWith =<< runT (handler (convertResponse response))
+      Right <$> f response
     use (Left err) =
-      pureT (Left err)
+      pure (Left err)
     closeFailed err =
       Log.error [qt|closing response failed: #{err}|]
-{-# INLINE httpStream #-}
+{-# INLINE withResponse #-}
+
+distribEither ::
+  Functor f =>
+  Either err (f a) ->
+  Sem (WithTactics e f m r) (f (Either err a))
+distribEither = \case
+  Right fa ->
+    pure (Right <$> fa)
+  Left err -> do
+    s <- getInitialStateT
+    pure (Left err <$ s)
+{-# INLINE distribEither #-}
 
 -- |Same as 'interpretHttpNative', but the interpretation of 'Manager' is left to the user.
 interpretHttpNativeWith ::
   Members [Embed IO, Log, Resource, Manager] r =>
-  InterpreterFor (Http BodyReader) r
+  InterpreterFor (Http (HTTP.Response BodyReader) BodyReader) r
 interpretHttpNativeWith =
   interpretH \case
+    Http.Response request f -> do
+      distribEither =<< withResponse request (runTSimple . f)
     Http.Request request -> do
-      Log.debug $ [qt|http request: #{request}|]
+      Log.debug [qt|http request: #{request}|]
       manager <- Manager.get
       liftT do
         response <- executeRequest manager request
         response <$ Log.debug [qt|http response: #{response}|]
-    Http.Stream request handler ->
-      httpStream request handler
+    Http.Stream request handler -> do
+      Log.debug [qt|http stream request: #{request}|]
+      distribEither =<< withResponse request (runTSimple . handler . convertResponse)
     Http.ConsumeChunk body ->
-      pureT =<< mapLeft HttpError.ChunkFailed <$> tryAny body
+      pureT . first HttpError.ChunkFailed =<< tryAny body
 {-# INLINE interpretHttpNativeWith #-}
 
 -- |Interpret @'Http' 'BodyReader'@ using the native 'Network.HTTP.Client' implementation.
@@ -125,7 +137,7 @@ interpretHttpNativeWith =
 -- This uses the default interpreter for 'Manager'.
 interpretHttpNative ::
   Members [Embed IO, Log, Resource] r =>
-  InterpreterFor (Http BodyReader) r
+  InterpreterFor (Http (HTTP.Response BodyReader) BodyReader) r
 interpretHttpNative =
   interpretManager . interpretHttpNativeWith . raiseUnder
 {-# INLINE interpretHttpNative #-}
