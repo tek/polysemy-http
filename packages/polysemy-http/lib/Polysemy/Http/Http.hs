@@ -13,7 +13,7 @@ import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
 import Polysemy.Http.Data.StreamEvent (StreamEvent)
 
 streamLoop ::
-  Members [Http res c, Error HttpError] r =>
+  Members [Http c, Error HttpError] r =>
   (∀ x . StreamEvent o c h x -> Sem r x) ->
   Response c ->
   h ->
@@ -30,8 +30,8 @@ streamLoop process response@(Response _ body _) handle =
       spin
 
 streamHandler ::
-  ∀ o r res c h .
-  Members [Http res c, Error HttpError, Resource] r =>
+  ∀ o r c h .
+  Members [Http c, Error HttpError, Resource] r =>
   (∀ x . StreamEvent o c h x -> Sem r x) ->
   Response c ->
   Sem r o
@@ -64,7 +64,7 @@ streamHandler process response = do
 -- >>> runInterpreters $ streamResponse (Http.get "host.com" "path/to/file") handle
 -- 5.5
 streamResponse ::
-  Members [Http res c, Error HttpError, Resource] r =>
+  Members [Http c, Error HttpError, Resource] r =>
   Request ->
   (∀ x . StreamEvent o c h x -> Sem r x) ->
   Sem r o

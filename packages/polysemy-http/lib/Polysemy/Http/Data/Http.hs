@@ -8,41 +8,41 @@ import Polysemy.Http.Data.Response (Response)
 
 -- |The main effect for HTTP requests.
 -- The parameter @c@ determines the representation of raw chunks.
-data Http res c :: Effect where
-  Response :: Request -> (res -> m a) -> Http res c m (Either HttpError a)
-  Request :: Request -> Http res c m (Either HttpError (Response LByteString))
-  Stream :: Request -> (Response c -> m a) -> Http res c m (Either HttpError a)
+data Http c :: Effect where
+  Response :: Request -> (Response c -> m a) -> Http c m (Either HttpError a)
+  Request :: Request -> Http c m (Either HttpError (Response LByteString))
+  Stream :: Request -> (Response c -> m a) -> Http c m (Either HttpError a)
   -- |Internal action for streaming transfers.
-  ConsumeChunk :: c -> Http res c m (Either HttpError ByteString)
+  ConsumeChunk :: c -> Http c m (Either HttpError ByteString)
 
 makeSem_ ''Http
 
--- |Bracket a higher-order action with an implementation specific native response value.
+-- |Bracket a higher-order action with a 'Response' that has been opened while its body hasn't been fetched.
 response ::
-  ∀ res c r a .
-  Member (Http res c) r =>
+  ∀ c r a .
+  Member (Http c) r =>
   Request ->
-  (res -> Sem r a) ->
+  (Response c -> Sem r a) ->
   Sem r (Either HttpError a)
 
 -- |Synchronously run an HTTP request and return the response.
 request ::
-  ∀ res c r .
-  Member (Http res c) r =>
+  ∀ c r .
+  Member (Http c) r =>
   Request ->
   Sem r (Either HttpError (Response LByteString))
 
 -- |Open a connection without consuming data and pass the response to a handler for custom transmission.
 -- The intended purpose is to allow streaming transfers.
 stream ::
-  ∀ res c r a .
-  Member (Http res c) r =>
+  ∀ c r a .
+  Member (Http c) r =>
   Request ->
   (Response c -> Sem r a) ->
   Sem r (Either HttpError a)
 
 consumeChunk ::
-  ∀ res c r .
-  Member (Http res c) r =>
+  ∀ c r .
+  Member (Http c) r =>
   c ->
   Sem r (Either HttpError ByteString)

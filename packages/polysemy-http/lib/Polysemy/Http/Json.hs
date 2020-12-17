@@ -15,7 +15,7 @@ jsonContentType =
   ("content-type", "application/json")
 
 jsonRequest ::
-  Member (Http res c) r =>
+  Member (Http c) r =>
   Request ->
   Sem r (Either HttpError (Response LByteString))
 jsonRequest =

@@ -1,7 +1,7 @@
 module Polysemy.Http.Strict where
 
 import Polysemy (interpretH)
-import Polysemy.Internal.Tactics hiding (liftT)
+import Polysemy.Internal.Tactics (bindT, bindTSimple)
 
 import Polysemy.Http.Data.Header (Header(Header))
 import qualified Polysemy.Http.Data.Http as Http
@@ -26,16 +26,16 @@ takeChunk (chunk : rest) =
 takeChunk [] =
   pure ""
 
-streamResponse :: Response Int
+streamResponse :: Response LByteString
 streamResponse =
-  Response (toEnum 200) 1 [
+  Response (toEnum 200) "stream response" [
     Header "content-disposition" [qt|filename="file.txt"|],
     Header "content-length" "5000000"
     ]
 
 interpretHttpStrictWithState ::
   Members [State [ByteString], State [Response LByteString], Embed IO] r =>
-  InterpreterFor (Http (Response LByteString) Int) r
+  InterpreterFor (Http LByteString) r
 interpretHttpStrictWithState =
   interpretH \case
     Http.Response _ f -> do
@@ -59,7 +59,7 @@ interpretHttpStrict ::
   [Response LByteString] ->
   -- |Chunks used for streaming responses.
   [ByteString] ->
-  InterpreterFor (Http (Response LByteString) Int) r
+  InterpreterFor (Http LByteString) r
 interpretHttpStrict responses chunks =
   evalState chunks .
   evalState responses .

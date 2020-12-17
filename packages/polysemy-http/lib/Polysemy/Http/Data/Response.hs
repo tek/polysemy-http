@@ -19,9 +19,9 @@ import Polysemy.Http.Data.Header (Header)
 -- |The response produced by 'Polysemy.Http.Data.Http'.
 data Response b =
   Response {
-    -- |Uses the type from 'Network.HTTP' for convenience
+    -- |Uses the type from 'Network.HTTP' for convenience.
     status :: Status,
-    -- |parameterized in the body to allow different interpreters to use other representations.
+    -- |The body might be evaluated or an 'IO' action.
     body :: b,
     -- |Does not use the type from 'Network.HTTP' because it is an alias.
     headers :: [Header]

@@ -79,7 +79,7 @@ executeRequest manager request =
 withResponse ::
   Members [Embed IO, Log, Resource, Manager] r =>
   Request ->
-  (HTTP.Response BodyReader -> Sem r a) ->
+  (Response BodyReader -> Sem r a) ->
   Sem r (Either HttpError a)
 withResponse request f =
   bracket acquire release use
@@ -92,7 +92,7 @@ withResponse request f =
     release (Left _) =
       unit
     use (Right response) = do
-      Right <$> f response
+      Right <$> f (convertResponse response)
     use (Left err) =
       pure (Left err)
     closeFailed err =
@@ -114,7 +114,7 @@ distribEither = \case
 -- |Same as 'interpretHttpNative', but the interpretation of 'Manager' is left to the user.
 interpretHttpNativeWith ::
   Members [Embed IO, Log, Resource, Manager] r =>
-  InterpreterFor (Http (HTTP.Response BodyReader) BodyReader) r
+  InterpreterFor (Http BodyReader) r
 interpretHttpNativeWith =
   interpretH \case
     Http.Response request f -> do
@@ -127,7 +127,7 @@ interpretHttpNativeWith =
         response <$ Log.debug [qt|http response: #{response}|]
     Http.Stream request handler -> do
       Log.debug [qt|http stream request: #{request}|]
-      distribEither =<< withResponse request (runTSimple . handler . convertResponse)
+      distribEither =<< withResponse request (runTSimple . handler)
     Http.ConsumeChunk body ->
       pureT . first HttpError.ChunkFailed =<< tryAny body
 {-# INLINE interpretHttpNativeWith #-}
@@ -137,7 +137,7 @@ interpretHttpNativeWith =
 -- This uses the default interpreter for 'Manager'.
 interpretHttpNative ::
   Members [Embed IO, Log, Resource] r =>
-  InterpreterFor (Http (HTTP.Response BodyReader) BodyReader) r
+  InterpreterFor (Http BodyReader) r
 interpretHttpNative =
   interpretManager . interpretHttpNativeWith . raiseUnder
 {-# INLINE interpretHttpNative #-}
