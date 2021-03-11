@@ -5,7 +5,7 @@ niv:
 }:
 self: super:
 let
-  inherit (hackage) pack thunk cabal2nix subPkg github;
+  inherit (hackage) pack cabal2nix subPkg github;
 
   versions = [
     (pack "servant" "0.18" "1mwwqn012kwjigckka6msiwpxp8wracc55nk01y6hj9n8ndmnrm5")
