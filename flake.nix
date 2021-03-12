@@ -1,7 +1,8 @@
 {
   description = "Polysemy effect for http-client";
+
   inputs = {
-    nixpkgs.url = github:NixOs/nixpkgs/cfed29bfcb28259376713005d176a6f82951014a;
+    nixpkgs.url = github:NixOS/nixpkgs/cfed29bfcb28259376713005d176a6f82951014a;
     flake-utils.url = github:numtide/flake-utils;
     tryp-hs.url = github:tek/tryp-hs;
     # tryp-hs.url = path:/home/tek/code/tek/nix/tryp-hs;
@@ -15,14 +16,15 @@
       flake = false;
     };
   };
+
   outputs = { self, nixpkgs, tryp-hs, flake-utils, ... }@inputs:
-  flake-utils.lib.eachDefaultSystem (system:
+  flake-utils.lib.eachSystem ["x86_64-linux"] (system:
     let
-      base = ./.;
-      packages = { polysemy-http = ./packages/polysemy-http; };
       project = tryp-hs.project {
-        inherit base packages system;
+        inherit system;
+        base = ./.;
         compiler = "ghc8102";
+        packages = { polysemy-http = ./packages/polysemy-http; };
         overrides = import ./ops/nix/overrides.nix inputs;
         ghci = {
           basicArgs = ["-Wall" "-Werror"];
@@ -32,9 +34,17 @@
         packageDir = "packages";
         cabal2nixOptions = "--no-hpack";
       };
-    in project // {
+    in {
       defaultPackage = project.ghc.polysemy-http;
-      devshell = import ./ops/nix/shell.nix { inherit project; };
+      devShell = project.ghcid.shell;
+      legacyPackages = {
+        run = project.ghcid.run;
+        cabal = project.cabal;
+        tags = project.tags.projectTags;
+      };
+      packages = {
+        polysemy-http = project.ghc.polysemy-http;
+      };
     }
   );
 }

@@ -67,13 +67,13 @@
       "locked": {
         "lastModified": 1602473909,
         "narHash": "sha256-tZfZhmjYNX4UrUySEjbosJO7Bj3eiCGnjfX5DkVClQw=",
-        "owner": "NixOs",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "cfed29bfcb28259376713005d176a6f82951014a",
         "type": "github"
       },
       "original": {
-        "owner": "NixOs",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "cfed29bfcb28259376713005d176a6f82951014a",
         "type": "github"
@@ -183,11 +183,11 @@
         "thax": "thax"
       },
       "locked": {
-        "lastModified": 1615505317,
-        "narHash": "sha256-EIzOSwjtiVeIkPgYj99IPTNnmhxvEWg43a1ozJU9XsI=",
+        "lastModified": 1615576183,
+        "narHash": "sha256-2AVLk8TYJo4ZVaQa9QIuJ3Ds9NSXisfFVZBRGwPM1U4=",
         "owner": "tek",
         "repo": "tryp-hs",
-        "rev": "1a17897d13c205cc56a03f6ffa93c5f5432d1c7a",
+        "rev": "0fb1b4d64d162eba1762fb038872ab73948239cb",
         "type": "github"
       },
       "original": {
