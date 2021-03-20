@@ -41,4 +41,4 @@ test_cookies :: UnitTest
 test_cookies = do
   result <- lift (withServer runRequest)
   response <- evalEither result
-  [qt|#{c1}=#{c1v};#{c2}=#{c2v}|] === Response.body response
+  [qt|#{c1}=#{c1v};#{c2}=#{c2v}|] === Response._body response

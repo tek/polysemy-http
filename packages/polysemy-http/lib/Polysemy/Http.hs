@@ -77,11 +77,11 @@ import Polysemy.Http.Data.Request (
   Port(..),
   QueryKey(..),
   QueryValue(..),
-  Request(..),
+  Request(Request),
   Tls(..),
   )
 import Polysemy.Http.Data.Response (
-  Response(..),
+  Response(Response),
   pattern Client,
   pattern Info,
   pattern Redirect,

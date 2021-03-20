@@ -54,7 +54,7 @@ nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) hea
 
 convertResponse :: HTTP.Response b -> Response b
 convertResponse response =
-  Response (HTTP.responseStatus response) (HTTP.responseBody response) headers
+  Response (HTTP.responseStatus response) (HTTP.responseBody response) headers (HTTP.responseCookieJar response)
   where
     headers =
       header <$> HTTP.responseHeaders response

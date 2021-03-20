@@ -66,9 +66,10 @@ will be determined from `tls`.
 ```haskell
 data Response b =
   Response {
-    status :: Status,
-    body :: b,
-    headers :: [Header]
+    _status :: Status,
+    _body :: b,
+    _headers :: [Header],
+    _cookies :: CookieJar
   }
 
 data Header =

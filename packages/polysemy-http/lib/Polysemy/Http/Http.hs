@@ -1,7 +1,6 @@
 module Polysemy.Http.Http where
 
 import qualified Data.ByteString as ByteString
-import Polysemy.Resource (Resource, bracket)
 
 import qualified Polysemy.Http.Data.Http as Http
 import Polysemy.Http.Data.Http (Http)
@@ -11,6 +10,7 @@ import Polysemy.Http.Data.Response (Response(Response))
 import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
 import Polysemy.Http.Data.StreamEvent (StreamEvent)
+import Polysemy.Resource (Resource, bracket)
 
 streamLoop ::
   Members [Http c, Error HttpError] r =>
@@ -18,7 +18,7 @@ streamLoop ::
   Response c ->
   h ->
   Sem r o
-streamLoop process response@(Response _ body _) handle =
+streamLoop process response@(Response _ body _ _) handle =
   spin
   where
     spin =

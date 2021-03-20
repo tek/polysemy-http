@@ -7,6 +7,7 @@ import Polysemy.Http.Data.Header (Header(Header))
 import qualified Polysemy.Http.Data.Http as Http
 import Polysemy.Http.Data.Http (Http)
 import Polysemy.Http.Data.Response (Response(Response))
+import Network.HTTP.Client.Internal (CookieJar(CJ))
 
 takeResponse ::
   Member (State [Response LByteString]) r =>
@@ -15,7 +16,7 @@ takeResponse ::
 takeResponse (response : rest) =
   response <$ put rest
 takeResponse [] =
-  pure (Response (toEnum 502) "test responses exhausted" [])
+  pure (Response (toEnum 502) "test responses exhausted" [] (CJ mempty))
 
 takeChunk ::
   Member (State [ByteString]) r =>
@@ -31,7 +32,7 @@ streamResponse =
   Response (toEnum 200) "stream response" [
     Header "content-disposition" [qt|filename="file.txt"|],
     Header "content-length" "5000000"
-    ]
+    ] (CJ mempty)
 
 interpretHttpStrictWithState ::
   Members [State [ByteString], State [Response LByteString], Embed IO] r =>

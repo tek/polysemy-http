@@ -35,4 +35,4 @@ test_request :: UnitTest
 test_request = do
   result <- lift (withServer runRequest)
   response <- evalEither result
-  "5" === Response.body response
+  "5" === Response._body response

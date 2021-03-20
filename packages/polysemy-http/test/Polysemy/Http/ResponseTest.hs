@@ -1,6 +1,7 @@
 module Polysemy.Http.ResponseTest where
 
 import Hedgehog ((===))
+import Network.HTTP.Client.Internal (CookieJar(CJ))
 
 import qualified Polysemy.Http.Data.Response as Response
 import Polysemy.Http.Data.Response (Response(Response))
@@ -8,7 +9,7 @@ import Polysemy.Http.Test (UnitTest)
 
 response :: Response ()
 response =
-  Response (toEnum 404) () []
+  Response (toEnum 404) () [] (CJ mempty)
 
 match :: Response a -> Int
 match = \case
