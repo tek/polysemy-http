@@ -4,7 +4,7 @@ import Control.Lens ((.~))
 import qualified Data.ByteString as ByteString
 import Hedgehog (assert, evalEither, (===))
 import Polysemy (embedToFinal, runFinal)
-import Polysemy.Http.Log (interpretLogStdout)
+import Polysemy.Log (interpretLogNull)
 import Polysemy.Resource (resourceToIOFinal)
 import Polysemy.State (runState)
 
@@ -49,7 +49,7 @@ runRequest port =
   embedToFinal $
   runError @HttpError $
   runState empty $
-  interpretLogStdout $
+  interpretLogNull $
   interpretHttpNative $
   Http.streamResponse (req port) handle
 

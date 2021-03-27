@@ -15,6 +15,14 @@
       url = github:polysemy-research/polysemy;
       flake = false;
     };
+    polysemy-log = {
+      url = github:tek/polysemy-log;
+      flake = false;
+    };
+    polysemy-time = {
+      url = github:tek/polysemy-time;
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, tryp-hs, flake-utils, ... }@inputs:
@@ -24,23 +32,24 @@
         inherit system;
         base = ./.;
         compiler = "ghc8102";
-        packages = { polysemy-http = ./packages/polysemy-http; };
+        packages = { polysemy-http = "packages/polysemy-http"; };
         overrides = import ./ops/nix/overrides.nix inputs;
         ghci = {
           basicArgs = ["-Wall" "-Werror"];
           options_ghc = "-fplugin=Polysemy.Plugin";
         };
-        ghcid.prelude = ./packages/polysemy-http/lib/Prelude.hs;
+        ghcid.prelude = "packages/polysemy-http/lib/Prelude.hs";
         packageDir = "packages";
         cabal2nixOptions = "--no-hpack";
       };
     in {
       defaultPackage = project.ghc.polysemy-http;
-      devShell = project.ghcid.shell;
+      devShell = project.ghcid-flake.shell;
       legacyPackages = {
-        run = project.ghcid.run;
+        run = project.ghcid-flake.run;
         cabal = project.cabal;
         tags = project.tags.projectTags;
+        hpack = project.hpack-script {};
       };
       packages = {
         polysemy-http = project.ghc.polysemy-http;

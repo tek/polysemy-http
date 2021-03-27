@@ -1,11 +1,10 @@
 module Main where
 
-import Test.Tasty (TestTree, defaultMain, testGroup)
-
 import Polysemy.Http.CookieTest (test_cookies)
 import Polysemy.Http.RequestTest (test_request)
 import Polysemy.Http.StreamTest (test_httpStream)
 import Polysemy.Http.Test (unitTest)
+import Test.Tasty (TestTree, defaultMain, testGroup)
 
 tests :: TestTree
 tests =

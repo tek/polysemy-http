@@ -6,8 +6,8 @@ import qualified Network.HTTP.Client as HTTP
 import Network.HTTP.Client (BodyReader, httpLbs, responseClose, responseOpen)
 import Network.HTTP.Client.Internal (CookieJar(CJ))
 import Polysemy (getInitialStateT, interpretH, runTSimple)
-import qualified Polysemy.Http.Data.Log as Log
-import Polysemy.Http.Data.Log (Log)
+import qualified Polysemy.Log as Log
+import Polysemy.Log (Log)
 import Polysemy.Resource (Resource, bracket)
 
 import Polysemy.Http.Data.Header (Header(Header), unHeaderName, unHeaderValue)

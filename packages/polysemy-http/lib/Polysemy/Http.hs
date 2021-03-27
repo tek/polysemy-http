@@ -44,10 +44,9 @@ module Polysemy.Http (
   -- * Utilities
   -- ** Connection Pool
   module Polysemy.Http.Data.Manager,
-  -- ** Logging
-  module Polysemy.Http.Data.Log,
-  module Polysemy.Http.Log,
 ) where
+
+import Prelude hiding (get, put)
 
 import Polysemy.Http.AesonEntity (interpretEntityDecodeAeson, interpretEntityEncodeAeson)
 import Polysemy.Http.Data.Entity (
@@ -67,7 +66,6 @@ import Polysemy.Http.Data.Entity (
 import Polysemy.Http.Data.Header (Header(..), HeaderName(..), HeaderValue(..))
 import Polysemy.Http.Data.Http (Http, request, response, stream)
 import Polysemy.Http.Data.HttpError (HttpError(..))
-import Polysemy.Http.Data.Log (Log)
 import Polysemy.Http.Data.Manager (Manager)
 import Polysemy.Http.Data.Request (
   Body(..),
@@ -90,7 +88,6 @@ import Polysemy.Http.Data.Response (
   )
 import Polysemy.Http.Data.StreamEvent (StreamEvent(..))
 import Polysemy.Http.Http (streamResponse)
-import Polysemy.Http.Log (interpretLogNull, interpretLogStdout)
 import Polysemy.Http.Native (interpretHttpNative)
 import Polysemy.Http.Request (
   addCookie,
@@ -110,13 +107,13 @@ import Polysemy.Http.Request (
   withTls,
   )
 import Polysemy.Http.Strict (interpretHttpStrict)
-import Prelude hiding (get, put)
 
 -- $intro
 -- A basic 'Polysemy' effect abstracting HTTP requests:
 --
 -- @
 -- import Polysemy (resourceToIO, runM)
+-- import Polysemy.Log.Colog (interpretLogStdout)
 -- import qualified Polysemy.Http as Http
 -- import Polysemy.Http (interpretHttpNative, interpretLogStdout)
 --

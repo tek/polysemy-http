@@ -5,7 +5,7 @@ inputs:
 }:
 self: super:
 let
-  inherit (hackage) pack cabal2nix subPkg github;
+  inherit (hackage) pack cabal2nixNoHpack subPkg subPkgNoHpack github;
 
   versions = [
     (pack "servant" "0.18" "1mwwqn012kwjigckka6msiwpxp8wracc55nk01y6hj9n8ndmnrm5")
@@ -17,8 +17,10 @@ let
 
   custom = {
     co-log-polysemy = subPkg "co-log-polysemy" "co-log-polysemy" inputs.co-log;
-    polysemy = cabal2nix "polysemy" inputs.polysemy;
-    polysemy-plugin = subPkg "polysemy-plugin" "polysemy-plugin" inputs.polysemy;
+    polysemy = cabal2nixNoHpack "polysemy" inputs.polysemy;
+    polysemy-plugin = subPkgNoHpack "polysemy-plugin" "polysemy-plugin" inputs.polysemy;
+    polysemy-log = subPkg "packages/polysemy-log" "polysemy-log" inputs.polysemy-log;
+    polysemy-time = subPkg "packages/time" "polysemy-time" inputs.polysemy-time;
   };
 in
   versionOverrides // custom
