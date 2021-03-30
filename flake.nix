@@ -5,24 +5,11 @@
     nixpkgs.url = github:NixOS/nixpkgs/cfed29bfcb28259376713005d176a6f82951014a;
     flake-utils.url = github:numtide/flake-utils;
     tryp-hs.url = github:tek/tryp-hs;
-    # tryp-hs.url = path:/home/tek/code/tek/nix/tryp-hs;
     tryp-hs.inputs.nixpkgs.follows = "nixpkgs";
-    co-log = {
-      url = github:kowainik/co-log;
-      flake = false;
-    };
-    polysemy = {
-      url = github:polysemy-research/polysemy;
-      flake = false;
-    };
-    polysemy-log = {
-      url = github:tek/polysemy-log;
-      flake = false;
-    };
-    polysemy-time = {
-      url = github:tek/polysemy-time;
-      flake = false;
-    };
+    polysemy.url = github:polysemy-research/polysemy;
+    polysemy-conc.url = github:tek/polysemy-conc;
+    polysemy-log.url = github:tek/polysemy-log;
+    polysemy-time.url = github:tek/polysemy-time;
   };
 
   outputs = { self, nixpkgs, tryp-hs, flake-utils, ... }@inputs:
