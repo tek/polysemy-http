@@ -7,7 +7,7 @@ cabal-version: 2.2
 name:           polysemy-http
 version:        0.4.0.2
 synopsis:       Polysemy effect for http-client
-description:    Please see the README on Github at <https://github.com/tek/polysemy-http>
+description:    See <https://hackage.haskell.org/package/polysemy-http/docs/Polysemy-Http.html>
 category:       Network
 homepage:       https://github.com/tek/polysemy-http#readme
 bug-reports:    https://github.com/tek/polysemy-http/issues
@@ -18,7 +18,7 @@ license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
-    README.md
+    readme.md
     Changelog.md
 
 source-repository head
