@@ -1,19 +1,14 @@
 {
   description = "Polysemy effect for http-client";
 
-  inputs = {
-    polysemy-log.url = github:tek/polysemy-log;
-    polysemy-conc.follows = "polysemy-log/polysemy-conc";
-    polysemy-time.follows = "polysemy-log/polysemy-conc/polysemy-time";
-    polysemy-test.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test";
-    tryp-hs.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
-    polysemy-conc.inputs.polysemy-test.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test";
-    polysemy-time.inputs.tryp-hs.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
-    polysemy-conc.inputs.tryp-hs.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
-  };
+  inputs.polysemy-log.url = github:tek/polysemy-log;
 
-  outputs = { tryp-hs, polysemy-test, polysemy-time, polysemy-conc, polysemy-log, ... }:
+  outputs = { polysemy-log, ... }:
   let
+    inherit (polysemy-log.inputs) polysemy-conc;
+    inherit (polysemy-conc.inputs) polysemy-time;
+    inherit (polysemy-time.inputs) polysemy-test;
+    inherit (polysemy-test.inputs) tryp-hs;
     common = { hackage, source, jailbreak, ... }: {
       polysemy = hackage "1.5.0.0" "1xl472xqdxnp4ysyqnackpfn6wbx03rlgwmy9907bklrh557il6d";
       polysemy-plugin = hackage "0.3.0.0" "1frz0iksmg8bpm7ybnpz9h75hp6hajd20vpdvmi04aspklmr6hj0";
