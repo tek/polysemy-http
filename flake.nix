@@ -2,18 +2,17 @@
   description = "Polysemy effect for http-client";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e;
-    tryp-hs = {
-      url = github:tek/tryp-hs;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    polysemy-test.url = github:tek/polysemy-test;
-    polysemy-time.url = github:tek/polysemy-time;
-    polysemy-conc.url = github:tek/polysemy-conc;
     polysemy-log.url = github:tek/polysemy-log;
+    polysemy-conc.follows = "polysemy-log/polysemy-conc";
+    polysemy-time.follows = "polysemy-log/polysemy-conc/polysemy-time";
+    polysemy-test.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test";
+    tryp-hs.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
+    polysemy-conc.inputs.polysemy-test.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test";
+    polysemy-time.inputs.tryp-hs.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
+    polysemy-conc.inputs.tryp-hs.follows = "polysemy-log/polysemy-conc/polysemy-time/polysemy-test/tryp-hs";
   };
 
-  outputs = { tryp-hs, polysemy-test, polysemy-time, polysemy-conc, polysemy-log, ... }@inputs:
+  outputs = { tryp-hs, polysemy-test, polysemy-time, polysemy-conc, polysemy-log, ... }:
   let
     common = { hackage, source, jailbreak, ... }: {
       polysemy = hackage "1.5.0.0" "1xl472xqdxnp4ysyqnackpfn6wbx03rlgwmy9907bklrh557il6d";
@@ -22,7 +21,7 @@
       co-log-polysemy = jailbreak (hackage "0.0.1.2" "17bcs8dvrhwfcyklknkqg11gxgxm2jaa7kbm6xx4vm1976abzwss");
     };
 
-    overrides = { hackage, source, ... }@args: common args // {
+    main = { hackage, source, ... }: {
       servant = hackage "0.18.2" "0l2k895nxvw2ngr9201g3br6s9zab7mk5mhpjibyg8mxfbv75a8y";
       servant-client = hackage "0.18.2" "0yip2s63ivrlrpficdipq60j2a6czg8agn18lpkkaxf3n55j4jr3";
       servant-client-core = hackage "0.18.2" "1hazxk1laklpm2c65zgkk2gn8mvlp682437071s04bqggk9b59sx";
@@ -36,7 +35,8 @@
       polysemy-log = source.sub polysemy-log "packages/polysemy-log";
     };
 
-    compatOverrides = { hackage, source, only, ... }@args: common args // {
+    compat = { hackage, source, only, ... }: {
+      hspec-wai = only "865" (hackage "0.9.2" "0m179c1kxxgsy3i642ahz5xa4mkrhshqpy8j5wmzrkwbva6zvsgn");
       polysemy-test = hackage "0.3.1.1" "0x0zg1kljr7a1mwmm3zrmha5inz3l2pkldnq65fvsig8f3x8rsar";
       polysemy-time = hackage "0.1.2.1" "09l8r5fx0vnapdn8p0cwiwprgg3i67m58dd4j5hcdhw34gfqnnsr";
       polysemy-conc = hackage "0.1.0.2" "0ijz5l8q53d1s7i100gvjdhzv80dpd140m7a9hyam113ybglc8lg";
@@ -47,8 +47,8 @@
     base = ./.;
     compiler = "ghc8104";
     packages.polysemy-http = "packages/polysemy-http";
-    overrides = tryp-hs.overrides overrides;
-    compatOverrides = tryp-hs.overrides compatOverrides;
+    overrides = tryp-hs.composeCabal [common main];
+    compatOverrides = tryp-hs.composeCabal [common compat];
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
     ghcid.prelude = "packages/polysemy-http/lib/Prelude.hs";
     versionFile = "ops/hpack/packages/polysemy-http.yaml";
