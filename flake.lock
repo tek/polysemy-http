@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "chronos": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1617491657,
-        "narHash": "sha256-nomb1prLVSb2o4CJJyPJBLqiVVUIcfBnIoKMIn6OzVo=",
-        "owner": "andrewthad",
-        "repo": "chronos",
-        "rev": "aa6d2b0969c4c5216ff9e45da1574e194fafefc1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "andrewthad",
-        "repo": "chronos",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1618217525,
@@ -31,19 +15,28 @@
         "type": "github"
       }
     },
-    "hls": {
-      "flake": false,
+    "hix": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs8104": "nixpkgs8104",
+        "nixpkgs865": "nixpkgs865",
+        "nixpkgs884": "nixpkgs884",
+        "obelisk": "obelisk",
+        "snap-core": "snap-core",
+        "thax": "thax"
+      },
       "locked": {
-        "lastModified": 1618215455,
-        "narHash": "sha256-VF37hPr8EvMZmcYqYPWxZE0HCd1n0dDwq/zQSDrJLnU=",
-        "owner": "haskell",
-        "repo": "haskell-language-server",
-        "rev": "b085e7a2edacf8cc07644d0d7e72c289ea5fb802",
+        "lastModified": 1618515924,
+        "narHash": "sha256-PfyryNozifewIaLqXO4oeR2YwPZhuzNl+bpLHZBK6EI=",
+        "owner": "tek",
+        "repo": "hix",
+        "rev": "ed5dc31ffb2729a04b709a2c07909068855fc0dc",
         "type": "github"
       },
       "original": {
-        "owner": "haskell",
-        "repo": "haskell-language-server",
+        "owner": "tek",
+        "repo": "hix",
         "type": "github"
       }
     },
@@ -128,82 +121,9 @@
         "type": "github"
       }
     },
-    "polysemy-conc": {
-      "inputs": {
-        "polysemy-time": "polysemy-time"
-      },
-      "locked": {
-        "lastModified": 1618354034,
-        "narHash": "sha256-4CIJk8PxRn8Pg+m1oVLkReWjuJujnE7zOCPFzwrTk+E=",
-        "owner": "tek",
-        "repo": "polysemy-conc",
-        "rev": "4232dc5b97f86a292fdc3a6e98d19d542a539e58",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tek",
-        "repo": "polysemy-conc",
-        "type": "github"
-      }
-    },
-    "polysemy-log": {
-      "inputs": {
-        "polysemy-conc": "polysemy-conc"
-      },
-      "locked": {
-        "lastModified": 1618354611,
-        "narHash": "sha256-I6nJwHHcsVNoswSp62p/7JiCITOlxqJDOqufzXhr854=",
-        "owner": "tek",
-        "repo": "polysemy-log",
-        "rev": "44596cd7d2105f7a4555cec27fdda0bff93e42de",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tek",
-        "repo": "polysemy-log",
-        "type": "github"
-      }
-    },
-    "polysemy-test": {
-      "inputs": {
-        "tryp-hs": "tryp-hs"
-      },
-      "locked": {
-        "lastModified": 1618267799,
-        "narHash": "sha256-en3bu6toFyOy7OHOiV/AwWlrQR9Ce560qN/z4a9Pd6E=",
-        "owner": "tek",
-        "repo": "polysemy-test",
-        "rev": "35d5e12c70887bc334aa0dacc596c15125608ba5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tek",
-        "repo": "polysemy-test",
-        "type": "github"
-      }
-    },
-    "polysemy-time": {
-      "inputs": {
-        "chronos": "chronos",
-        "polysemy-test": "polysemy-test"
-      },
-      "locked": {
-        "lastModified": 1618353423,
-        "narHash": "sha256-YOEPBl14fEu389zjXGofDtc9080nrEe1zAxalOy7JaY=",
-        "owner": "tek",
-        "repo": "polysemy-time",
-        "rev": "8a2167d1408d56ffcce86b770494ac50732533df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tek",
-        "repo": "polysemy-time",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
-        "polysemy-log": "polysemy-log"
+        "hix": "hix"
       }
     },
     "snap-core": {
@@ -236,32 +156,6 @@
       "original": {
         "owner": "tek",
         "repo": "thax",
-        "type": "github"
-      }
-    },
-    "tryp-hs": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "hls": "hls",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs8104": "nixpkgs8104",
-        "nixpkgs865": "nixpkgs865",
-        "nixpkgs884": "nixpkgs884",
-        "obelisk": "obelisk",
-        "snap-core": "snap-core",
-        "thax": "thax"
-      },
-      "locked": {
-        "lastModified": 1618267769,
-        "narHash": "sha256-77JGnWvGC4zsIazJUcJcBII0vlolrJz8UmiUpgQzsr4=",
-        "owner": "tek",
-        "repo": "tryp-hs",
-        "rev": "ca6eda863c2234ab2f7438f5a707b35d5e62a3df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tek",
-        "repo": "tryp-hs",
         "type": "github"
       }
     }
