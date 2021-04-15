@@ -30,8 +30,7 @@
   in
   hix.flake {
     base = ./.;
-    compiler = "ghc8104";
-    packages.polysemy-http = "packages/polysemy-http";
+    packages.polysemy-http = ./packages/polysemy-http;
     overrides = [common main];
     compatOverrides = [common compat];
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
