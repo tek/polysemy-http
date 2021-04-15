@@ -111,8 +111,6 @@ library
     , base ==4.*
     , bytestring
     , case-insensitive ==1.2.*
-    , co-log-core >=0.2.1 && <0.3
-    , co-log-polysemy >=0.0.1.2 && <0.1
     , composition >=1.0.2 && <1.1
     , containers
     , data-default ==0.7.*
@@ -204,8 +202,6 @@ test-suite polysemy-http-integration
     , base ==4.*
     , bytestring
     , case-insensitive ==1.2.*
-    , co-log-core >=0.2.1 && <0.3
-    , co-log-polysemy >=0.0.1.2 && <0.1
     , composition >=1.0.2 && <1.1
     , containers
     , data-default ==0.7.*
@@ -306,8 +302,6 @@ test-suite polysemy-http-unit
     , base ==4.*
     , bytestring
     , case-insensitive ==1.2.*
-    , co-log-core >=0.2.1 && <0.3
-    , co-log-polysemy >=0.0.1.2 && <0.1
     , composition >=1.0.2 && <1.1
     , containers
     , data-default ==0.7.*

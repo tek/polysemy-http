@@ -27,11 +27,11 @@
         "thax": "thax"
       },
       "locked": {
-        "lastModified": 1618515924,
-        "narHash": "sha256-PfyryNozifewIaLqXO4oeR2YwPZhuzNl+bpLHZBK6EI=",
+        "lastModified": 1618520951,
+        "narHash": "sha256-GJHUfKhY7O5qlXUl06lQzbNEtodij3fE/KJ3glBm5+0=",
         "owner": "tek",
         "repo": "hix",
-        "rev": "ed5dc31ffb2729a04b709a2c07909068855fc0dc",
+        "rev": "f2b565627a7c3c5fae62f5373a0d90342bea53a0",
         "type": "github"
       },
       "original": {
@@ -144,13 +144,12 @@
       }
     },
     "thax": {
-      "flake": false,
       "locked": {
-        "lastModified": 1605284261,
-        "narHash": "sha256-E/plhauthjbmPyAfphNrkAnLIxVxZRbiCj172cnXsGs=",
+        "lastModified": 1618510946,
+        "narHash": "sha256-eA/PMK/C5/NaXg3rnAWBw5lE5akk/mWVhDcwV8pPtGk=",
         "owner": "tek",
         "repo": "thax",
-        "rev": "8f63f0578a97bae2584483f3d78750a97d6afb88",
+        "rev": "e7e656e28d671a682dce06abe5b1ce915c3ffac8",
         "type": "github"
       },
       "original": {

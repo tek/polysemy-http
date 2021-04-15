@@ -31,8 +31,6 @@ dependencies:
       - hiding (Prelude)
   - bytestring
   - case-insensitive ^>= 1.2
-  - co-log-core ^>= 0.2.1
-  - co-log-polysemy ^>= 0.0.1.2
   - composition ^>= 1.0.2
   - containers
   - data-default ^>= 0.7
