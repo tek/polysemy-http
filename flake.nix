@@ -37,7 +37,6 @@
     overrides = [common main];
     compatOverrides = [common compat];
     ghci.extraArgs = ["-fplugin=Polysemy.Plugin"];
-    ghcid.prelude = "packages/polysemy-http/lib/Prelude.hs";
     versionFile = "ops/hpack/packages/polysemy-http.yaml";
   };
 }
