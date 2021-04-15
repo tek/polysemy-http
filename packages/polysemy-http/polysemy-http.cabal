@@ -19,7 +19,7 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     readme.md
-    Changelog.md
+    changelog.md
 
 source-repository head
   type: git
