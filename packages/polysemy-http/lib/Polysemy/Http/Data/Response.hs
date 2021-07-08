@@ -5,14 +5,14 @@ module Polysemy.Http.Data.Response (
 
 import Network.HTTP.Client (BodyReader, CookieJar)
 import Network.HTTP.Types (
-  Status(Status),
+  Status (Status),
   statusIsClientError,
   statusIsInformational,
   statusIsRedirection,
   statusIsServerError,
   statusIsSuccessful,
   )
-import qualified Text.Show as Text (Show(show))
+import qualified Text.Show as Text (Show (show))
 
 import Polysemy.Http.Data.Header (Header)
 
@@ -33,6 +33,10 @@ data Response b =
 instance {-# overlapping #-} Show (Response BodyReader) where
   show (Response s _ hs _) =
     [qt|StreamingResponse { status :: #{s}, headers :: #{hs} }|]
+
+instance Eq b => Eq (Response b) where
+  Response ls lb lh _ == Response rs rb rh _ =
+    ls == rs && lb == rb && lh == rh
 
 -- |Match on a response with a 1xx status.
 pattern Info ::

@@ -131,3 +131,7 @@ data Request =
   deriving (Show, Generic)
 
 makeClassy ''Request
+
+instance Eq Request where
+  Request lm lh lp lt lpa lhe _ lq lb == Request rm rh rp rt rpa rhe _ rq rb =
+    lm == rm && lh == rh && lp == rp && lt == rt && lpa == rpa && lhe == rhe && lq == rq && lb == rb

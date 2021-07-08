@@ -7,7 +7,6 @@ import Network.HTTP.Client.TLS (mkManagerSettings)
 import Polysemy.Http.Data.Manager (Manager(..))
 
 interpretManagerWith ::
-  Member (Embed IO) r =>
   HTTP.Manager ->
   InterpreterFor Manager r
 interpretManagerWith manager = do
