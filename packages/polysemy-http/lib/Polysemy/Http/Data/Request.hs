@@ -128,6 +128,6 @@ data Request =
     _query :: [(QueryKey, Maybe QueryValue)],
     _body :: Body
   }
-  deriving (Eq, Show, Generic)
+  deriving (Show, Generic)
 
 makeClassy ''Request
