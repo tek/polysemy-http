@@ -118,7 +118,7 @@ interpretHttpNativeWith ::
 interpretHttpNativeWith =
   interpretH \case
     Http.Response request f -> do
-      distribEither =<< withResponse request (runTSimple . f)
+      distribEither =<< withResponse request ((\x -> runTSimple x) . f)
     Http.Request request -> do
       Log.debug [qt|http request: #{request}|]
       manager <- Manager.get
@@ -127,7 +127,7 @@ interpretHttpNativeWith =
         response <$ Log.debug [qt|http response: #{response}|]
     Http.Stream request handler -> do
       Log.debug [qt|http stream request: #{request}|]
-      distribEither =<< withResponse request (runTSimple . handler)
+      distribEither =<< withResponse request ((\x -> runTSimple x). handler)
     Http.ConsumeChunk body ->
       pureT . first HttpError.ChunkFailed =<< tryAny body
 {-# INLINE interpretHttpNativeWith #-}

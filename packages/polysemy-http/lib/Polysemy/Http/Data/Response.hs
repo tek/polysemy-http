@@ -28,7 +28,7 @@ data Response b =
     -- |The native cookie jar.
     _cookies :: CookieJar
   }
-  deriving (Eq, Show)
+  deriving (Show)
 
 instance {-# overlapping #-} Show (Response BodyReader) where
   show (Response s _ hs _) =
