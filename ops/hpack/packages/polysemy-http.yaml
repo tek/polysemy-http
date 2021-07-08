@@ -1,5 +1,5 @@
 name: polysemy-http
-version: 0.4.0.4
+version: 0.4.0.5
 synopsis: Polysemy Effect for Http-Client
 github: tek/polysemy-http
 description: See <https://hackage.haskell.org/package/polysemy-http/docs/Polysemy-Http.html>
