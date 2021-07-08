@@ -6,7 +6,7 @@ cabal-version: 2.2
 
 name:           polysemy-http
 version:        0.4.0.4
-synopsis:       Polysemy effect for http-client
+synopsis:       Polysemy Effect for Http-Client
 description:    See <https://hackage.haskell.org/package/polysemy-http/docs/Polysemy-Http.html>
 category:       Network
 homepage:       https://github.com/tek/polysemy-http#readme
@@ -115,10 +115,10 @@ library
     , containers
     , data-default ==0.7.*
     , either >=5.0.1 && <5.1
-    , http-client >=0.6.4 && <0.7
+    , http-client >=0.6.4 && <0.8
     , http-client-tls (>=0.3.5 && <0.4) && <0.4
     , http-types >=0.12.3 && <0.13
-    , lens ==4.*
+    , lens >=4 && <5.1
     , polysemy ==1.5.*
     , polysemy-log >=0.2.2.1 && <0.3
     , polysemy-plugin ==0.3.*
@@ -207,10 +207,10 @@ test-suite polysemy-http-integration
     , data-default ==0.7.*
     , either >=5.0.1 && <5.1
     , hedgehog
-    , http-client >=0.6.4 && <0.7
+    , http-client >=0.6.4 && <0.8
     , http-client-tls (>=0.3.5 && <0.4) && <0.4
     , http-types >=0.12.3 && <0.13
-    , lens ==4.*
+    , lens >=4 && <5.1
     , network
     , polysemy ==1.5.*
     , polysemy-http
@@ -307,10 +307,10 @@ test-suite polysemy-http-unit
     , data-default ==0.7.*
     , either >=5.0.1 && <5.1
     , hedgehog
-    , http-client >=0.6.4 && <0.7
+    , http-client >=0.6.4 && <0.8
     , http-client-tls (>=0.3.5 && <0.4) && <0.4
     , http-types >=0.12.3 && <0.13
-    , lens ==4.*
+    , lens >=4 && <5.1
     , polysemy ==1.5.*
     , polysemy-http
     , polysemy-log >=0.2.2.1 && <0.3
