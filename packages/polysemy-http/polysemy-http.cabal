@@ -106,24 +106,24 @@ library
       ViewPatterns
   ghc-options: -fplugin=Polysemy.Plugin -flate-specialise -fspecialise-aggressively -Wall
   build-depends:
-      aeson >=1.4 && <1.6
-    , ansi-terminal >=0.10.3 && <0.12
+      aeson >=1.4
+    , ansi-terminal >=0.10.3
     , base ==4.*
     , bytestring
-    , case-insensitive ==1.2.*
-    , composition >=1.0.2 && <1.1
+    , case-insensitive >=1.2
+    , composition >=1.0.2
     , containers
-    , data-default ==0.7.*
-    , either >=5.0.1 && <5.1
-    , http-client >=0.6.4 && <0.8
-    , http-client-tls (>=0.3.5 && <0.4) && <0.4
-    , http-types >=0.12.3 && <0.13
-    , lens >=4 && <5.1
-    , polysemy ==1.5.*
-    , polysemy-log >=0.2.2.1 && <0.3
-    , polysemy-plugin ==0.3.*
-    , relude >=0.7 && <1.2
-    , string-interpolate >=0.2.1 && <0.4
+    , data-default >=0.7
+    , either >=5.0.1
+    , http-client >=0.6.4
+    , http-client-tls >=0.3.5
+    , http-types >=0.12.3
+    , lens >=4
+    , polysemy >=1.5
+    , polysemy-log >=0.2.2.1
+    , polysemy-plugin >=0.3
+    , relude >=0.7
+    , string-interpolate >=0.2.1
     , template-haskell
     , text
     , time
@@ -197,30 +197,30 @@ test-suite polysemy-http-integration
       ViewPatterns
   ghc-options: -fplugin=Polysemy.Plugin -flate-specialise -fspecialise-aggressively -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson >=1.4 && <1.6
-    , ansi-terminal >=0.10.3 && <0.12
+      aeson >=1.4
+    , ansi-terminal >=0.10.3
     , base ==4.*
     , bytestring
-    , case-insensitive ==1.2.*
-    , composition >=1.0.2 && <1.1
+    , case-insensitive >=1.2
+    , composition >=1.0.2
     , containers
-    , data-default ==0.7.*
-    , either >=5.0.1 && <5.1
+    , data-default >=0.7
+    , either >=5.0.1
     , hedgehog
-    , http-client >=0.6.4 && <0.8
-    , http-client-tls (>=0.3.5 && <0.4) && <0.4
-    , http-types >=0.12.3 && <0.13
-    , lens >=4 && <5.1
+    , http-client >=0.6.4
+    , http-client-tls >=0.3.5
+    , http-types >=0.12.3
+    , lens >=4
     , network
-    , polysemy ==1.5.*
+    , polysemy >=1.5
     , polysemy-http
-    , polysemy-log >=0.2.2.1 && <0.3
-    , polysemy-plugin ==0.3.*
-    , relude >=0.7 && <1.2
+    , polysemy-log >=0.2.2.1
+    , polysemy-plugin >=0.3
+    , relude >=0.7
     , servant
     , servant-client
     , servant-server
-    , string-interpolate >=0.2.1 && <0.4
+    , string-interpolate >=0.2.1
     , tasty
     , tasty-hedgehog
     , template-haskell
@@ -297,26 +297,26 @@ test-suite polysemy-http-unit
       ViewPatterns
   ghc-options: -fplugin=Polysemy.Plugin -flate-specialise -fspecialise-aggressively -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson >=1.4 && <1.6
-    , ansi-terminal >=0.10.3 && <0.12
+      aeson >=1.4
+    , ansi-terminal >=0.10.3
     , base ==4.*
     , bytestring
-    , case-insensitive ==1.2.*
-    , composition >=1.0.2 && <1.1
+    , case-insensitive >=1.2
+    , composition >=1.0.2
     , containers
-    , data-default ==0.7.*
-    , either >=5.0.1 && <5.1
+    , data-default >=0.7
+    , either >=5.0.1
     , hedgehog
-    , http-client >=0.6.4 && <0.8
-    , http-client-tls (>=0.3.5 && <0.4) && <0.4
-    , http-types >=0.12.3 && <0.13
-    , lens >=4 && <5.1
-    , polysemy ==1.5.*
+    , http-client >=0.6.4
+    , http-client-tls >=0.3.5
+    , http-types >=0.12.3
+    , lens >=4
+    , polysemy >=1.5
     , polysemy-http
-    , polysemy-log >=0.2.2.1 && <0.3
-    , polysemy-plugin ==0.3.*
-    , relude >=0.7 && <1.2
-    , string-interpolate >=0.2.1 && <0.4
+    , polysemy-log >=0.2.2.1
+    , polysemy-plugin >=0.3
+    , relude >=0.7
+    , string-interpolate >=0.2.1
     , tasty
     , tasty-hedgehog
     , template-haskell

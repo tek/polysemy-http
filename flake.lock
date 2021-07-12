@@ -83,21 +83,6 @@
         "type": "github"
       }
     },
-    "flake-utils_2": {
-      "locked": {
-        "lastModified": 1618217525,
-        "narHash": "sha256-WGrhVczjXTiswQaoxQ+0PTfbLNeOQM6M36zvLn78AYg=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c6169a2772643c4a93a0b5ac1c61e296cba68544",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "ghc-api-compat": {
       "flake": false,
       "locked": {
@@ -330,30 +315,9 @@
         "type": "github"
       }
     },
-    "polysemy": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "stable": "stable",
-        "unstable": "unstable"
-      },
-      "locked": {
-        "lastModified": 1625759032,
-        "narHash": "sha256-cbTXHpaS7bjT0uAjwUrMhlvOj9xRAFIhfG9lq0c/iR8=",
-        "owner": "polysemy-research",
-        "repo": "polysemy",
-        "rev": "6e2630fafd4675354fa337918081770c6a222614",
-        "type": "github"
-      },
-      "original": {
-        "owner": "polysemy-research",
-        "repo": "polysemy",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
-        "hix": "hix",
-        "polysemy": "polysemy"
+        "hix": "hix"
       }
     },
     "snap-core": {
@@ -370,22 +334,6 @@
         "owner": "obsidiansystems",
         "ref": "ts-expose-fileserve-internals",
         "repo": "snap-core",
-        "type": "github"
-      }
-    },
-    "stable": {
-      "locked": {
-        "lastModified": 1618441087,
-        "narHash": "sha256-NIuHLPxSNu5OXf9T/bY+pY7mgUVRdbFFjJfMUIM7CPw=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "389249fa9b35b3071b4ccf71a3c065e7791934df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-20.09",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -418,22 +366,6 @@
       "original": {
         "owner": "tek",
         "repo": "thax",
-        "type": "github"
-      }
-    },
-    "unstable": {
-      "locked": {
-        "lastModified": 1618499499,
-        "narHash": "sha256-2DFWiEnI7JcgM3qKMTGEcq0VrsyutaYMDOCbCF7dDiA=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "5268ee2ebacbc73875be42d71e60c2b5c1b5a1c7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
         "type": "github"
       }
     }

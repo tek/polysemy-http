@@ -23,27 +23,27 @@ library:
     - Paths_polysemy_http
 
 dependencies:
-  - aeson >= 1.4 && < 1.6
-  - ansi-terminal >= 0.10.3 && < 0.12
+  - aeson >= 1.4
+  - ansi-terminal >= 0.10.3
   - name: base
     version: ">= 4 && < 5"
     mixin:
       - hiding (Prelude)
   - bytestring
-  - case-insensitive ^>= 1.2
-  - composition ^>= 1.0.2
+  - case-insensitive >= 1.2
+  - composition >= 1.0.2
   - containers
-  - data-default ^>= 0.7
-  - either ^>= 5.0.1
-  - http-client >= 0.6.4 && < 0.8
-  - http-client-tls ^>= 0.3.5 && < 0.4
-  - http-types ^>= 0.12.3
-  - lens >= 4 && < 5.1
-  - polysemy ^>= 1.5
-  - polysemy-log ^>= 0.2.2.1
-  - polysemy-plugin ^>= 0.3
-  - relude >= 0.7 && < 1.2
-  - string-interpolate >= 0.2.1 && < 0.4
+  - data-default >= 0.7
+  - either >= 5.0.1
+  - http-client >= 0.6.4
+  - http-client-tls >= 0.3.5
+  - http-types >= 0.12.3
+  - lens >= 4
+  - polysemy >= 1.5
+  - polysemy-log >= 0.2.2.1
+  - polysemy-plugin >= 0.3
+  - relude >= 0.7
+  - string-interpolate >= 0.2.1
   - template-haskell
   - text
   - time
