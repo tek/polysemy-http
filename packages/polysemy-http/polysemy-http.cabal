@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           polysemy-http
-version:        0.4.0.5
+version:        0.4.0.6
 synopsis:       Polysemy Effect for Http-Client
 description:    See <https://hackage.haskell.org/package/polysemy-http/docs/Polysemy-Http.html>
 category:       Network
