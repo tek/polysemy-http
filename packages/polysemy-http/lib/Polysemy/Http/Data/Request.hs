@@ -71,6 +71,7 @@ defaultJson ''Host
 newtype Port =
   Port { unPort :: Int }
   deriving (Eq, Show, Generic)
+  deriving newtype (Num, Ord, Enum, Real, Integral, Read)
 
 defaultJson ''Port
 
