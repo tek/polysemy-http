@@ -48,7 +48,12 @@ module Polysemy.Http (
 
 import Prelude hiding (get, put)
 
-import Polysemy.Http.AesonEntity (interpretEntityDecodeAeson, interpretEntityEncodeAeson)
+import Polysemy.Http.AesonEntity (
+  interpretEntityDecodeAeson,
+  interpretEntityEncodeAeson,
+  interpretEntityEncodeAesonAs,
+  interpretEntityDecodeAesonAs,
+  )
 import Polysemy.Http.Data.Entity (
   Decode,
   Decoders,
