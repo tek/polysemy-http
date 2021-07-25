@@ -97,7 +97,7 @@ withResponse request f =
       pure (Left err)
     closeFailed err =
       Log.error [qt|closing response failed: #{err}|]
-{-# INLINE withResponse #-}
+{-# inline withResponse #-}
 
 distribEither ::
   Functor f =>
@@ -109,7 +109,7 @@ distribEither = \case
   Left err -> do
     s <- getInitialStateT
     pure (Left err <$ s)
-{-# INLINE distribEither #-}
+{-# inline distribEither #-}
 
 -- |Same as 'interpretHttpNative', but the interpretation of 'Manager' is left to the user.
 interpretHttpNativeWith ::
@@ -130,7 +130,7 @@ interpretHttpNativeWith =
       distribEither =<< withResponse request ((\x -> runTSimple x). handler)
     Http.ConsumeChunk body ->
       pureT . first HttpError.ChunkFailed =<< tryAny body
-{-# INLINE interpretHttpNativeWith #-}
+{-# inline interpretHttpNativeWith #-}
 
 -- |Interpret @'Http' 'BodyReader'@ using the native 'Network.HTTP.Client' implementation.
 -- 'BodyReader' is an alias for @'IO' 'ByteString'@, it is how http-client represents chunks.
@@ -140,4 +140,4 @@ interpretHttpNative ::
   InterpreterFor (Http BodyReader) r
 interpretHttpNative =
   interpretManager . interpretHttpNativeWith . raiseUnder
-{-# INLINE interpretHttpNative #-}
+{-# inline interpretHttpNative #-}

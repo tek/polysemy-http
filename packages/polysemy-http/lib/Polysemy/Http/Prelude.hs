@@ -72,24 +72,24 @@ dbg :: Monad m => Text -> m ()
 dbg msg = do
   () <- return $ unsafePerformIO (putStrLn (toString msg))
   return ()
-{-# INLINE dbg #-}
+{-# inline dbg #-}
 
 dbgs :: Monad m => Show a => a -> m ()
 dbgs a =
   dbg (show a)
-{-# INLINE dbgs_ #-}
+{-# inline dbgs_ #-}
 
 dbgs_ :: Monad m => Show a => a -> m a
 dbgs_ a =
   a <$ dbg (show a)
-{-# INLINE dbgs #-}
+{-# inline dbgs #-}
 
 unit ::
   Applicative f =>
   f ()
 unit =
   pure ()
-{-# INLINE unit #-}
+{-# inline unit #-}
 
 tuple ::
   Applicative f =>
@@ -98,27 +98,27 @@ tuple ::
   f (a, b)
 tuple fa fb =
   (,) <$> fa <*> fb
-{-# INLINE tuple #-}
+{-# inline tuple #-}
 
 unsafeLogSAnd :: Show a => a -> b -> b
 unsafeLogSAnd a b =
   unsafePerformIO $ print a >> return b
-{-# INLINE unsafeLogSAnd #-}
+{-# inline unsafeLogSAnd #-}
 
 unsafeLogAnd :: Text -> b -> b
 unsafeLogAnd a b =
   unsafePerformIO $ putStrLn (toString a) >> return b
-{-# INLINE unsafeLogAnd #-}
+{-# inline unsafeLogAnd #-}
 
 unsafeLogS :: Show a => a -> a
 unsafeLogS a =
   unsafePerformIO $ print a >> return a
-{-# INLINE unsafeLogS #-}
+{-# inline unsafeLogS #-}
 
 qt :: QuasiQuoter
 qt =
   i
-{-# INLINE qt #-}
+{-# inline qt #-}
 
 liftT ::
   forall m f r e a .
@@ -127,7 +127,7 @@ liftT ::
   Sem (WithTactics e f m r) (f a)
 liftT =
   pureT <=< raise
-{-# INLINE liftT #-}
+{-# inline liftT #-}
 
 defaultOptions :: Aeson.Options
 defaultOptions =
@@ -171,7 +171,7 @@ traverseLeft ::
   m b
 traverseLeft f =
   either f pure
-{-# INLINE traverseLeft #-}
+{-# inline traverseLeft #-}
 
 defaultJson :: TH.Name -> TH.Q [TH.Dec]
 defaultJson =

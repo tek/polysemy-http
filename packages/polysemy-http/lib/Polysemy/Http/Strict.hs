@@ -50,7 +50,7 @@ interpretHttpStrictWithState =
       fmap Right <$> raise (interpretHttpStrictWithState (handle resp))
     Http.ConsumeChunk _ ->
       liftT . fmap Right . takeChunk =<< raise get
-{-# INLINE interpretHttpStrictWithState #-}
+{-# inline interpretHttpStrictWithState #-}
 
 -- |In-Memory interpreter for 'Http'.
 interpretHttpStrict ::
@@ -67,4 +67,4 @@ interpretHttpStrict responses chunks =
   interpretHttpStrictWithState .
   raiseUnder .
   raiseUnder
-{-# INLINE interpretHttpStrict #-}
+{-# inline interpretHttpStrict #-}

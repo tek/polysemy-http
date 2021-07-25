@@ -11,7 +11,7 @@ interpretManagerWith ::
   InterpreterFor Manager r
 interpretManagerWith manager = do
   interpret \ Get -> pure manager
-{-# INLINE interpretManagerWith #-}
+{-# inline interpretManagerWith #-}
 
 -- |Trivial interpreter with a globally shared 'Manager' instance.
 interpretManager ::
@@ -23,4 +23,4 @@ interpretManager sem = do
   where
     settings =
       mkManagerSettings def Nothing
-{-# INLINE interpretManager #-}
+{-# inline interpretManager #-}
