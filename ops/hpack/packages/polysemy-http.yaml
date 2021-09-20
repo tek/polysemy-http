@@ -39,9 +39,9 @@ dependencies:
   - http-client-tls >= 0.3.5
   - http-types >= 0.12.3
   - lens >= 4
-  - polysemy >= 1.5
+  - polysemy >= 1.6
   - polysemy-log >= 0.2.2.1
-  - polysemy-plugin >= 0.3
+  - polysemy-plugin >= 0.4
   - relude >= 0.7
   - string-interpolate >= 0.2.1
   - template-haskell
