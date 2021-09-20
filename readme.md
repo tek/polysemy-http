@@ -152,7 +152,7 @@ There is not integration with the `Http` effect for this.
 # Testing
 
 Polysemy makes it very easy to switch the native interpreter for a mock, and
-there is a convenience interpreter named `interpretHttpStrict` that allows you
+there is a convenience interpreter named `interpretHttpPure` that allows you
 to specify a list of responses and chunks that should be produced:
 
 ```haskell
@@ -161,7 +161,7 @@ main = do
   result <- runM $
     resourceToIO $
     interpretLogStdout $
-    interpretHttpStrict [Response (toEnum 200) "foo" []] [] $
+    interpretHttpPure [Response (toEnum 200) "foo" []] [] $
     Http.request (Http.get "hackage.haskell.org" "package/polysemy-http")
   print result
 ```

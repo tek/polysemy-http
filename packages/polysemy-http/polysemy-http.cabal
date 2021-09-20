@@ -43,8 +43,8 @@ library
       Polysemy.Http.Manager
       Polysemy.Http.Native
       Polysemy.Http.Prelude
+      Polysemy.Http.Pure
       Polysemy.Http.Request
-      Polysemy.Http.Strict
   other-modules:
       Prelude
       Paths_polysemy_http

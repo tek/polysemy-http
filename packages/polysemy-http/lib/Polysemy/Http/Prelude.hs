@@ -21,7 +21,7 @@ import Data.Aeson (FromJSON, ToJSON)
 import Data.Aeson.TH (deriveFromJSON, deriveJSON)
 import qualified Data.Aeson.TH as Aeson (Options, defaultOptions, unwrapUnaryRecords)
 import Data.Composition ((.:))
-import Data.Default (Default(def))
+import Data.Default (Default (def))
 import Data.Either.Combinators (mapLeft)
 import Data.Foldable (foldl, traverse_)
 import Data.Map.Strict (Map)
@@ -34,6 +34,7 @@ import Polysemy (
   Effect,
   Embed,
   InterpreterFor,
+  InterpretersFor,
   Member,
   Members,
   Sem,

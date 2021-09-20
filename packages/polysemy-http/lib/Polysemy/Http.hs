@@ -3,7 +3,7 @@ module Polysemy.Http (
   module Polysemy.Http.Data.Http,
   -- * Interpreters
   module Polysemy.Http.Native,
-  module Polysemy.Http.Strict,
+  module Polysemy.Http.Pure,
   -- * Request and Response
   module Polysemy.Http.Data.Request,
   module Polysemy.Http.Data.Response,
@@ -111,7 +111,7 @@ import Polysemy.Http.Request (
   withPort,
   withTls,
   )
-import Polysemy.Http.Strict (interpretHttpStrict)
+import Polysemy.Http.Pure (interpretHttpPure)
 
 -- $intro
 -- A basic 'Polysemy' effect abstracting HTTP requests:
