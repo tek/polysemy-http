@@ -1,9 +1,12 @@
+-- |Description: Polysemy Effects for HTTP clients
 module Polysemy.Http (
   -- $intro
-  module Polysemy.Http.Data.Http,
+  module Polysemy.Http.Effect.Http,
+
   -- * Interpreters
-  module Polysemy.Http.Native,
-  module Polysemy.Http.Pure,
+  module Polysemy.Http.Interpreter.Native,
+  module Polysemy.Http.Interpreter.Pure,
+
   -- * Request and Response
   module Polysemy.Http.Data.Request,
   module Polysemy.Http.Data.Response,
@@ -24,9 +27,11 @@ module Polysemy.Http (
   addCookies,
   addCookie,
   HttpError(..),
+
   -- * Streaming
   module Polysemy.Http.Http,
   module Polysemy.Http.Data.StreamEvent,
+
   -- * Entity
   EntityDecode,
   decode,
@@ -40,21 +45,40 @@ module Polysemy.Http (
   Decoders,
   Encoders,
   EntityError(EntityError),
-  module Polysemy.Http.AesonEntity,
+  module Polysemy.Http.Interpreter.AesonEntity,
+
   -- * Utilities
   -- ** Connection Pool
-  module Polysemy.Http.Data.Manager,
+  module Polysemy.Http.Effect.Manager,
+  interpretManager,
+  jsonRequest,
 ) where
 
 import Prelude hiding (get, put)
 
-import Polysemy.Http.AesonEntity (
-  interpretEntityDecodeAeson,
-  interpretEntityEncodeAeson,
-  interpretEntityEncodeAesonAs,
-  interpretEntityDecodeAesonAs,
+import Polysemy.Http.Data.Header (Header (..), HeaderName (..), HeaderValue (..))
+import Polysemy.Http.Data.HttpError (HttpError (..))
+import Polysemy.Http.Data.Request (
+  Body (..),
+  Host (..),
+  Method (..),
+  Path (..),
+  Port (..),
+  QueryKey (..),
+  QueryValue (..),
+  Request (Request),
+  Tls (..),
   )
-import Polysemy.Http.Data.Entity (
+import Polysemy.Http.Data.Response (
+  pattern Client,
+  pattern Info,
+  pattern Redirect,
+  Response (Response),
+  pattern Server,
+  pattern Success,
+  )
+import Polysemy.Http.Data.StreamEvent (StreamEvent (..))
+import Polysemy.Http.Effect.Entity (
   Decode,
   Decoders,
   Encode,
@@ -62,38 +86,25 @@ import Polysemy.Http.Data.Entity (
   Entities,
   EntityDecode,
   EntityEncode,
-  EntityError(EntityError),
+  EntityError (EntityError),
   decode,
   decodeStrict,
   encode,
   encodeStrict,
   )
-import Polysemy.Http.Data.Header (Header(..), HeaderName(..), HeaderValue(..))
-import Polysemy.Http.Data.Http (Http, request, response, stream)
-import Polysemy.Http.Data.HttpError (HttpError(..))
-import Polysemy.Http.Data.Manager (Manager)
-import Polysemy.Http.Data.Request (
-  Body(..),
-  Host(..),
-  Method(..),
-  Path(..),
-  Port(..),
-  QueryKey(..),
-  QueryValue(..),
-  Request(Request),
-  Tls(..),
-  )
-import Polysemy.Http.Data.Response (
-  Response(Response),
-  pattern Client,
-  pattern Info,
-  pattern Redirect,
-  pattern Server,
-  pattern Success,
-  )
-import Polysemy.Http.Data.StreamEvent (StreamEvent(..))
+import Polysemy.Http.Effect.Http (Http, request, response, stream)
+import Polysemy.Http.Effect.Manager (Manager)
 import Polysemy.Http.Http (streamResponse)
-import Polysemy.Http.Native (interpretHttpNative)
+import Polysemy.Http.Interpreter.AesonEntity (
+  interpretEntityDecodeAeson,
+  interpretEntityDecodeAesonAs,
+  interpretEntityEncodeAeson,
+  interpretEntityEncodeAesonAs,
+  )
+import Polysemy.Http.Interpreter.Manager (interpretManager)
+import Polysemy.Http.Interpreter.Native (interpretHttpNative)
+import Polysemy.Http.Interpreter.Pure (interpretHttpPure)
+import Polysemy.Http.Json (jsonRequest)
 import Polysemy.Http.Request (
   addCookie,
   addCookies,
@@ -111,14 +122,13 @@ import Polysemy.Http.Request (
   withPort,
   withTls,
   )
-import Polysemy.Http.Pure (interpretHttpPure)
 
 -- $intro
 -- A basic 'Polysemy' effect abstracting HTTP requests:
 --
 -- @
 -- import Polysemy (resourceToIO, runM)
--- import Polysemy.Log.Colog (interpretLogStdout)
+-- import Polysemy.Log (interpretLogStdout)
 -- import qualified Polysemy.Http as Http
 -- import Polysemy.Http (interpretHttpNative, interpretLogStdout)
 --

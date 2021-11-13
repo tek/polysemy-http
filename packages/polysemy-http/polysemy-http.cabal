@@ -6,7 +6,7 @@ cabal-version: 2.2
 
 name:           polysemy-http
 version:        0.4.0.6
-synopsis:       Polysemy Effect for Http-Client
+synopsis:       Polysemy Effects for HTTP clients
 description:    See <https://hackage.haskell.org/package/polysemy-http/docs/Polysemy-Http.html>
 category:       Network
 homepage:       https://github.com/tek/polysemy-http#readme
@@ -28,22 +28,22 @@ source-repository head
 library
   exposed-modules:
       Polysemy.Http
-      Polysemy.Http.AesonEntity
-      Polysemy.Http.Data.Entity
       Polysemy.Http.Data.Header
-      Polysemy.Http.Data.Http
       Polysemy.Http.Data.HttpError
-      Polysemy.Http.Data.Manager
       Polysemy.Http.Data.Request
       Polysemy.Http.Data.Response
       Polysemy.Http.Data.StreamChunk
       Polysemy.Http.Data.StreamEvent
+      Polysemy.Http.Effect.Entity
+      Polysemy.Http.Effect.Http
+      Polysemy.Http.Effect.Manager
       Polysemy.Http.Http
+      Polysemy.Http.Interpreter.AesonEntity
+      Polysemy.Http.Interpreter.Manager
+      Polysemy.Http.Interpreter.Native
+      Polysemy.Http.Interpreter.Pure
       Polysemy.Http.Json
-      Polysemy.Http.Manager
-      Polysemy.Http.Native
       Polysemy.Http.Prelude
-      Polysemy.Http.Pure
       Polysemy.Http.Request
   other-modules:
       Prelude

@@ -1,16 +1,18 @@
+{-# options_haddock prune #-}
+-- |Description: Streaming Implementation, Internal
 module Polysemy.Http.Http where
 
 import qualified Data.ByteString as ByteString
+import Polysemy.Resource (Resource, bracket)
 
-import qualified Polysemy.Http.Data.Http as Http
-import Polysemy.Http.Data.Http (Http)
 import Polysemy.Http.Data.HttpError (HttpError)
 import Polysemy.Http.Data.Request (Request)
-import Polysemy.Http.Data.Response (Response(Response))
-import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
+import Polysemy.Http.Data.Response (Response (Response))
+import Polysemy.Http.Data.StreamChunk (StreamChunk (StreamChunk))
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
 import Polysemy.Http.Data.StreamEvent (StreamEvent)
-import Polysemy.Resource (Resource, bracket)
+import qualified Polysemy.Http.Effect.Http as Http
+import Polysemy.Http.Effect.Http (Http)
 
 streamLoop ::
   Members [Http c, Error HttpError] r =>

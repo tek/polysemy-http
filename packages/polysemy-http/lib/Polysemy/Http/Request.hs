@@ -1,16 +1,18 @@
+{-# options_haddock prune #-}
+-- |Description: Request Combinators, Internal
 module Polysemy.Http.Request where
 
 import Control.Lens ((%~))
 import qualified Data.Text as Text
-import Data.Time (UTCTime(UTCTime))
-import Network.HTTP.Client (Cookie(Cookie))
-import Network.HTTP.Client.Internal (CookieJar(CJ, expose))
-import Prelude hiding (get, put)
-
+import Data.Time (UTCTime (UTCTime))
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock.POSIX (posixSecondsToUTCTime)
+import Network.HTTP.Client (Cookie (Cookie))
+import Network.HTTP.Client.Internal (CookieJar (CJ, expose))
+import Prelude hiding (get, put)
+
 import qualified Polysemy.Http.Data.Request as Request
-import Polysemy.Http.Data.Request (Body, Host(Host), Method(..), Path(Path), Port(Port), Request(Request), Tls(Tls))
+import Polysemy.Http.Data.Request (Body, Host (Host), Method (..), Path (Path), Port (Port), Request (Request), Tls (Tls))
 
 invalidScheme ::
   Text ->

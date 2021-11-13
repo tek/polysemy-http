@@ -1,12 +1,14 @@
-module Polysemy.Http.Pure where
+{-# options_haddock prune #-}
+-- |Description: Pure Http Interpreters, Internal
+module Polysemy.Http.Interpreter.Pure where
 
 import Network.HTTP.Client.Internal (CookieJar (CJ))
 import Polysemy (interpretH)
 import Polysemy.Internal.Tactics (bindT, bindTSimple)
 
-import qualified Polysemy.Http.Data.Http as Http
-import Polysemy.Http.Data.Http (Http)
 import Polysemy.Http.Data.Response (Response (Response))
+import qualified Polysemy.Http.Effect.Http as Http
+import Polysemy.Http.Effect.Http (Http)
 
 takeResponse ::
   Member (State [Response LByteString]) r =>

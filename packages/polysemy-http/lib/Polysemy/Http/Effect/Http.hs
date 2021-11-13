@@ -1,4 +1,6 @@
-module Polysemy.Http.Data.Http where
+{-# options_haddock prune #-}
+-- |Description: Http Effect, Internal
+module Polysemy.Http.Effect.Http where
 
 import Polysemy (makeSem_)
 

@@ -10,12 +10,12 @@ import Polysemy.State (runState)
 
 import Polysemy.Http.Data.HttpError (HttpError)
 import qualified Polysemy.Http.Data.Request as Request
-import Polysemy.Http.Data.Request (Port(Port), Request, Tls(Tls))
-import Polysemy.Http.Data.StreamChunk (StreamChunk(StreamChunk))
+import Polysemy.Http.Data.Request (Port (Port), Request, Tls (Tls))
+import Polysemy.Http.Data.StreamChunk (StreamChunk (StreamChunk))
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
 import Polysemy.Http.Data.StreamEvent (StreamEvent)
 import qualified Polysemy.Http.Http as Http
-import Polysemy.Http.Native (interpretHttpNative)
+import Polysemy.Http.Interpreter.Native (interpretHttpNative)
 import qualified Polysemy.Http.Request as Request
 import Polysemy.Http.Server (withServer)
 import Polysemy.Http.Test (UnitTest)

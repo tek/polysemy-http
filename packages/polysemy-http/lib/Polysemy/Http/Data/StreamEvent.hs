@@ -1,3 +1,5 @@
+{-# options_haddock prune #-}
+-- |Description: StreamEvent Data Type, Internal
 module Polysemy.Http.Data.StreamEvent where
 
 import Polysemy.Http.Data.Response (Response)

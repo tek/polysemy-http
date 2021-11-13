@@ -1,3 +1,8 @@
+# Unreleased
+* Add `Num Port`.
+* Add json interpreters that transform payloads.
+* Change pure `Http` interpreter to use supplied responses for streaming requests.
+
 # 0.4.0.0
 * Use `CookieJar` in the `Response` instead of requiring users to extract them from the headers.
 

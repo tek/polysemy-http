@@ -1,9 +1,11 @@
-module Polysemy.Http.AesonEntity where
+{-# options_haddock prune #-}
+-- |Description: Entity Aeson Interpreters, Internal
+module Polysemy.Http.Interpreter.AesonEntity where
 
 import Data.Aeson (eitherDecode', eitherDecodeStrict', encode)
 
-import Polysemy.Http.Data.Entity (EntityDecode, EntityEncode, EntityError(EntityError))
-import qualified Polysemy.Http.Data.Entity as Entity (EntityDecode(..), EntityEncode(..))
+import Polysemy.Http.Effect.Entity (EntityDecode, EntityEncode, EntityError (EntityError))
+import qualified Polysemy.Http.Effect.Entity as Entity (EntityDecode (..), EntityEncode (..))
 
 -- |Interpreter for 'EntityEncode' that uses Aeson and a different codec type.
 -- The first parameter is the conversion function.

@@ -1,3 +1,5 @@
+{-# options_haddock prune #-}
+-- |Description: Request Data Types, Internal
 module Polysemy.Http.Data.Request where
 
 import Control.Lens (makeClassy)
@@ -116,7 +118,7 @@ newtype Body =
   deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
--- |HTTP request parameters, used by 'Polysemy.Http.Data.Http'.
+-- |HTTP request parameters, used by 'Polysemy.Http.Effect.Http'.
 data Request =
   Request {
     _method :: Method,

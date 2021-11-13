@@ -1,10 +1,12 @@
-module Polysemy.Http.Manager where
+{-# options_haddock prune #-}
+-- |Description: Manager Interpreters, Internal
+module Polysemy.Http.Interpreter.Manager where
 
 import Network.HTTP.Client (newManager)
 import qualified Network.HTTP.Client as HTTP (Manager)
 import Network.HTTP.Client.TLS (mkManagerSettings)
 
-import Polysemy.Http.Data.Manager (Manager(..))
+import Polysemy.Http.Effect.Manager (Manager (..))
 
 interpretManagerWith ::
   HTTP.Manager ->

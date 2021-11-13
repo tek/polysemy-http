@@ -1,3 +1,5 @@
+{-# options_haddock prune #-}
+-- |Description: Response Data Types, Internal
 module Polysemy.Http.Data.Response (
   module Polysemy.Http.Data.Response,
   Status(Status),
@@ -16,7 +18,7 @@ import qualified Text.Show as Text (Show (show))
 
 import Polysemy.Http.Data.Header (Header)
 
--- |The response produced by 'Polysemy.Http.Data.Http'.
+-- |The response produced by 'Polysemy.Http.Effect.Http'.
 data Response b =
   Response {
     -- |Uses the type from 'Network.HTTP' for convenience.

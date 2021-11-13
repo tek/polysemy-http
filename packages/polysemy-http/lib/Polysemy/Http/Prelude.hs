@@ -1,3 +1,5 @@
+{-# options_haddock hide #-}
+-- |Description: Prelude, Internal
 {-# LANGUAGE NoImplicitPrelude #-}
 
 module Polysemy.Http.Prelude (

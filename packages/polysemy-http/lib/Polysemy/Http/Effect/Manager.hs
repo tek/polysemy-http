@@ -1,4 +1,6 @@
-module Polysemy.Http.Data.Manager where
+{-# options_haddock prune #-}
+-- |Description: Manager Effect, Internal
+module Polysemy.Http.Effect.Manager where
 
 import qualified Network.HTTP.Client as HTTP (Manager)
 

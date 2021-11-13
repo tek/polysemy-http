@@ -7,14 +7,14 @@ import Polysemy (embedToFinal, runFinal)
 import Polysemy.Log (interpretLogNull)
 import Polysemy.Resource (resourceToIOFinal)
 
-import qualified Polysemy.Http.Data.Http as Http
+import qualified Polysemy.Http.Effect.Http as Http
 import Polysemy.Http.Data.HttpError (HttpError)
 import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Body(Body), Port(Port), Tls(Tls))
 import qualified Polysemy.Http.Data.Response as Response
 import Polysemy.Http.Data.Response (Response)
 import Polysemy.Http.Json (jsonContentType)
-import Polysemy.Http.Native (interpretHttpNative)
+import Polysemy.Http.Interpreter.Native (interpretHttpNative)
 import qualified Polysemy.Http.Request as Request
 import Polysemy.Http.Server (Payload(Payload), withServer)
 import Polysemy.Http.Test (UnitTest)

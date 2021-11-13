@@ -1,3 +1,5 @@
+{-# options_haddock prune #-}
+-- |Description: Header Data Types, Internal
 module Polysemy.Http.Data.Header where
 
 -- |The name of a header.

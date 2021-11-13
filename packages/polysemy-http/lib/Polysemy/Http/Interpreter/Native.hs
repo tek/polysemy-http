@@ -1,35 +1,37 @@
-module Polysemy.Http.Native where
+{-# options_haddock prune #-}
+-- |Description: Http Interpreters, Internal
+module Polysemy.Http.Interpreter.Native where
 
 import qualified Data.CaseInsensitive as CaseInsensitive
 import Data.CaseInsensitive (foldedCase)
 import qualified Network.HTTP.Client as HTTP
 import Network.HTTP.Client (BodyReader, httpLbs, responseClose, responseOpen)
-import Network.HTTP.Client.Internal (CookieJar(CJ))
+import Network.HTTP.Client.Internal (CookieJar (CJ))
 import Polysemy (getInitialStateT, interpretH, runTSimple)
 import qualified Polysemy.Log as Log
 import Polysemy.Log (Log)
 import Polysemy.Resource (Resource, bracket)
 
-import Polysemy.Http.Data.Header (Header(Header), unHeaderName, unHeaderValue)
-import qualified Polysemy.Http.Data.Http as Http
-import Polysemy.Http.Data.Http (Http)
+import Polysemy.Http.Data.Header (Header (Header), unHeaderName, unHeaderValue)
 import qualified Polysemy.Http.Data.HttpError as HttpError
 import Polysemy.Http.Data.HttpError (HttpError)
-import qualified Polysemy.Http.Data.Manager as Manager
-import Polysemy.Http.Data.Manager (Manager)
 import Polysemy.Http.Data.Request (
-  Body(Body),
-  Host(Host),
-  Path(Path),
-  Request(Request),
-  Tls(Tls),
+  Body (Body),
+  Host (Host),
+  Path (Path),
+  Request (Request),
+  Tls (Tls),
   methodUpper,
   unPort,
   unQueryKey,
   unQueryValue,
   )
-import Polysemy.Http.Data.Response (Response(Response))
-import Polysemy.Http.Manager (interpretManager)
+import Polysemy.Http.Data.Response (Response (Response))
+import qualified Polysemy.Http.Effect.Http as Http
+import Polysemy.Http.Effect.Http (Http)
+import qualified Polysemy.Http.Effect.Manager as Manager
+import Polysemy.Http.Effect.Manager (Manager)
+import Polysemy.Http.Interpreter.Manager (interpretManager)
 
 -- |Converts a 'Request' to a native 'N.Request'.
 nativeRequest :: Request -> HTTP.Request

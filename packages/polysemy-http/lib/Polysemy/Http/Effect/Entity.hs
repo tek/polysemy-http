@@ -1,4 +1,6 @@
-module Polysemy.Http.Data.Entity where
+{-# options_haddock prune #-}
+-- |Description: Entity Effects, Internal
+module Polysemy.Http.Effect.Entity where
 
 import Polysemy (makeSem_)
 

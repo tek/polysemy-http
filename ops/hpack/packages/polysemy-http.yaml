@@ -1,6 +1,6 @@
 name: polysemy-http
 version: 0.4.0.6
-synopsis: Polysemy Effect for Http-Client
+synopsis: Polysemy Effects for HTTP clients
 github: tek/polysemy-http
 description: See <https://hackage.haskell.org/package/polysemy-http/docs/Polysemy-Http.html>
 license: BSD-2-Clause-Patent
