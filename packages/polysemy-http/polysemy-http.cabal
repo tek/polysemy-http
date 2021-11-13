@@ -12,7 +12,7 @@ category:       Network
 homepage:       https://github.com/tek/polysemy-http#readme
 bug-reports:    https://github.com/tek/polysemy-http/issues
 author:         Torsten Schmits
-maintainer:     tek@tryp.io
+maintainer:     haskell@tryp.io
 copyright:      2020 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
@@ -120,7 +120,7 @@ library
     , http-types >=0.12.3
     , lens >=4
     , polysemy >=1.6
-    , polysemy-log >=0.2.2.1
+    , polysemy-log >=0.2.2.4
     , polysemy-plugin >=0.4
     , relude >=0.7
     , string-interpolate >=0.2.1
@@ -214,7 +214,7 @@ test-suite polysemy-http-integration
     , network
     , polysemy >=1.6
     , polysemy-http
-    , polysemy-log >=0.2.2.1
+    , polysemy-log >=0.2.2.4
     , polysemy-plugin >=0.4
     , relude >=0.7
     , servant
@@ -313,7 +313,7 @@ test-suite polysemy-http-unit
     , lens >=4
     , polysemy >=1.6
     , polysemy-http
-    , polysemy-log >=0.2.2.1
+    , polysemy-log >=0.2.2.4
     , polysemy-plugin >=0.4
     , relude >=0.7
     , string-interpolate >=0.2.1

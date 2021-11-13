@@ -6,7 +6,7 @@ description: See <https://hackage.haskell.org/package/polysemy-http/docs/Polysem
 license: BSD-2-Clause-Patent
 license-file: LICENSE
 author: "Torsten Schmits"
-maintainer: "tek@tryp.io"
+maintainer: "haskell@tryp.io"
 copyright: "2020 Torsten Schmits"
 category: Network
 build-type: Simple
@@ -23,12 +23,12 @@ library:
     - Paths_polysemy_http
 
 dependencies:
-  - aeson >= 1.4
-  - ansi-terminal >= 0.10.3
   - name: base
     version: ">= 4 && < 5"
     mixin:
       - hiding (Prelude)
+  - aeson >= 1.4
+  - ansi-terminal >= 0.10.3
   - bytestring
   - case-insensitive >= 1.2
   - composition >= 1.0.2
@@ -40,7 +40,7 @@ dependencies:
   - http-types >= 0.12.3
   - lens >= 4
   - polysemy >= 1.6
-  - polysemy-log >= 0.2.2.1
+  - polysemy-log >= 0.2.2.4
   - polysemy-plugin >= 0.4
   - relude >= 0.7
   - string-interpolate >= 0.2.1
