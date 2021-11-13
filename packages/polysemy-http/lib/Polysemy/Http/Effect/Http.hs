@@ -19,7 +19,8 @@ data Http c :: Effect where
 
 makeSem_ ''Http
 
--- |Bracket a higher-order action with a 'Response' that has been opened while its body hasn't been fetched.
+-- |Bracket a higher-order action with a 'Polysemy.Http.Data.Response.Response' that has been opened while its body
+-- hasn't been fetched.
 response ::
   ∀ c r a .
   Member (Http c) r =>

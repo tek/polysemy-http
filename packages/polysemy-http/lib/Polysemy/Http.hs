@@ -124,7 +124,7 @@ import Polysemy.Http.Request (
   )
 
 -- $intro
--- A basic 'Polysemy' effect abstracting HTTP requests:
+-- A basic Polysemy effect abstracting HTTP requests:
 --
 -- @
 -- import Polysemy (resourceToIO, runM)

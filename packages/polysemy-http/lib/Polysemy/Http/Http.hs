@@ -45,7 +45,7 @@ streamHandler process response = do
     release handle =
       process (StreamEvent.Release handle)
 
--- |Initiate a request and stream the response, calling 'process' after connecting, for every chunk, after closing the
+-- |Initiate a request and stream the response, calling @process@ after connecting, for every chunk, after closing the
 -- connection, and for the return value.
 -- 'StreamEvent' is used to indicate the stage of the request cycle.
 --
