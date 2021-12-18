@@ -19,7 +19,7 @@ invalidScheme ::
   Text ->
   Either Text a
 invalidScheme scheme url =
-  Left [qt|invalid scheme `#{scheme}` in url: #{url}|]
+  Left [exon|invalid scheme `#{scheme}` in url: #{url}|]
 
 split ::
   Text ->
@@ -47,7 +47,7 @@ parseHostPort ::
 parseHostPort url = \case
   (host, Nothing) -> Right (Host host, Nothing)
   (host, Just (readMaybe . toString -> Just port)) -> Right (Host host, Just (Port port))
-  (_, Just port) -> Left [qt|invalid port `#{port}` in url: #{url}|]
+  (_, Just port) -> Left [exon|invalid port `#{port}` in url: #{url}|]
 
 parseUrl ::
   Text ->

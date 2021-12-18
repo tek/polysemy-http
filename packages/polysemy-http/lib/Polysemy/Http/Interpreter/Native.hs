@@ -1,4 +1,5 @@
 {-# options_haddock prune #-}
+
 -- |Description: Http Interpreters, Internal
 module Polysemy.Http.Interpreter.Native where
 
@@ -98,7 +99,7 @@ withResponse request f =
     use (Left err) =
       pure (Left err)
     closeFailed err =
-      Log.error [qt|closing response failed: #{err}|]
+      Log.error [exon|closing response failed: #{err}|]
 {-# inline withResponse #-}
 
 distribEither ::
@@ -122,13 +123,13 @@ interpretHttpNativeWith =
     Http.Response request f -> do
       distribEither =<< withResponse request ((\x -> runTSimple x) . f)
     Http.Request request -> do
-      Log.debug [qt|http request: #{request}|]
+      Log.debug [exon|http request: #{show request}|]
       manager <- Manager.get
       liftT do
         response <- executeRequest manager request
-        response <$ Log.debug [qt|http response: #{response}|]
+        response <$ Log.debug [exon|http response: #{show response}|]
     Http.Stream request handler -> do
-      Log.debug [qt|http stream request: #{request}|]
+      Log.debug [exon|http stream request: #{show request}|]
       distribEither =<< withResponse request ((\x -> runTSimple x). handler)
     Http.ConsumeChunk body ->
       pureT . first HttpError.ChunkFailed =<< tryAny body

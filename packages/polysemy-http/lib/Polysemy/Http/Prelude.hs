@@ -6,9 +6,9 @@ module Polysemy.Http.Prelude (
   module Polysemy.Http.Prelude,
   module Data.Aeson,
   module Data.Aeson.TH,
-  module Data.Composition,
   module Data.Default,
   module Data.Either.Combinators,
+  module Exon,
   module Data.Foldable,
   module Data.Map.Strict,
   module GHC.Err,
@@ -22,15 +22,13 @@ import Control.Exception (try)
 import Data.Aeson (FromJSON, ToJSON)
 import Data.Aeson.TH (deriveFromJSON, deriveJSON)
 import qualified Data.Aeson.TH as Aeson (Options, defaultOptions, unwrapUnaryRecords)
-import Data.Composition ((.:))
 import Data.Default (Default (def))
 import Data.Either.Combinators (mapLeft)
-import Data.Foldable (foldl, traverse_)
+import Data.Foldable (traverse_)
 import Data.Map.Strict (Map)
-import Data.String.Interpolate (i)
+import Exon (exon)
 import GHC.Err (undefined)
 import GHC.IO.Unsafe (unsafePerformIO)
-import Language.Haskell.TH.Quote (QuasiQuoter)
 import qualified Language.Haskell.TH.Syntax as TH
 import Polysemy (
   Effect,
@@ -117,11 +115,6 @@ unsafeLogS :: Show a => a -> a
 unsafeLogS a =
   unsafePerformIO $ print a >> return a
 {-# inline unsafeLogS #-}
-
-qt :: QuasiQuoter
-qt =
-  i
-{-# inline qt #-}
 
 liftT ::
   forall m f r e a .

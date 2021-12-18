@@ -31,19 +31,18 @@ dependencies:
   - ansi-terminal >= 0.10.3
   - bytestring
   - case-insensitive >= 1.2
-  - composition >= 1.0.2
   - containers
-  - data-default >= 0.7
+  - data-default >= 0.2
   - either >= 5.0.1
-  - http-client >= 0.6.4
-  - http-client-tls >= 0.3.5
+  - exon >= 0.2.0.1
+  - http-client >= 0.5.14
+  - http-client-tls >= 0.3.1
   - http-types >= 0.12.3
   - lens >= 4
   - polysemy >= 1.6
   - polysemy-log >= 0.2.2.4
   - polysemy-plugin >= 0.4
   - relude >= 0.7
-  - string-interpolate >= 0.2.1
   - template-haskell
   - text
   - time

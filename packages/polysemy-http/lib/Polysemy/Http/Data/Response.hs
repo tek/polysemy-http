@@ -34,7 +34,7 @@ data Response b =
 
 instance {-# overlapping #-} Show (Response BodyReader) where
   show (Response s _ hs _) =
-    [qt|StreamingResponse { status :: #{s}, headers :: #{hs} }|]
+    [exon|StreamingResponse { status :: #{show s}, headers :: #{show hs} }|]
 
 instance Eq b => Eq (Response b) where
   Response ls lb lh _ == Response rs rb rh _ =
