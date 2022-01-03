@@ -120,8 +120,8 @@ interpretHttpNativeWith ::
   InterpreterFor (Http BodyReader) r
 interpretHttpNativeWith =
   interpretH \case
-    Http.Response request f -> do
-      distribEither =<< withResponse request ((\x -> runTSimple x) . f)
+    Http.Response request f ->
+      distribEither =<< withResponse request ((\ x -> runTSimple x) . f)
     Http.Request request -> do
       Log.debug [exon|http request: #{show request}|]
       manager <- Manager.get
@@ -130,13 +130,13 @@ interpretHttpNativeWith =
         response <$ Log.debug [exon|http response: #{show response}|]
     Http.Stream request handler -> do
       Log.debug [exon|http stream request: #{show request}|]
-      distribEither =<< withResponse request ((\x -> runTSimple x). handler)
+      distribEither =<< withResponse request ((\ x -> runTSimple x) . handler)
     Http.ConsumeChunk body ->
       pureT . first HttpError.ChunkFailed =<< tryAny body
 {-# inline interpretHttpNativeWith #-}
 
--- |Interpret @'Http' 'BodyReader'@ using the native 'Network.HTTP.Client' implementation.
--- 'BodyReader' is an alias for @'IO' 'ByteString'@, it is how http-client represents chunks.
+-- |Interpret @'Http' 'BodyReader'@ using the native "Network.HTTP.Client" implementation.
+-- 'BodyReader' is an alias for @'IO' 'ByteString'@; it is how http-client represents chunks.
 -- This uses the default interpreter for 'Manager'.
 interpretHttpNative ::
   Members [Embed IO, Log, Resource] r =>
