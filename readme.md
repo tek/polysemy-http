@@ -6,15 +6,17 @@ with [http-client].
 # Example
 
 ```haskell
-import Polysemy (runM, resourceToIO)
+import Polysemy (runM)
+import Polysemy.Resource (resourceToIO)
 import qualified Polysemy.Http as Http
-import Polysemy.Http (interpretHttpNative, interpretLogStdout)
+import Polysemy.Http (interpretHttpNative)
+import Polysemy.Log (interpretLogStdout')
 
 main :: IO ()
 main = do
   result <- runM $
     resourceToIO $
-    interpretLogStdout $
+    interpretLogStdout' $
     interpretHttpNative $
     Http.request (Http.get "hackage.haskell.org" "package/polysemy-http")
   print result
@@ -160,7 +162,7 @@ main :: IO ()
 main = do
   result <- runM $
     resourceToIO $
-    interpretLogStdout $
+    interpretLogStdout' $
     interpretHttpPure [Response (toEnum 200) "foo" []] [] $
     Http.request (Http.get "hackage.haskell.org" "package/polysemy-http")
   print result
