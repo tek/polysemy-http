@@ -1,12 +1,10 @@
 module Polysemy.Http.StreamTest where
 
 import Control.Lens ((.~))
+import Control.Monad.IO.Class (liftIO)
 import qualified Data.ByteString as ByteString
 import Hedgehog (assert, evalEither, (===))
-import Polysemy (embedToFinal, runFinal)
 import Polysemy.Log (interpretLogNull)
-import Polysemy.Resource (resourceToIOFinal)
-import Polysemy.State (runState)
 
 import Polysemy.Http.Data.HttpError (HttpError)
 import qualified Polysemy.Http.Data.Request as Request
@@ -55,7 +53,7 @@ runRequest port =
 
 test_httpStream :: UnitTest
 test_httpStream = do
-  result <- lift (withServer runRequest)
+  result <- liftIO (withServer runRequest)
   (chunkSizes, ()) <- evalEither result
   assert (length chunkSizes >= 10)
   sum chunkSizes === 10 * 8192

@@ -1,6 +1,9 @@
 {-# options_haddock prune #-}
+
 -- |Description: Header Data Types, Internal
 module Polysemy.Http.Data.Header where
+
+import Polysemy.Time.Json (json)
 
 -- |The name of a header.
 newtype HeaderName =
@@ -8,7 +11,7 @@ newtype HeaderName =
   deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
-defaultJson ''HeaderName
+json ''HeaderName
 
 -- |The value of a header.
 newtype HeaderValue =
@@ -16,7 +19,7 @@ newtype HeaderValue =
   deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
-defaultJson ''HeaderValue
+json ''HeaderValue
 
 -- |An HTTP header.
 data Header =
@@ -26,4 +29,4 @@ data Header =
   }
   deriving (Eq, Show, Generic)
 
-defaultJson ''Header
+json ''Header

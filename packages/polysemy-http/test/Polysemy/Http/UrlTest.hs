@@ -1,8 +1,9 @@
 module Polysemy.Http.UrlTest where
 
+import Exon (exon)
 import Hedgehog ((===))
 
-import Polysemy.Http.Data.Request (Host(Host), Path(Path), Port(Port), Tls(Tls))
+import Polysemy.Http.Data.Request (Host (Host), Path (Path), Port (Port), Tls (Tls))
 import Polysemy.Http.Request (parseUrl)
 import Polysemy.Http.Test (UnitTest)
 

@@ -1,8 +1,7 @@
 {-# options_haddock prune #-}
+
 -- |Description: Entity Effects, Internal
 module Polysemy.Http.Effect.Entity where
-
-import Polysemy (makeSem_)
 
 -- |Generic error type for decoders.
 data EntityError =

@@ -5,6 +5,8 @@ module Polysemy.Http.Data.Request where
 import Control.Lens (makeClassy)
 import qualified Data.Text as Text
 import Network.HTTP.Client.Internal (CookieJar)
+import Polysemy.Time.Json (json)
+import Prelude hiding (Get, Put)
 
 import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
 
@@ -31,7 +33,7 @@ data Method =
   Custom Text
   deriving (Eq, Show)
 
-defaultJson ''Method
+json ''Method
 
 instance IsString Method where
   fromString = \case
@@ -67,7 +69,7 @@ newtype Host =
   deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
-defaultJson ''Host
+json ''Host
 
 -- |Request port.
 newtype Port =
@@ -75,14 +77,14 @@ newtype Port =
   deriving (Eq, Show, Generic)
   deriving newtype (Num, Ord, Enum, Real, Integral, Read)
 
-defaultJson ''Port
+json ''Port
 
 -- |A flag that indicates whether a request should use TLS.
 newtype Tls =
   Tls { unTls :: Bool }
   deriving (Eq, Show, Generic)
 
-defaultJson ''Tls
+json ''Tls
 
 -- |Rrequest path.
 newtype Path =
@@ -94,7 +96,7 @@ instance Semigroup Path where
   Path l <> Path r =
     Path (Text.dropWhileEnd ('/' ==) l <> "/" <> Text.dropWhile ('/' ==) r)
 
-defaultJson ''Path
+json ''Path
 
 -- |The key of a query parameter.
 newtype QueryKey =
@@ -102,7 +104,7 @@ newtype QueryKey =
   deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
-defaultJson ''QueryKey
+json ''QueryKey
 
 -- |The value of a query parameter.
 newtype QueryValue =
@@ -110,7 +112,7 @@ newtype QueryValue =
   deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 
-defaultJson ''QueryValue
+json ''QueryValue
 
 -- |Request body, using 'LByteString' because it is what 'Aeson.encode' produces.
 newtype Body =

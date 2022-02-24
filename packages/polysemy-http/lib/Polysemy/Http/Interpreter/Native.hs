@@ -5,13 +5,12 @@ module Polysemy.Http.Interpreter.Native where
 
 import qualified Data.CaseInsensitive as CaseInsensitive
 import Data.CaseInsensitive (foldedCase)
+import Exon (exon)
 import qualified Network.HTTP.Client as HTTP
 import Network.HTTP.Client (BodyReader, httpLbs, responseClose, responseOpen)
 import Network.HTTP.Client.Internal (CookieJar (CJ))
-import Polysemy (getInitialStateT, interpretH, runTSimple)
+import Polysemy.Internal.Tactics (liftT)
 import qualified Polysemy.Log as Log
-import Polysemy.Log (Log)
-import Polysemy.Resource (Resource, bracket)
 
 import Polysemy.Http.Data.Header (Header (Header), unHeaderName, unHeaderValue)
 import qualified Polysemy.Http.Data.HttpError as HttpError
@@ -69,7 +68,7 @@ internalError ::
   IO a ->
   Sem r (Either HttpError a)
 internalError =
-  tryHoist HttpError.Internal
+  fmap (first HttpError.Internal) . tryAny
 
 executeRequest ::
   Member (Embed IO) r =>
@@ -91,7 +90,7 @@ withResponse request f =
       manager <- Manager.get
       internalError (responseOpen (nativeRequest request) manager)
     release (Right response) =
-      tryAny (responseClose response) >>= traverseLeft closeFailed
+      tryAny (responseClose response) >>= either closeFailed pure
     release (Left _) =
       unit
     use (Right response) = do

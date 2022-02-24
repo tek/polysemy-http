@@ -3,8 +3,6 @@
 -- |Description: Http Effect, Internal
 module Polysemy.Http.Effect.Http where
 
-import Polysemy (makeSem_)
-
 import Polysemy.Http.Data.HttpError (HttpError)
 import Polysemy.Http.Data.Request (Request)
 import Polysemy.Http.Data.Response (Response)

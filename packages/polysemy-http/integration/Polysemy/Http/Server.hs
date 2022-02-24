@@ -19,20 +19,21 @@ import Network.Socket (
   withSocketsDo,
   )
 import qualified Network.Wai.Handler.Warp as Warp
-import Servant (Header, Get, Handler, JSON, PlainText, Post, ReqBody, ServerT, serve, (:<|>)((:<|>)), (:>))
-import Servant.Client (BaseUrl(BaseUrl), Client, ClientEnv, ClientM, Scheme(Http), client, mkClientEnv, runClientM)
+import Polysemy.Time.Json (json)
+import Prelude hiding (bracket)
+import Servant (Get, Handler, Header, JSON, PlainText, Post, ReqBody, ServerT, serve, (:<|>) ((:<|>)), (:>))
+import Servant.Client (BaseUrl (BaseUrl), Client, ClientEnv, ClientM, Scheme (Http), client, mkClientEnv, runClientM)
 
 freePort ::
   IO PortNumber
 freePort =
-  withSocketsDo $ do
+  withSocketsDo do
     addr : _ <- getAddrInfo (Just defaultHints) (Just "127.0.0.1") (Just "0")
     bracket (open addr) close socketPort
   where
     open addr = do
       sock <- socket (addrFamily addr) (addrSocketType addr) (addrProtocol addr)
-      bind sock (addrAddress addr)
-      return sock
+      sock <$ bind sock (addrAddress addr)
 
 data Payload =
   Payload {
@@ -41,7 +42,7 @@ data Payload =
   }
   deriving (Eq, Show)
 
-defaultJson ''Payload
+json ''Payload
 
 type Api =
   Get '[JSON] Text

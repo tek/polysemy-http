@@ -5,6 +5,7 @@ module Polysemy.Http.Data.Response (
   Status(Status),
 ) where
 
+import Exon (exon)
 import Network.HTTP.Client (BodyReader, CookieJar)
 import Network.HTTP.Types (
   Status (Status),

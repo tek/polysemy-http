@@ -4,7 +4,6 @@
 module Polysemy.Http.Http where
 
 import qualified Data.ByteString as ByteString
-import Polysemy.Resource (Resource, bracket)
 
 import Polysemy.Http.Data.HttpError (HttpError)
 import Polysemy.Http.Data.Request (Request)

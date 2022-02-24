@@ -2,7 +2,7 @@
 -- |Description: Entity Aeson Interpreters, Internal
 module Polysemy.Http.Interpreter.AesonEntity where
 
-import Data.Aeson (eitherDecode', eitherDecodeStrict', encode)
+import Data.Aeson (FromJSON, ToJSON, eitherDecode', eitherDecodeStrict', encode)
 
 import Polysemy.Http.Effect.Entity (EntityDecode, EntityEncode, EntityError (EntityError))
 import qualified Polysemy.Http.Effect.Entity as Entity (EntityDecode (..), EntityEncode (..))
@@ -37,7 +37,7 @@ decodeWith ::
   s ->
   Sem r (Either EntityError a)
 decodeWith dec body =
-  pure . mapLeft (EntityError (decodeUtf8 body) . toText) $ dec body
+  pure . first (EntityError (decodeUtf8 body) . toText) $ dec body
 {-# inline decodeWith #-}
 
 -- |Interpreter for 'EntityDecode' that uses Aeson and a different codec type.

@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.34.6.
 --
 -- see: https://github.com/sol/hpack
 
@@ -43,13 +43,7 @@ library
       Polysemy.Http.Interpreter.Native
       Polysemy.Http.Interpreter.Pure
       Polysemy.Http.Json
-      Polysemy.Http.Prelude
       Polysemy.Http.Request
-  other-modules:
-      Prelude
-      Paths_polysemy_http
-  autogen-modules:
-      Paths_polysemy_http
   hs-source-dirs:
       lib
   default-extensions:
@@ -109,22 +103,19 @@ library
       aeson >=1.4
     , ansi-terminal >=0.10.3
     , base ==4.*
-    , bytestring
     , case-insensitive >=1.2
-    , containers
     , data-default >=0.2
-    , either >=5.0.1
-    , exon >=0.2.0.1
+    , exon >=0.3
     , http-client >=0.5.14
     , http-client-tls >=0.3.1
     , http-types >=0.12.3
+    , incipit >=0.1.0.3
     , lens >=4
     , polysemy >=1.6
-    , polysemy-log >=0.2.2.4
+    , polysemy-log >=0.5
     , polysemy-plugin >=0.4
-    , relude >=0.7
+    , polysemy-time >=0.3
     , template-haskell
-    , text
     , time
   mixins:
       base hiding (Prelude)
@@ -139,7 +130,6 @@ test-suite polysemy-http-integration
       Polysemy.Http.Server
       Polysemy.Http.StreamTest
       Polysemy.Http.Test
-      Paths_polysemy_http
   hs-source-dirs:
       integration
   default-extensions:
@@ -196,39 +186,26 @@ test-suite polysemy-http-integration
       ViewPatterns
   ghc-options: -fplugin=Polysemy.Plugin -flate-specialise -fspecialise-aggressively -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson >=1.4
-    , ansi-terminal >=0.10.3
+      aeson
     , base ==4.*
-    , bytestring
-    , case-insensitive >=1.2
-    , containers
-    , data-default >=0.2
-    , either >=5.0.1
-    , exon >=0.2.0.1
+    , exon
     , hedgehog
-    , http-client >=0.5.14
-    , http-client-tls >=0.3.1
-    , http-types >=0.12.3
-    , lens >=4
+    , http-client
+    , incipit
+    , lens
     , network
-    , polysemy >=1.6
+    , polysemy
     , polysemy-http
-    , polysemy-log >=0.2.2.4
-    , polysemy-plugin >=0.4
-    , relude >=0.7
+    , polysemy-plugin
+    , polysemy-time
     , servant
     , servant-client
     , servant-server
     , tasty
     , tasty-hedgehog
-    , template-haskell
-    , text
-    , time
     , warp
   mixins:
       base hiding (Prelude)
-    , polysemy-http hiding (Prelude)
-    , polysemy-http (Polysemy.Http.Prelude as Prelude)
   default-language: Haskell2010
 
 test-suite polysemy-http-unit
@@ -238,7 +215,6 @@ test-suite polysemy-http-unit
       Polysemy.Http.ResponseTest
       Polysemy.Http.Test
       Polysemy.Http.UrlTest
-      Paths_polysemy_http
   hs-source-dirs:
       test
   default-extensions:
@@ -295,32 +271,16 @@ test-suite polysemy-http-unit
       ViewPatterns
   ghc-options: -fplugin=Polysemy.Plugin -flate-specialise -fspecialise-aggressively -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson >=1.4
-    , ansi-terminal >=0.10.3
-    , base ==4.*
-    , bytestring
-    , case-insensitive >=1.2
-    , containers
-    , data-default >=0.2
-    , either >=5.0.1
-    , exon >=0.2.0.1
+      base ==4.*
+    , exon
     , hedgehog
-    , http-client >=0.5.14
-    , http-client-tls >=0.3.1
-    , http-types >=0.12.3
-    , lens >=4
-    , polysemy >=1.6
+    , http-client
+    , incipit
+    , polysemy
     , polysemy-http
-    , polysemy-log >=0.2.2.4
-    , polysemy-plugin >=0.4
-    , relude >=0.7
+    , polysemy-plugin
     , tasty
     , tasty-hedgehog
-    , template-haskell
-    , text
-    , time
   mixins:
       base hiding (Prelude)
-    , polysemy-http hiding (Prelude)
-    , polysemy-http (Polysemy.Http.Prelude as Prelude)
   default-language: Haskell2010

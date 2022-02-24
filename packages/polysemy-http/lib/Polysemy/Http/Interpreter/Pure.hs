@@ -1,10 +1,10 @@
 {-# options_haddock prune #-}
+
 -- |Description: Pure Http Interpreters, Internal
 module Polysemy.Http.Interpreter.Pure where
 
 import Network.HTTP.Client.Internal (CookieJar (CJ))
-import Polysemy (interpretH)
-import Polysemy.Internal.Tactics (bindT, bindTSimple)
+import Polysemy.Internal.Tactics (liftT)
 
 import Polysemy.Http.Data.Response (Response (Response))
 import qualified Polysemy.Http.Effect.Http as Http

@@ -1,4 +1,5 @@
 {-# options_haddock prune #-}
+
 -- |Description: Request Combinators, Internal
 module Polysemy.Http.Request where
 
@@ -7,9 +8,10 @@ import qualified Data.Text as Text
 import Data.Time (UTCTime (UTCTime))
 import Data.Time.Calendar (fromGregorian)
 import Data.Time.Clock.POSIX (posixSecondsToUTCTime)
+import Exon (exon)
 import Network.HTTP.Client (Cookie (Cookie))
 import Network.HTTP.Client.Internal (CookieJar (CJ, expose))
-import Prelude hiding (get, put)
+import Prelude hiding (Get, Put, get, put)
 
 import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Body, Host (Host), Method (..), Path (Path), Port (Port), Request (Request), Tls (Tls))
