@@ -19,7 +19,7 @@
     overrides = { inherit all; };
     deps = [incipit];
     compat.projects = {
-      "902" = {};
+      "8107" = {};
       "884" = {};
     };
     ghci.args = ["-fplugin=Polysemy.Plugin"];
