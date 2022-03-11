@@ -109,12 +109,12 @@ library
     , http-client >=0.5.14
     , http-client-tls >=0.3.1
     , http-types >=0.12.3
-    , incipit >=0.1.0.3
+    , incipit >=0.2
     , lens >=4
     , polysemy >=1.6
-    , polysemy-log >=0.5
+    , polysemy-log >=0.6.0.1
     , polysemy-plugin >=0.4
-    , polysemy-time >=0.3
+    , polysemy-time >=0.4
     , template-haskell
     , time
   mixins:

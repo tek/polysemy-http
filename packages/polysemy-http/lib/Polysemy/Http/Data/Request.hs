@@ -1,4 +1,5 @@
 {-# options_haddock prune #-}
+
 -- |Description: Request Data Types, Internal
 module Polysemy.Http.Data.Request where
 
@@ -6,7 +7,6 @@ import Control.Lens (makeClassy)
 import qualified Data.Text as Text
 import Network.HTTP.Client.Internal (CookieJar)
 import Polysemy.Time.Json (json)
-import Prelude hiding (Get, Put)
 
 import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
 

@@ -6,7 +6,6 @@ module Polysemy.Http.Interpreter.Manager where
 import Network.HTTP.Client (newManager)
 import qualified Network.HTTP.Client as HTTP (Manager)
 import Network.HTTP.Client.TLS (mkManagerSettings)
-import Prelude hiding (Get)
 
 import Polysemy.Http.Effect.Manager (Manager (..))
 

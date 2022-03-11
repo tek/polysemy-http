@@ -1,7 +1,6 @@
 module Polysemy.Http.RequestTest where
 
 import Control.Lens ((.~))
-import Control.Monad.IO.Class (liftIO)
 import qualified Data.Aeson as Aeson
 import Hedgehog (evalEither, (===))
 import Polysemy.Log (interpretLogNull)

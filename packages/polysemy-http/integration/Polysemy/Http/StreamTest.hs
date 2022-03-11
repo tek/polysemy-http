@@ -1,7 +1,6 @@
 module Polysemy.Http.StreamTest where
 
 import Control.Lens ((.~))
-import Control.Monad.IO.Class (liftIO)
 import qualified Data.ByteString as ByteString
 import Hedgehog (assert, evalEither, (===))
 import Polysemy.Log (interpretLogNull)

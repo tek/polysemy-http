@@ -10,6 +10,7 @@
     all = { hackage, ... }: {
       exon = hackage "0.3.0.0" "0jgpj8818nhwmb3271ixid38mx11illlslyi69s4m0ws138v6i18";
       flatparse = hackage "0.3.2.0" "01w71985b9ndg4wkfxqxjj7f1cynji6vp71akr7ivpmxn2drxspa";
+      incipit = hackage "0.2.0.0" "1sw1mh8a0iqy1pw2lfcgzk1z6d5wx0bp1klqzwy645m622xi0sbc";
     };
 
   in

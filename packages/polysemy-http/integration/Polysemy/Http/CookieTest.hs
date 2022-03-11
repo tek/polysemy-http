@@ -1,7 +1,6 @@
 module Polysemy.Http.CookieTest where
 
 import Control.Lens ((.~))
-import Control.Monad.IO.Class (liftIO)
 import Exon (exon)
 import Hedgehog (evalEither, (===))
 import Polysemy.Log (interpretLogNull)
