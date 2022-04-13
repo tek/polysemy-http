@@ -5,9 +5,9 @@ github: tek/polysemy-http
 description: See <https://hackage.haskell.org/package/polysemy-http/docs/Polysemy-Http.html>
 license: BSD-2-Clause-Patent
 license-file: LICENSE
-author: "Torsten Schmits"
-maintainer: "haskell@tryp.io"
-copyright: "2020 Torsten Schmits"
+author: Torsten Schmits
+maintainer: haskell@tryp.io
+copyright: 2022 Torsten Schmits
 category: Network
 build-type: Simple
 

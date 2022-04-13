@@ -35,6 +35,7 @@ module Polysemy.Http (
   -- * Entity
   EntityDecode,
   decode,
+  decodeLazy,
   decodeStrict,
   EntityEncode,
   encode,
@@ -88,6 +89,7 @@ import Polysemy.Http.Effect.Entity (
   EntityEncode,
   EntityError (EntityError),
   decode,
+  decodeLazy,
   decodeStrict,
   encode,
   encodeStrict,

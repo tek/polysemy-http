@@ -13,7 +13,7 @@ homepage:       https://github.com/tek/polysemy-http#readme
 bug-reports:    https://github.com/tek/polysemy-http/issues
 author:         Torsten Schmits
 maintainer:     haskell@tryp.io
-copyright:      2020 Torsten Schmits
+copyright:      2022 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple

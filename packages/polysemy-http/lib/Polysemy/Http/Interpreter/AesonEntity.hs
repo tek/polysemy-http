@@ -16,7 +16,7 @@ interpretEntityEncodeAesonAs ::
   Sem r a
 interpretEntityEncodeAesonAs convert =
   interpret \case
-    Entity.Encode a ->
+    Entity.EncodeLazy a ->
       pure (encode (convert a))
     Entity.EncodeStrict a ->
       pure (toStrict (encode (convert a)))
@@ -49,7 +49,7 @@ interpretEntityDecodeAesonAs ::
   Sem r a
 interpretEntityDecodeAesonAs convert =
   interpret \case
-    Entity.Decode body ->
+    Entity.DecodeLazy body ->
       fmap convert <$> decodeWith eitherDecode' body
     Entity.DecodeStrict body ->
       fmap convert <$> decodeWith eitherDecodeStrict' body

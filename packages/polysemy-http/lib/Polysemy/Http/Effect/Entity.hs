@@ -13,13 +13,13 @@ data EntityError =
 
 -- |Abstraction of json encoding, potentially usable for other content types like xml.
 data EntityEncode d :: Effect where
-  Encode :: d -> EntityEncode d m LByteString
+  EncodeLazy :: d -> EntityEncode d m LByteString
   EncodeStrict :: d -> EntityEncode d m ByteString
 
 makeSem_ ''EntityEncode
 
 -- |Lazily encode a value of type @d@ to a 'LByteString'
-encode ::
+encodeLazy ::
   ∀ d r .
   Member (EntityEncode d) r =>
   d ->
@@ -32,15 +32,24 @@ encodeStrict ::
   d ->
   Sem r ByteString
 
+-- |Strictly encode a value of type @d@ to a 'ByteString'
+encode ::
+  ∀ d r .
+  Member (EntityEncode d) r =>
+  d ->
+  Sem r ByteString
+encode =
+  encodeStrict
+
 -- |Abstraction of json decoding, potentially usable for other content types like xml.
 data EntityDecode d :: Effect where
-  Decode :: LByteString -> EntityDecode d m (Either EntityError d)
+  DecodeLazy :: LByteString -> EntityDecode d m (Either EntityError d)
   DecodeStrict :: ByteString -> EntityDecode d m (Either EntityError d)
 
 makeSem_ ''EntityDecode
 
 -- |Lazily decode a 'LByteString' to a value of type @d@
-decode ::
+decodeLazy ::
   ∀ d r .
   Member (EntityDecode d) r =>
   LByteString ->
@@ -52,6 +61,15 @@ decodeStrict ::
   Member (EntityDecode d) r =>
   ByteString ->
   Sem r (Either EntityError d)
+
+-- |Strictly decode a 'ByteString' to a value of type @d@
+decode ::
+  ∀ d r .
+  Member (EntityDecode d) r =>
+  ByteString ->
+  Sem r (Either EntityError d)
+decode =
+  decodeStrict
 
 -- |Marker type to be used with 'Entities'
 data Encode a
