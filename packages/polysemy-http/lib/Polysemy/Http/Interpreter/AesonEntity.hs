@@ -1,4 +1,5 @@
 {-# options_haddock prune #-}
+
 -- |Description: Entity Aeson Interpreters, Internal
 module Polysemy.Http.Interpreter.AesonEntity where
 
@@ -39,6 +40,32 @@ decodeWith ::
 decodeWith dec body =
   pure . first (EntityError (decodeUtf8 body) . toText) $ dec body
 {-# inline decodeWith #-}
+
+convertWith ::
+  ConvertUtf8 Text s =>
+  (s -> Either String j) ->
+  (j -> Sem r (Either Text d)) ->
+  s ->
+  Sem r (Either EntityError d)
+convertWith dec convert body =
+  runError do
+    raw <- fromEither =<< decodeWith dec body
+    fromEither . first (EntityError (decodeUtf8 body)) =<< raise (convert raw)
+
+-- |Interpreter for 'EntityDecode' that uses Aeson and a different codec type.
+-- The first parameter is the effectful conversion function.
+interpretEntityDecodeAesonWith ::
+  FromJSON j =>
+  (j -> Sem r (Either Text d)) ->
+  Sem (EntityDecode d : r) a ->
+  Sem r a
+interpretEntityDecodeAesonWith convert =
+  interpret \case
+    Entity.DecodeLazy body ->
+      convertWith eitherDecode' convert body
+    Entity.DecodeStrict body ->
+      convertWith eitherDecodeStrict' convert body
+{-# inline interpretEntityDecodeAesonWith #-}
 
 -- |Interpreter for 'EntityDecode' that uses Aeson and a different codec type.
 -- The first parameter is the conversion function.

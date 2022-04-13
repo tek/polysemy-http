@@ -100,6 +100,7 @@ import Polysemy.Http.Http (streamResponse)
 import Polysemy.Http.Interpreter.AesonEntity (
   interpretEntityDecodeAeson,
   interpretEntityDecodeAesonAs,
+  interpretEntityDecodeAesonWith,
   interpretEntityEncodeAeson,
   interpretEntityEncodeAesonAs,
   )
