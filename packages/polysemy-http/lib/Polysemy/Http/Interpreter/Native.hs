@@ -7,7 +7,7 @@ import qualified Data.CaseInsensitive as CaseInsensitive
 import Data.CaseInsensitive (foldedCase)
 import Exon (exon)
 import qualified Network.HTTP.Client as HTTP
-import Network.HTTP.Client (BodyReader, httpLbs, responseClose, responseOpen)
+import Network.HTTP.Client (BodyReader, brRead, brReadSome, httpLbs, responseClose, responseOpen)
 import Network.HTTP.Client.Internal (CookieJar (CJ))
 import Polysemy.Internal.Tactics (liftT)
 import qualified Polysemy.Log as Log
@@ -113,13 +113,18 @@ distribEither = \case
     pure (Left err <$ s)
 {-# inline distribEither #-}
 
+readChunk :: Int -> BodyReader -> IO ByteString
+readChunk chunkSize body =
+  toStrict <$> brReadSome body chunkSize
+
 -- |Same as 'interpretHttpNative', but the interpretation of 'Manager' is left to the user.
 interpretHttpNativeWith ::
   Members [Embed IO, Log, Resource, Manager] r =>
   InterpreterFor (Http BodyReader) r
 interpretHttpNativeWith =
   interpretH \case
-    Http.Response request f ->
+    Http.Response request f -> do
+      Log.debug [exon|http request: #{show request}|]
       distribEither =<< withResponse request ((\ x -> runTSimple x) . f)
     Http.Request request -> do
       Log.debug [exon|http request: #{show request}|]
@@ -127,11 +132,8 @@ interpretHttpNativeWith =
       liftT do
         response <- executeRequest manager request
         response <$ Log.debug [exon|http response: #{show response}|]
-    Http.Stream request handler -> do
-      Log.debug [exon|http stream request: #{show request}|]
-      distribEither =<< withResponse request ((\ x -> runTSimple x) . handler)
-    Http.ConsumeChunk body ->
-      pureT . first HttpError.ChunkFailed =<< tryAny body
+    Http.ConsumeChunk chunkSize body ->
+      pureT . first HttpError.ChunkFailed =<< tryAny (maybe brRead readChunk chunkSize body)
 {-# inline interpretHttpNativeWith #-}
 
 -- |Interpret @'Http' 'BodyReader'@ using the native "Network.HTTP.Client" implementation.

@@ -48,11 +48,11 @@ runRequest port =
   runState empty $
   interpretLogNull $
   interpretHttpNative $
-  Http.streamResponse (req port) handle
+  Http.streamResponse (req port) (Just 8192) handle
 
 test_httpStream :: UnitTest
 test_httpStream = do
   result <- liftIO (withServer runRequest)
   (chunkSizes, ()) <- evalEither result
-  assert (length chunkSizes >= 10)
+  assert (all (>= 8192) chunkSizes)
   sum chunkSizes === 10 * 8192

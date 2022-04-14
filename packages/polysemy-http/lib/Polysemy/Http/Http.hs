@@ -16,15 +16,16 @@ import Polysemy.Http.Effect.Http (Http)
 
 streamLoop ::
   Members [Http c, Error HttpError] r =>
+  Maybe Int ->
   (∀ x . StreamEvent o c h x -> Sem r x) ->
   Response c ->
   h ->
   Sem r o
-streamLoop process response@(Response _ body _ _) handle =
+streamLoop chunkSize process response@(Response _ body _ _) handle =
   spin
   where
     spin =
-      handleChunk =<< fromEither =<< Http.consumeChunk body
+      handleChunk =<< fromEither =<< Http.consumeChunk chunkSize body
     handleChunk (ByteString.null -> True) =
       process (StreamEvent.Result response handle)
     handleChunk !chunk = do
@@ -34,11 +35,12 @@ streamLoop process response@(Response _ body _ _) handle =
 streamHandler ::
   ∀ o r c h .
   Members [Http c, Error HttpError, Resource] r =>
+  Maybe Int ->
   (∀ x . StreamEvent o c h x -> Sem r x) ->
   Response c ->
   Sem r o
-streamHandler process response = do
-  bracket acquire release (streamLoop process response)
+streamHandler chunkSize process response = do
+  bracket acquire release (streamLoop chunkSize process response)
   where
     acquire =
       process (StreamEvent.Acquire response)
@@ -48,6 +50,8 @@ streamHandler process response = do
 -- |Initiate a request and stream the response, calling @process@ after connecting, for every chunk, after closing the
 -- connection, and for the return value.
 -- 'StreamEvent' is used to indicate the stage of the request cycle.
+-- The optional 'Int' argument defines the minimal chunk size that is read for each callback. If it is 'Nothing', the
+-- stream reads what is available.
 --
 -- @
 -- handle ::
@@ -68,7 +72,8 @@ streamHandler process response = do
 streamResponse ::
   Members [Http c, Error HttpError, Resource] r =>
   Request ->
+  Maybe Int ->
   (∀ x . StreamEvent o c h x -> Sem r x) ->
   Sem r o
-streamResponse request process =
-  fromEither . join =<< Http.stream request (runError . streamHandler (raise . process))
+streamResponse request chunkSize process =
+  fromEither . join =<< Http.response request (runError . streamHandler chunkSize (raise . process))

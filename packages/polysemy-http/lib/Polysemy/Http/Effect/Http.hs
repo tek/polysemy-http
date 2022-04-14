@@ -12,9 +12,8 @@ import Polysemy.Http.Data.Response (Response)
 data Http c :: Effect where
   Response :: Request -> (Response c -> m a) -> Http c m (Either HttpError a)
   Request :: Request -> Http c m (Either HttpError (Response LByteString))
-  Stream :: Request -> (Response c -> m a) -> Http c m (Either HttpError a)
   -- |Internal action for streaming transfers.
-  ConsumeChunk :: c -> Http c m (Either HttpError ByteString)
+  ConsumeChunk :: Maybe Int -> c -> Http c m (Either HttpError ByteString)
 
 makeSem_ ''Http
 
@@ -34,17 +33,10 @@ request ::
   Request ->
   Sem r (Either HttpError (Response LByteString))
 
--- |Open a connection without consuming data and pass the response to a handler for custom transmission.
--- The intended purpose is to allow streaming transfers.
-stream ::
-  ∀ c r a .
-  Member (Http c) r =>
-  Request ->
-  (Response c -> Sem r a) ->
-  Sem r (Either HttpError a)
-
+-- |Consumes a chunk while streaming, with an optional chunk size.
 consumeChunk ::
   ∀ c r .
   Member (Http c) r =>
+  Maybe Int ->
   c ->
   Sem r (Either HttpError ByteString)

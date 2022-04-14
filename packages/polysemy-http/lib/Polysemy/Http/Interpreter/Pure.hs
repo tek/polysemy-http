@@ -38,11 +38,7 @@ interpretHttpPureWithState =
       fmap Right <$> bindTSimple f res
     Http.Request _ ->
       liftT . fmap Right . takeResponse =<< raise get
-    Http.Stream _ handler -> do
-      handle <- bindT handler
-      res <- liftT . takeResponse =<< raise get
-      fmap Right <$> raise (interpretHttpPureWithState (handle res))
-    Http.ConsumeChunk _ ->
+    Http.ConsumeChunk _ _ ->
       liftT . fmap Right . takeChunk =<< raise get
 {-# inline interpretHttpPureWithState #-}
 

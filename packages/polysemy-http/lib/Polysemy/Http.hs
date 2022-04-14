@@ -94,7 +94,7 @@ import Polysemy.Http.Effect.Entity (
   encode,
   encodeStrict,
   )
-import Polysemy.Http.Effect.Http (Http, request, response, stream)
+import Polysemy.Http.Effect.Http (Http, request, response)
 import Polysemy.Http.Effect.Manager (Manager)
 import Polysemy.Http.Http (streamResponse)
 import Polysemy.Http.Interpreter.AesonEntity (
