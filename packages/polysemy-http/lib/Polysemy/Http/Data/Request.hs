@@ -114,9 +114,9 @@ newtype QueryValue =
 
 json ''QueryValue
 
--- |Request body, using 'LByteString' because it is what 'Aeson.encode' produces.
+-- |Request body.
 newtype Body =
-  Body { unBody :: LByteString }
+  Body { unBody :: ByteString }
   deriving (Eq, Show, Generic)
   deriving newtype (IsString)
 

@@ -1,10 +1,12 @@
 {-# options_haddock prune #-}
+
 -- |Description: Response Data Types, Internal
 module Polysemy.Http.Data.Response (
   module Polysemy.Http.Data.Response,
   Status(Status),
 ) where
 
+import Control.Lens (makeClassy)
 import Exon (exon)
 import Network.HTTP.Client (BodyReader, CookieJar)
 import Network.HTTP.Types (
@@ -15,7 +17,7 @@ import Network.HTTP.Types (
   statusIsServerError,
   statusIsSuccessful,
   )
-import qualified Text.Show as Text (Show (show))
+import qualified Text.Show as Text
 
 import Polysemy.Http.Data.Header (Header)
 
@@ -33,9 +35,11 @@ data Response b =
   }
   deriving (Show)
 
+makeClassy ''Response
+
 instance {-# overlapping #-} Show (Response BodyReader) where
   show (Response s _ hs _) =
-    [exon|StreamingResponse { status :: #{show s}, headers :: #{show hs} }|]
+    [exon|Response { status :: #{show s}, headers :: #{show hs} }|]
 
 instance Eq b => Eq (Response b) where
   Response ls lb lh _ == Response rs rb rh _ =

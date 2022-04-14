@@ -1,4 +1,5 @@
 {-# options_haddock prune #-}
+
 -- |Description: Json Request Combinator, Internal
 module Polysemy.Http.Json where
 

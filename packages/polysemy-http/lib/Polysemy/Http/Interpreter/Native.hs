@@ -43,7 +43,7 @@ nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) hea
     HTTP.method = encodeUtf8 (methodUpper method),
     HTTP.requestHeaders = encodedHeaders,
     HTTP.path = encodeUtf8 path,
-    HTTP.requestBody = HTTP.RequestBodyLBS body,
+    HTTP.requestBody = HTTP.RequestBodyBS body,
     HTTP.cookieJar = CJ . toList <$> nonEmpty cookies
   }
   where
