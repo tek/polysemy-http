@@ -14,15 +14,16 @@
     };
 
   in
-  hix.lib.flake {
+  hix.lib.pro {
     base = ./.;
     packages.polysemy-http = ./packages/polysemy-http;
     overrides = { inherit all; };
-    deps = [incipit];
+    depsFull = [incipit];
     compat.projects = {
       "8107" = {};
       "884" = {};
     };
+    devGhc.compiler = "ghc902";
     ghci.args = ["-fplugin=Polysemy.Plugin"];
     hackage.versionFile = "ops/hpack/packages/polysemy-http.yaml";
     ghci.preludePackage = "incipit";
