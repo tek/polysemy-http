@@ -19,7 +19,6 @@ import Network.Socket (
   withSocketsDo,
   )
 import qualified Network.Wai.Handler.Warp as Warp
-import Polysemy.Time.Json (json)
 import Prelude hiding (bracket)
 import Servant (Get, Handler, Header, JSON, PlainText, Post, ReqBody, ServerT, serve, (:<|>) ((:<|>)), (:>))
 import Servant.Client (BaseUrl (BaseUrl), Client, ClientEnv, ClientM, Scheme (Http), client, mkClientEnv, runClientM)
@@ -40,7 +39,7 @@ data Payload =
     one :: Int,
     two :: Int
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 json ''Payload
 

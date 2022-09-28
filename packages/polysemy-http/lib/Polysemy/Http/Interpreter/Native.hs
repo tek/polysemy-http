@@ -10,7 +10,7 @@ import qualified Network.HTTP.Client as HTTP
 import Network.HTTP.Client (BodyReader, brRead, brReadSome, httpLbs, responseClose, responseOpen)
 import Network.HTTP.Client.Internal (CookieJar (CJ))
 import Polysemy.Internal.Tactics (liftT)
-import qualified Polysemy.Log as Log
+import qualified Log as Log
 
 import Polysemy.Http.Data.Header (Header (Header), unHeaderName, unHeaderValue)
 import qualified Polysemy.Http.Data.HttpError as HttpError

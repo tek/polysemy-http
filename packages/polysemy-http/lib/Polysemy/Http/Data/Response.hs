@@ -6,7 +6,6 @@ module Polysemy.Http.Data.Response (
   Status(Status),
 ) where
 
-import Control.Lens (makeClassy)
 import Exon (exon)
 import Network.HTTP.Client (BodyReader, CookieJar)
 import Network.HTTP.Types (
@@ -25,17 +24,15 @@ import Polysemy.Http.Data.Header (Header)
 data Response b =
   Response {
     -- |Uses the type from 'Network.HTTP' for convenience.
-    _status :: Status,
+    status :: Status,
     -- |The body might be evaluated or an 'IO' action.
-    _body :: b,
+    body :: b,
     -- |Does not use the type from 'Network.HTTP' because it is an alias.
-    _headers :: [Header],
+    headers :: [Header],
     -- |The native cookie jar.
-    _cookies :: CookieJar
+    cookies :: CookieJar
   }
-  deriving (Show)
-
-makeClassy ''Response
+  deriving stock (Show, Generic)
 
 instance {-# overlapping #-} Show (Response BodyReader) where
   show (Response s _ hs _) =

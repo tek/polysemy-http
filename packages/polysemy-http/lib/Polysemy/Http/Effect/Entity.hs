@@ -9,7 +9,7 @@ data EntityError =
     body :: Text,
     message :: Text
   }
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 -- |Abstraction of json encoding, potentially usable for other content types like xml.
 data EntityEncode d :: Effect where

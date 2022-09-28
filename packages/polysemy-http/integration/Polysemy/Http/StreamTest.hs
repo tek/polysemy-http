@@ -1,12 +1,10 @@
 module Polysemy.Http.StreamTest where
 
-import Control.Lens ((.~))
 import qualified Data.ByteString as ByteString
 import Hedgehog (assert, evalEither, (===))
-import Polysemy.Log (interpretLogNull)
+import Log (interpretLogNull)
 
 import Polysemy.Http.Data.HttpError (HttpError)
-import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Port (Port), Request, Tls (Tls))
 import Polysemy.Http.Data.StreamChunk (StreamChunk (StreamChunk))
 import qualified Polysemy.Http.Data.StreamEvent as StreamEvent
@@ -20,8 +18,8 @@ import Polysemy.Http.Test (UnitTest)
 req :: Int -> Request
 req port =
   Request.get "localhost" "stream"
-  & Request.port .~ Just (Port port)
-  & Request.tls .~ Tls False
+  & #port .~ Just (Port port)
+  & #tls .~ Tls False
 
 handle ::
   Members [Embed IO, State [Int]] r =>

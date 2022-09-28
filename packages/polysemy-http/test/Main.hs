@@ -1,10 +1,9 @@
 module Main where
 
-import Polysemy.Http.Test (unitTest)
-import Test.Tasty (TestTree, defaultMain, testGroup)
-
 import Polysemy.Http.ResponseTest (test_statusPattern)
+import Polysemy.Http.Test (unitTest)
 import Polysemy.Http.UrlTest (test_url)
+import Test.Tasty (TestTree, defaultMain, testGroup)
 
 tests :: TestTree
 tests =

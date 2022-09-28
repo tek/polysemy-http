@@ -1,14 +1,11 @@
 module Polysemy.Http.CookieTest where
 
-import Control.Lens ((.~))
 import Exon (exon)
 import Hedgehog (evalEither, (===))
-import Polysemy.Log (interpretLogNull)
+import Log (interpretLogNull)
 
 import Polysemy.Http.Data.HttpError (HttpError)
-import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Port (Port), Tls (Tls))
-import qualified Polysemy.Http.Data.Response as Response
 import Polysemy.Http.Data.Response (Response)
 import qualified Polysemy.Http.Effect.Http as Http
 import Polysemy.Http.Interpreter.Native (interpretHttpNative)
@@ -31,8 +28,8 @@ runRequest port = do
   where
   request =
     Request.get "localhost" "cookie"
-    & Request.tls .~ Tls False
-    & Request.port .~ Just (Port port)
+    & #tls .~ Tls False
+    & #port .~ Just (Port port)
     & addCookie "localhost" c2 c2v
     & addCookie "localhost" c1 c1v
 
@@ -40,4 +37,4 @@ test_cookies :: UnitTest
 test_cookies = do
   result <- liftIO (withServer runRequest)
   response <- evalEither result
-  [exon|#{c1}=#{c1v};#{c2}=#{c2v}|] === decodeUtf8 (Response._body response)
+  [exon|#{c1}=#{c1v};#{c2}=#{c2v}|] === decodeUtf8 (response ^. #body)

@@ -131,7 +131,7 @@ import Polysemy.Http.Request (
 --
 -- @
 -- import Polysemy (resourceToIO, runM)
--- import Polysemy.Log (interpretLogStdout)
+-- import Log (interpretLogStdout)
 -- import qualified Polysemy.Http as Http
 -- import Polysemy.Http (interpretHttpNative, interpretLogStdout)
 --

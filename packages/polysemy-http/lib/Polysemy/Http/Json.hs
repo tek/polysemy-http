@@ -3,11 +3,8 @@
 -- |Description: Json Request Combinator, Internal
 module Polysemy.Http.Json where
 
-import Control.Lens ((%~))
-
 import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
 import Polysemy.Http.Data.HttpError (HttpError)
-import qualified Polysemy.Http.Data.Request as Request
 import Polysemy.Http.Data.Request (Request)
 import Polysemy.Http.Data.Response (Response)
 import qualified Polysemy.Http.Effect.Http as Http
@@ -23,4 +20,4 @@ jsonRequest ::
   Request ->
   Sem r (Either HttpError (Response LByteString))
 jsonRequest =
-  Http.request . (Request.headers %~ (jsonContentType :))
+  Http.request . (#headers %~ (jsonContentType :))

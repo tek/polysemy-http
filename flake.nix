@@ -1,31 +1,33 @@
 {
-  description = "Polysemy Effect for HTTP Clients";
+  description = "Polysemy effects for HTTP clients";
 
-  inputs.hix.url = github:tek/hix;
-  inputs.incipit.url = github:tek/incipit;
+  inputs = {
+    hix.url = git+https://git.tryp.io/tek/hix;
+    prelate.url = git+https://git.tryp.io/tek/prelate;
+    exon.url = git+https://git.tryp.io/tek/exon;
+  };
 
-  outputs = { hix, incipit, ... }:
+  outputs = { hix, prelate, exon, ... }:
   let
 
-    all = { hackage, ... }: {
-      exon = hackage "0.3.0.0" "0jgpj8818nhwmb3271ixid38mx11illlslyi69s4m0ws138v6i18";
-      flatparse = hackage "0.3.2.0" "01w71985b9ndg4wkfxqxjj7f1cynji6vp71akr7ivpmxn2drxspa";
-      incipit = hackage "0.2.1.0" "1rxry273zv4h7rg29wwbj1caiaa56zi7f08bf0l9m5kj68y7c7i8";
+    all = { hackage, source, ... }: {
+      exon = hackage "1.0.1.0" "1smxsdcjzczhxk8c4a8mpb964cflknlnn4xlv5y6lvmz40fciyjc";
+      flatparse = hackage "0.3.5.1" "0gbn93jnmj0x8akcani59ivnqzyyv1mzw0jmmc3pfklq7x9b17cm";
+      prelate = hackage "0.1.0.0" "1596kh9hks9na607dr5pqlm1vpj07gn9viwxp319s57d06wh9s5h";
     };
 
   in
-  hix.lib.pro {
-    base = ./.;
+  hix.lib.pro ({config, lib, ...}: {
     packages.polysemy-http = ./packages/polysemy-http;
     overrides = { inherit all; };
-    depsFull = [incipit];
-    compat.projects = {
-      "8107" = {};
-      "884" = {};
-    };
+    deps = [prelate exon];
     devGhc.compiler = "ghc902";
-    ghci.args = ["-fplugin=Polysemy.Plugin"];
-    hackage.versionFile = "ops/hpack/packages/polysemy-http.yaml";
-    ghci.preludePackage = "incipit";
-  };
+    hpack.packages = import ./ops/hpack.nix { inherit config lib; };
+    hackage.versionFile = "ops/version.nix";
+    ghci = {
+      args = ["-fplugin=Polysemy.Plugin"];
+      preludePackage = "prelate";
+      preludeModule = "Prelate";
+    };
+  });
 }

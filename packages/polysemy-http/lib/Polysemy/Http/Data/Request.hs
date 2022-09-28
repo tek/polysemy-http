@@ -3,10 +3,8 @@
 -- |Description: Request Data Types, Internal
 module Polysemy.Http.Data.Request where
 
-import Control.Lens (makeClassy)
 import qualified Data.Text as Text
 import Network.HTTP.Client.Internal (CookieJar)
-import Polysemy.Time.Json (json)
 
 import Polysemy.Http.Data.Header (HeaderName, HeaderValue)
 
@@ -31,7 +29,7 @@ data Method =
   Patch
   |
   Custom Text
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
 
 json ''Method
 
@@ -66,7 +64,7 @@ methodUpper = \case
 -- |Request host name.
 newtype Host =
   Host { unHost :: Text }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (IsString)
 
 json ''Host
@@ -74,7 +72,7 @@ json ''Host
 -- |Request port.
 newtype Port =
   Port { unPort :: Int }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (Num, Ord, Enum, Real, Integral, Read)
 
 json ''Port
@@ -82,14 +80,14 @@ json ''Port
 -- |A flag that indicates whether a request should use TLS.
 newtype Tls =
   Tls { unTls :: Bool }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
 
 json ''Tls
 
 -- |Rrequest path.
 newtype Path =
   Path { unPath :: Text }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (IsString, Monoid)
 
 instance Semigroup Path where
@@ -101,7 +99,7 @@ json ''Path
 -- |The key of a query parameter.
 newtype QueryKey =
   QueryKey { unQueryKey :: Text }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (IsString)
 
 json ''QueryKey
@@ -109,7 +107,7 @@ json ''QueryKey
 -- |The value of a query parameter.
 newtype QueryValue =
   QueryValue { unQueryValue :: Text }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (IsString)
 
 json ''QueryValue
@@ -117,25 +115,23 @@ json ''QueryValue
 -- |Request body.
 newtype Body =
   Body { unBody :: ByteString }
-  deriving (Eq, Show, Generic)
+  deriving stock (Eq, Show, Generic)
   deriving newtype (IsString)
 
 -- |HTTP request parameters, used by 'Polysemy.Http.Effect.Http'.
 data Request =
   Request {
-    _method :: Method,
-    _host :: Host,
-    _port :: Maybe Port,
-    _tls :: Tls,
-    _path :: Path,
-    _headers :: [(HeaderName, HeaderValue)],
-    _cookies :: CookieJar,
-    _query :: [(QueryKey, Maybe QueryValue)],
-    _body :: Body
+    method :: Method,
+    host :: Host,
+    port :: Maybe Port,
+    tls :: Tls,
+    path :: Path,
+    headers :: [(HeaderName, HeaderValue)],
+    cookies :: CookieJar,
+    query :: [(QueryKey, Maybe QueryValue)],
+    body :: Body
   }
-  deriving (Show, Generic)
-
-makeClassy ''Request
+  deriving stock (Show, Generic)
 
 instance Eq Request where
   Request lm lh lp lt lpa lhe _ lq lb == Request rm rh rp rt rpa rhe _ rq rb =

@@ -7,4 +7,4 @@ data HttpError =
   ChunkFailed Text
   |
   Internal Text
-  deriving (Eq, Show)
+  deriving stock (Eq, Show)
