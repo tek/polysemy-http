@@ -91,6 +91,10 @@ newtype Path =
   deriving newtype (IsString, Monoid)
 
 instance Semigroup Path where
+  "" <> r =
+    r
+  l <> "" =
+    l
   Path l <> Path r =
     Path (Text.dropWhileEnd ('/' ==) l <> "/" <> Text.dropWhile ('/' ==) r)
 
