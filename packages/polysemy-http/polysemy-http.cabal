@@ -211,9 +211,7 @@ test-suite polysemy-http-integration
     , polysemy >=1.6
     , polysemy-http
     , polysemy-plugin >=0.4
-    , polysemy-time
     , prelate ==0.1.*
-    , servant
     , servant-client
     , servant-server
     , tasty

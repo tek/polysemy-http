@@ -107,8 +107,6 @@ in {
         "hedgehog"
         "http-client"
         "network"
-        "polysemy-time"
-        "servant"
         "servant-server"
         "servant-client"
         "tasty"
