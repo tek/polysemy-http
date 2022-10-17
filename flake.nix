@@ -10,11 +10,10 @@
   let
 
     dev = { hackage, source, ... }: {
-      prelate = source.package prelate "prelate";
     };
 
     all = { hackage, source, ... }: {
-      prelate = hackage "0.1.0.0" "1596kh9hks9na607dr5pqlm1vpj07gn9viwxp319s57d06wh9s5h";
+      prelate = hackage "0.2.0.0" "1wnjik3xkyxvzs6r4iadvdjwkms8cxzh0qccfafb25yv4ma6xng6";
     };
 
   in

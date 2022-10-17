@@ -119,7 +119,7 @@ library
     , http-types >=0.12.3
     , polysemy >=1.6
     , polysemy-plugin >=0.4
-    , prelate ==0.1.*
+    , prelate ==0.2.*
     , time
   mixins:
       base hiding (Prelude)
@@ -211,7 +211,7 @@ test-suite polysemy-http-integration
     , polysemy >=1.6
     , polysemy-http
     , polysemy-plugin >=0.4
-    , prelate ==0.1.*
+    , prelate ==0.2.*
     , servant-client
     , servant-server
     , tasty
@@ -303,7 +303,7 @@ test-suite polysemy-http-unit
     , polysemy >=1.6
     , polysemy-http
     , polysemy-plugin >=0.4
-    , prelate ==0.1.*
+    , prelate ==0.2.*
     , tasty
     , tasty-hedgehog
   mixins:
