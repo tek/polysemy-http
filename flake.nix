@@ -13,7 +13,7 @@
     };
 
     all = { hackage, source, ... }: {
-      prelate = hackage "0.2.0.0" "1wnjik3xkyxvzs6r4iadvdjwkms8cxzh0qccfafb25yv4ma6xng6";
+      prelate = hackage "0.3.0.0" "14bbvxx8jh0amnndyrw6yamnbi2mfk7d9fp3npxgd85lnxmg6jx8";
     };
 
   in
