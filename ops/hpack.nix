@@ -51,9 +51,9 @@ let
 
   dependencies = [
     { name = "base"; version = ">= 4.12 && < 5"; mixin = "hiding (Prelude)"; }
-    { name = "prelate"; version = "^>= 0.3"; mixin = ["(Prelate as Prelude)" "hiding (Prelate)"]; }
-    "polysemy >= 1.6"
-    "polysemy-plugin >= 0.4"
+    { name = "prelate"; version = "^>= 0.4"; mixin = ["(Prelate as Prelude)" "hiding (Prelate)"]; }
+    "polysemy ^>= 1.9"
+    "polysemy-plugin ^>= 0.4"
   ];
 
   project = name: doc: merge (meta // { library = paths name; } // options) {
@@ -83,7 +83,7 @@ in {
     synopsis = "Polysemy effects for HTTP clients";
     extra-source-files = ["changelog.md" "readme.md"];
     library.dependencies = [
-      "aeson >= 1.4"
+      "aeson >= 1.4 && < 2.2"
       "case-insensitive >= 1.2"
       "exon >= 0.3"
       "http-client >= 0.5.14"

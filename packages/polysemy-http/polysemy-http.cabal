@@ -110,16 +110,16 @@ library
       ViewPatterns
   ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Widentities -Wunused-packages -fplugin=Polysemy.Plugin
   build-depends:
-      aeson >=1.4
+      aeson >=1.4 && <2.2
     , base >=4.12 && <5
     , case-insensitive >=1.2
     , exon >=0.3
     , http-client >=0.5.14
     , http-client-tls >=0.3.1
     , http-types >=0.12.3
-    , polysemy >=1.6
-    , polysemy-plugin >=0.4
-    , prelate ==0.3.*
+    , polysemy ==1.9.*
+    , polysemy-plugin ==0.4.*
+    , prelate ==0.4.*
     , time
   mixins:
       base hiding (Prelude)
@@ -208,10 +208,10 @@ test-suite polysemy-http-integration
     , hedgehog
     , http-client
     , network
-    , polysemy >=1.6
+    , polysemy ==1.9.*
     , polysemy-http
-    , polysemy-plugin >=0.4
-    , prelate ==0.3.*
+    , polysemy-plugin ==0.4.*
+    , prelate ==0.4.*
     , servant-client
     , servant-server
     , tasty
@@ -300,10 +300,10 @@ test-suite polysemy-http-unit
     , exon
     , hedgehog
     , http-client
-    , polysemy >=1.6
+    , polysemy ==1.9.*
     , polysemy-http
-    , polysemy-plugin >=0.4
-    , prelate ==0.3.*
+    , polysemy-plugin ==0.4.*
+    , prelate ==0.4.*
     , tasty
     , tasty-hedgehog
   mixins:

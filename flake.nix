@@ -9,17 +9,14 @@
   outputs = { hix, prelate, ... }:
   let
 
-    dev = { hackage, source, ... }: {
-    };
-
     all = { hackage, source, ... }: {
-      prelate = hackage "0.3.0.0" "14bbvxx8jh0amnndyrw6yamnbi2mfk7d9fp3npxgd85lnxmg6jx8";
+      prelate = hackage "0.4.0.0" "0sxvyf3wj0nvn1svnl90ninawfmzyr432k1lv14b15h22bi0kawd";
     };
 
   in
   hix.lib.pro ({config, lib, ...}: {
     packages.polysemy-http = ./packages/polysemy-http;
-    overrides = { inherit all dev; };
+    overrides = { inherit all; };
     deps = [prelate];
     devGhc.compiler = "ghc902";
     hpack.packages = import ./ops/hpack.nix { inherit config lib; };
