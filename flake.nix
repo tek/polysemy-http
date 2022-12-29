@@ -26,5 +26,6 @@
       preludePackage = "prelate";
       preludeModule = "Prelate";
     };
+    compat.projects."943".enable = false;
   });
 }
