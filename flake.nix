@@ -10,7 +10,7 @@
   let
 
     all = { hackage, source, ... }: {
-      prelate = hackage "0.4.0.0" "0sxvyf3wj0nvn1svnl90ninawfmzyr432k1lv14b15h22bi0kawd";
+      prelate = hackage "0.5.0.0" "0zs75i3ij4a82aqk4i324nrn5g3vclkspgrd8qdm9jj73pvq8za5";
     };
 
   in
