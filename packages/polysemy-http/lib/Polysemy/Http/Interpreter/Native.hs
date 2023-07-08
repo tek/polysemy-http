@@ -6,11 +6,11 @@ module Polysemy.Http.Interpreter.Native where
 import qualified Data.CaseInsensitive as CaseInsensitive
 import Data.CaseInsensitive (foldedCase)
 import Exon (exon)
+import qualified Log as Log
 import qualified Network.HTTP.Client as HTTP
 import Network.HTTP.Client (BodyReader, brRead, brReadSome, httpLbs, responseClose, responseOpen)
 import Network.HTTP.Client.Internal (CookieJar (CJ))
 import Polysemy.Internal.Tactics (liftT)
-import qualified Log as Log
 
 import Polysemy.Http.Data.Header (Header (Header), unHeaderName, unHeaderValue)
 import qualified Polysemy.Http.Data.HttpError as HttpError
@@ -48,11 +48,11 @@ nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) hea
   }
   where
     queryParams =
-      bimap (encodeUtf8 . unQueryKey) (fmap (encodeUtf8 . unQueryValue)) <$> query
+      bimap (encodeUtf8 . (.unQueryKey)) (fmap (encodeUtf8 . (.unQueryValue))) <$> query
     port =
-      maybe (if tls then 443 else 80) unPort portOverride
+      maybe (if tls then 443 else 80) (.unPort) portOverride
     encodedHeaders =
-      bimap (CaseInsensitive.mk . encodeUtf8 . unHeaderName) (encodeUtf8 . unHeaderValue) <$> headers
+      bimap (CaseInsensitive.mk . encodeUtf8 . (.unHeaderName)) (encodeUtf8 . (.unHeaderValue)) <$> headers
 
 convertResponse :: HTTP.Response b -> Response b
 convertResponse response =

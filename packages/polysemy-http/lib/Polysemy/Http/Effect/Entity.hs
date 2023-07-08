@@ -83,7 +83,7 @@ data Decode a
 -- foo :: Entities [Encode Int, Decode Double] r => Sem r ()
 -- @
 type family Entities es r :: Constraint where
-  Entities '[] r = ()
+  Entities '[] _ = ()
   Entities (Encode d ': ds) r = (Member (EntityEncode d) r, Entities ds r)
   Entities (Decode d ': ds) r = (Member (EntityDecode d) r, Entities ds r)
 
@@ -93,7 +93,7 @@ type family Entities es r :: Constraint where
 -- foo :: Encoders [Int, Double] r => Sem r ()
 -- @
 type family Encoders es r :: Constraint where
-  Encoders '[] r = ()
+  Encoders '[] _ = ()
   Encoders (d ': ds) r = (Member (EntityEncode d) r, Encoders ds r)
 
 -- |Convenience constraint for requiring multiple decoders.
@@ -102,5 +102,5 @@ type family Encoders es r :: Constraint where
 -- foo :: Decoders [Int, Double] r => Sem r ()
 -- @
 type family Decoders ds r :: Constraint where
-  Decoders '[] r = ()
+  Decoders '[] _ = ()
   Decoders (d ': ds) r = (Member (EntityDecode d) r, Decoders ds r)
