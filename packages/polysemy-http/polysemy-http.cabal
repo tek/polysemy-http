@@ -86,13 +86,13 @@ library
       aeson >=1.4 && <2.2
     , base ==4.*
     , case-insensitive ==1.2.*
-    , exon ==1.4.*
+    , exon >=1.4 && <1.6
     , http-client >=0.5.14 && <0.8
     , http-client-tls >=0.3.1 && <0.4
     , http-types >=0.12.3 && <0.13
     , polysemy ==1.9.*
     , polysemy-plugin ==0.4.*
-    , prelate ==0.6.*
+    , prelate >=0.6 && <0.8
     , time
   mixins:
       base hiding (Prelude)
@@ -150,14 +150,14 @@ test-suite integration
   build-depends:
       aeson >=1.4 && <2.2
     , base ==4.*
-    , exon ==1.4.*
+    , exon >=1.4 && <1.6
     , hedgehog >=1.1 && <1.3
     , http-client >=0.5.14 && <0.8
     , network ==3.1.*
     , polysemy ==1.9.*
     , polysemy-http
     , polysemy-plugin ==0.4.*
-    , prelate ==0.6.*
+    , prelate >=0.6 && <0.8
     , servant-client ==0.19.*
     , servant-server ==0.19.*
     , tasty ==1.4.*
@@ -216,13 +216,13 @@ test-suite polysemy-http-test
   ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
       base ==4.*
-    , exon ==1.4.*
+    , exon >=1.4 && <1.6
     , hedgehog >=1.1 && <1.3
     , http-client >=0.5.14 && <0.8
     , polysemy ==1.9.*
     , polysemy-http
     , polysemy-plugin ==0.4.*
-    , prelate ==0.6.*
+    , prelate >=0.6 && <0.8
     , tasty ==1.4.*
     , tasty-hedgehog >=1.3 && <1.5
   mixins:

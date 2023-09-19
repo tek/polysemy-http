@@ -6,9 +6,11 @@
     prelate.url = "git+https://git.tryp.io/tek/prelate";
   };
 
-  outputs = { hix, prelate, ... }: hix.lib.pro ({config, ...}: {
+  outputs = { hix, prelate, ... }: hix.lib.pro ({config, lib, ...}: {
+    ghcVersions = lib.mkForce ["ghc92" "ghc94"];
     hackage.versionFile = "ops/version.nix";
     deps = [prelate];
+    gen-overrides.enable = true;
 
     cabal = {
       license = "BSD-2-Clause-Patent";
@@ -18,7 +20,7 @@
         enable = true;
         package = {
           name = "prelate";
-          version = "^>= 0.6";
+          version = ">= 0.6 && < 0.8";
         };
         module = "Prelate";
       };
@@ -33,8 +35,8 @@
       ghc-options = ["-fplugin=Polysemy.Plugin"];
     };
 
-    overrides = { hackage, source, ... }: {
-      prelate = hackage "0.6.0.0" "01f1xylbzkrmn5f7r3z6idrb6lx6j3ywgnq9bv6cg8kssnj62azk";
+    overrides = {hackage, ...}: {
+      prelate = hackage "0.7.0.0" "0j34hmdni58n99irlqymn7ciiq5q0dmmaq3giivvsxflnhfhxl2b";
     };
 
     packages.polysemy-http = {
@@ -46,7 +48,7 @@
         dependencies = [
           "aeson >= 1.4 && < 2.2"
           "case-insensitive ^>= 1.2"
-          "exon ^>= 1.4"
+          "exon >= 1.4 && < 1.6"
           "http-client >= 0.5.14 && < 0.8"
           "http-client-tls ^>= 0.3.1"
           "http-types ^>= 0.12.3"
@@ -57,7 +59,7 @@
       test = {
         enable = true;
         dependencies = [
-          "exon ^>= 1.4"
+          "exon >= 1.4 && < 1.6"
           "hedgehog >= 1.1 && < 1.3"
           "http-client >= 0.5.14 && < 0.8"
           "tasty ^>= 1.4"
@@ -68,7 +70,7 @@
       tests.integration = {
         dependencies = [
           "aeson >= 1.4 && < 2.2"
-          "exon ^>= 1.4"
+          "exon >= 1.4 && < 1.6"
           "hedgehog >= 1.1 && < 1.3"
           "http-client >= 0.5.14 && < 0.8"
           "network ^>= 3.1"
