@@ -36,7 +36,7 @@
     };
 
     overrides = {hackage, ...}: {
-      prelate = hackage "0.7.0.0" "0j34hmdni58n99irlqymn7ciiq5q0dmmaq3giivvsxflnhfhxl2b";
+      prelate = hackage "0.7.0.1" "0qy0dkckvlbinp1gm85ziiyml0lj57b93qnz23ldjmbj4skcp8s8";
     };
 
     packages.polysemy-http = {
