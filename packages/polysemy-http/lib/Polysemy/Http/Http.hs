@@ -39,7 +39,7 @@ streamHandler ::
   (∀ x . StreamEvent o c h x -> Sem r x) ->
   Response c ->
   Sem r o
-streamHandler chunkSize process response = do
+streamHandler chunkSize process response =
   bracket acquire release (streamLoop chunkSize process response)
   where
     acquire =

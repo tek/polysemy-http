@@ -7,10 +7,57 @@
   };
 
   outputs = { hix, prelate, ... }: hix.lib.pro ({config, lib, ...}: {
-    ghcVersions = lib.mkForce ["ghc92" "ghc94"];
+    ghcVersions = ["ghc94" "ghc96" "ghc98" "ghc910"];
     hackage.versionFile = "ops/version.nix";
     deps = [prelate];
     gen-overrides.enable = true;
+
+    packages.polysemy-http = {
+      src = ./packages/polysemy-http;
+      cabal.meta.synopsis = "Polysemy effects for HTTP clients";
+
+      library = {
+        enable = true;
+        dependencies = [
+          "aeson"
+          "case-insensitive"
+          "exon"
+          "http-client"
+          "http-client-tls"
+          "http-types"
+          "time"
+        ];
+      };
+
+      test = {
+        enable = true;
+        dependencies = [
+          "exon"
+          "hedgehog"
+          "http-client"
+          "tasty"
+          "tasty-hedgehog"
+        ];
+      };
+
+      tests.integration = {
+        dependencies = [
+          "aeson"
+          "exon"
+          "hedgehog"
+          "http-client"
+          "network"
+          "polysemy-test"
+          "servant"
+          "servant-server"
+          "servant-client"
+          "tasty"
+          "tasty-hedgehog"
+          "warp"
+        ];
+      };
+
+    };
 
     cabal = {
       license = "BSD-2-Clause-Patent";
@@ -18,10 +65,7 @@
       author = "Torsten Schmits";
       prelude = {
         enable = true;
-        package = {
-          name = "prelate";
-          version = ">= 0.6 && < 0.8";
-        };
+        package = "prelate";
         module = "Prelate";
       };
       paths = false;
@@ -31,57 +75,43 @@
         extra-source-files = ["readme.md" "changelog.md"];
         github = "tek/polysemy-http";
       };
-      dependencies = ["polysemy ^>= 1.9" "polysemy-plugin ^>= 0.4"];
+      dependencies = ["polysemy" "polysemy-plugin"];
       ghc-options = ["-fplugin=Polysemy.Plugin"];
+      default-extensions = ["StrictData"];
+    };
+
+    managed = {
+      enable = true;
+      lower.enable = true;
+      latest.compiler = "ghc98";
+      envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
+        incipit = jailbreak;
+        polysemy-test = jailbreak unbreak;
+        polysemy-conc = jailbreak;
+        polysemy-log = jailbreak;
+        polysemy-process = unbreak;
+        prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
+      };
+    };
+
+    envs.latest.overrides = {hackage, jailbreak, unbreak, ...}: {
+      incipit = jailbreak;
+      polysemy-test = jailbreak unbreak;
+      polysemy-conc = jailbreak;
+      polysemy-log = jailbreak;
+      polysemy-process = unbreak;
+      prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
+    };
+
+    envs.lower.overrides = {hackage, jailbreak, unbreak, ...}: {
+      polysemy-test = jailbreak unbreak;
+      polysemy-process = unbreak;
+      prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
     };
 
     overrides = {hackage, ...}: {
-      prelate = hackage "0.7.0.1" "0qy0dkckvlbinp1gm85ziiyml0lj57b93qnz23ldjmbj4skcp8s8";
+      prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
     };
 
-    packages.polysemy-http = {
-      src = ./packages/polysemy-http;
-      cabal.meta.synopsis = "Polysemy effects for HTTP clients";
-
-      library = {
-        enable = true;
-        dependencies = [
-          "aeson >= 1.4 && < 2.2"
-          "case-insensitive ^>= 1.2"
-          "exon >= 1.4 && < 1.6"
-          "http-client >= 0.5.14 && < 0.8"
-          "http-client-tls ^>= 0.3.1"
-          "http-types ^>= 0.12.3"
-          "time"
-        ];
-      };
-
-      test = {
-        enable = true;
-        dependencies = [
-          "exon >= 1.4 && < 1.6"
-          "hedgehog >= 1.1 && < 1.3"
-          "http-client >= 0.5.14 && < 0.8"
-          "tasty ^>= 1.4"
-          "tasty-hedgehog >= 1.3 && < 1.5"
-        ];
-      };
-
-      tests.integration = {
-        dependencies = [
-          "aeson >= 1.4 && < 2.2"
-          "exon >= 1.4 && < 1.6"
-          "hedgehog >= 1.1 && < 1.3"
-          "http-client >= 0.5.14 && < 0.8"
-          "network ^>= 3.1"
-          "servant-server ^>= 0.19"
-          "servant-client ^>= 0.19"
-          "tasty ^>= 1.4"
-          "tasty-hedgehog >= 1.3 && < 1.5"
-          "warp ^>= 3.3"
-        ];
-      };
-
-    };
   });
 }

@@ -12,19 +12,19 @@ import Network.HTTP.Client (BodyReader, brRead, brReadSome, httpLbs, responseClo
 import Network.HTTP.Client.Internal (CookieJar (CJ))
 import Polysemy.Internal.Tactics (liftT)
 
-import Polysemy.Http.Data.Header (Header (Header), unHeaderName, unHeaderValue)
+import Polysemy.Http.Data.Header (Header (..), HeaderName (..), HeaderValue (..))
 import qualified Polysemy.Http.Data.HttpError as HttpError
 import Polysemy.Http.Data.HttpError (HttpError)
 import Polysemy.Http.Data.Request (
-  Body (Body),
-  Host (Host),
-  Path (Path),
-  Request (Request),
-  Tls (Tls),
+  Body (..),
+  Host (..),
+  Path (..),
+  Port (..),
+  QueryKey (..),
+  QueryValue (..),
+  Request (..),
+  Tls (..),
   methodUpper,
-  unPort,
-  unQueryKey,
-  unQueryValue,
   )
 import Polysemy.Http.Data.Response (Response (Response))
 import qualified Polysemy.Http.Effect.Http as Http
@@ -48,11 +48,11 @@ nativeRequest (Request method (Host host) portOverride (Tls tls) (Path path) hea
   }
   where
     queryParams =
-      bimap (encodeUtf8 . (.unQueryKey)) (fmap (encodeUtf8 . (.unQueryValue))) <$> query
+      bimap (encodeUtf8 @Text . coerce) (fmap (encodeUtf8 @Text . coerce)) <$> query
     port =
-      maybe (if tls then 443 else 80) (.unPort) portOverride
+      maybe (if tls then 443 else 80) (coerce) portOverride
     encodedHeaders =
-      bimap (CaseInsensitive.mk . encodeUtf8 . (.unHeaderName)) (encodeUtf8 . (.unHeaderValue)) <$> headers
+      bimap (CaseInsensitive.mk . encodeUtf8 @Text . coerce) (encodeUtf8 @Text . coerce) <$> headers
 
 convertResponse :: HTTP.Response b -> Response b
 convertResponse response =

@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.36.1.
 --
 -- see: https://github.com/sol/hpack
 
@@ -13,7 +13,7 @@ homepage:       https://github.com/tek/polysemy-http#readme
 bug-reports:    https://github.com/tek/polysemy-http/issues
 author:         Torsten Schmits
 maintainer:     hackage@tryp.io
-copyright:      2023 Torsten Schmits
+copyright:      2025 Torsten Schmits
 license:        BSD-2-Clause-Patent
 license-file:   LICENSE
 build-type:     Simple
@@ -47,6 +47,7 @@ library
   hs-source-dirs:
       lib
   default-extensions:
+      StrictData
       AllowAmbiguousTypes
       ApplicativeDo
       BlockArguments
@@ -61,6 +62,7 @@ library
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -83,17 +85,17 @@ library
       NoFieldSelectors
   ghc-options: -fplugin=Polysemy.Plugin -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      aeson >=1.4 && <2.2
-    , base ==4.*
-    , case-insensitive ==1.2.*
-    , exon >=1.4 && <1.6
-    , http-client >=0.5.14 && <0.8
-    , http-client-tls >=0.3.1 && <0.4
+      aeson >=2.1.0.0 && <2.3
+    , base >=4.17.2.1 && <4.20
+    , case-insensitive >=1.2.0.11 && <1.3
+    , exon >=1.4.0.0 && <1.8
+    , http-client >=0.7.0 && <0.8
+    , http-client-tls >=0.3.0 && <0.4
     , http-types >=0.12.3 && <0.13
-    , polysemy ==1.9.*
-    , polysemy-plugin ==0.4.*
-    , prelate >=0.6 && <0.8
-    , time
+    , polysemy >=1.9.0.0 && <1.10
+    , polysemy-plugin >=0.4.4.0 && <0.5
+    , prelate >=0.8.0.0 && <0.9
+    , time >=1.12.2 && <1.13
   mixins:
       base hiding (Prelude)
     , prelate (Prelate as Prelude)
@@ -112,6 +114,7 @@ test-suite integration
   hs-source-dirs:
       integration
   default-extensions:
+      StrictData
       AllowAmbiguousTypes
       ApplicativeDo
       BlockArguments
@@ -126,6 +129,7 @@ test-suite integration
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -148,21 +152,23 @@ test-suite integration
       NoFieldSelectors
   ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      aeson >=1.4 && <2.2
-    , base ==4.*
-    , exon >=1.4 && <1.6
-    , hedgehog >=1.1 && <1.3
-    , http-client >=0.5.14 && <0.8
-    , network ==3.1.*
-    , polysemy ==1.9.*
+      aeson >=2.1.0.0 && <2.3
+    , base >=4.17.2.1 && <4.20
+    , exon >=1.4.0.0 && <1.8
+    , hedgehog >=1.2 && <1.5
+    , http-client >=0.7.0 && <0.8
+    , network >=3.1.2.9 && <3.2
+    , polysemy >=1.9.0.0 && <1.10
     , polysemy-http
-    , polysemy-plugin ==0.4.*
-    , prelate >=0.6 && <0.8
-    , servant-client ==0.19.*
-    , servant-server ==0.19.*
+    , polysemy-plugin >=0.4.4.0 && <0.5
+    , polysemy-test >=0.9.0.0
+    , prelate >=0.8.0.0 && <0.9
+    , servant >=0.20.1
+    , servant-client ==0.20.*
+    , servant-server ==0.20.*
     , tasty ==1.4.*
-    , tasty-hedgehog >=1.3 && <1.5
-    , warp ==3.3.*
+    , tasty-hedgehog >=1.4.0.0 && <1.5
+    , warp >=3.4.0 && <3.5
   mixins:
       base hiding (Prelude)
     , prelate (Prelate as Prelude)
@@ -179,6 +185,7 @@ test-suite polysemy-http-test
   hs-source-dirs:
       test
   default-extensions:
+      StrictData
       AllowAmbiguousTypes
       ApplicativeDo
       BlockArguments
@@ -193,6 +200,7 @@ test-suite polysemy-http-test
       GADTs
       LambdaCase
       LiberalTypeSynonyms
+      MonadComprehensions
       MultiWayIf
       OverloadedLabels
       OverloadedLists
@@ -215,16 +223,16 @@ test-suite polysemy-http-test
       NoFieldSelectors
   ghc-options: -fplugin=Polysemy.Plugin -threaded -rtsopts -with-rtsopts=-N -Wall -Widentities -Wincomplete-uni-patterns -Wmissing-deriving-strategies -Wredundant-constraints -Wunused-type-patterns -Wunused-packages
   build-depends:
-      base ==4.*
-    , exon >=1.4 && <1.6
-    , hedgehog >=1.1 && <1.3
-    , http-client >=0.5.14 && <0.8
-    , polysemy ==1.9.*
+      base >=4.17.2.1 && <4.20
+    , exon >=1.4.0.0 && <1.8
+    , hedgehog >=1.2 && <1.5
+    , http-client >=0.7.0 && <0.8
+    , polysemy >=1.9.0.0 && <1.10
     , polysemy-http
-    , polysemy-plugin ==0.4.*
-    , prelate >=0.6 && <0.8
+    , polysemy-plugin >=0.4.4.0 && <0.5
+    , prelate >=0.8.0.0 && <0.9
     , tasty ==1.4.*
-    , tasty-hedgehog >=1.3 && <1.5
+    , tasty-hedgehog >=1.4.0.0 && <1.5
   mixins:
       base hiding (Prelude)
     , prelate (Prelate as Prelude)

@@ -20,8 +20,25 @@ import Network.Socket (
   )
 import qualified Network.Wai.Handler.Warp as Warp
 import Prelude hiding (bracket)
-import Servant (Get, Handler, Header, JSON, PlainText, Post, ReqBody, ServerT, serve, (:<|>) ((:<|>)), (:>))
-import Servant.Client (BaseUrl (BaseUrl), Client, ClientEnv, ClientM, Scheme (Http), client, mkClientEnv, runClientM)
+import Servant (
+  Get,
+  Handler,
+  Header,
+  JSON,
+  NoFraming,
+  PlainText,
+  Post,
+  ReqBody,
+  ServerT,
+  SourceIO,
+  StreamGet,
+  serve,
+  (:<|>) ((:<|>)),
+  (:>),
+  )
+import Servant.Client (BaseUrl (BaseUrl), ClientEnv, Scheme (Http), mkClientEnv)
+import Servant.Client.Streaming (Client, ClientM, client, runClientM)
+import Servant.Types.SourceT (source)
 
 freePort ::
   IO PortNumber
@@ -48,7 +65,7 @@ type Api =
   :<|>
   "add" :> ReqBody '[JSON] Payload :> Post '[JSON] Int
   :<|>
-  "stream" :> Get '[PlainText] Text
+  "stream" :> StreamGet NoFraming PlainText (SourceIO Text)
   :<|>
   "cookie" :> Header "cookie" Text :> Get '[PlainText] Text
 
@@ -72,7 +89,7 @@ server =
   :<|>
   (\ (Payload a b) -> pure (a + b))
   :<|>
-  pure (Text.replicate (10 * 8192) "x")
+  pure (source (replicate 10 (Text.replicate 8192 "x")))
   :<|>
   (\ cookies -> pure (fromMaybe "no cookies" cookies))
 
