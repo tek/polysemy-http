@@ -18,11 +18,11 @@
         upper = "1.8";
       };
       hedgehog = {
-        lower = "1.2";
+        lower = "1.1.2";
         upper = "1.5";
       };
       http-client = {
-        lower = "0.7.0";
+        lower = "0.5.13.1";
         upper = "0.8";
       };
       http-client-tls = {
@@ -46,31 +46,31 @@
         upper = "0.5";
       };
       polysemy-test = {
-        lower = "0.9.0.0";
+        lower = "0.6.0.0";
         upper = null;
       };
       prelate = {
-        lower = "0.8.0.0";
+        lower = "0.5.0.0";
         upper = "0.9";
       };
       servant = {
-        lower = "0.20.1";
+        lower = "0.19.1";
         upper = null;
       };
       servant-client = {
-        lower = "0.20";
+        lower = "0.19";
         upper = "0.21";
       };
       servant-server = {
-        lower = "0.20";
+        lower = "0.19.2";
         upper = "0.21";
       };
       tasty = {
-        lower = "1.4";
+        lower = "1.2.2";
         upper = "1.5";
       };
       tasty-hedgehog = {
-        lower = "1.4.0.0";
+        lower = "1.3.0.0";
         upper = "1.5";
       };
       time = {
@@ -78,7 +78,7 @@
         upper = "1.13";
       };
       warp = {
-        lower = "3.4.0";
+        lower = "3.3.21";
         upper = "3.5";
       };
     };
@@ -109,22 +109,22 @@
       base = "4.17.2.1";
       case-insensitive = "1.2.0.11";
       exon = "1.4.0.0";
-      hedgehog = "1.2";
-      http-client = "0.7.0";
+      hedgehog = "1.1.2";
+      http-client = "0.5.13.1";
       http-client-tls = "0.3.0";
       http-types = "0.12.3";
       network = "3.1.2.9";
       polysemy = "1.9.0.0";
       polysemy-plugin = "0.4.4.0";
-      polysemy-test = "0.9.0.0";
-      prelate = "0.8.0.0";
-      servant = "0.20.1";
-      servant-client = "0.20";
-      servant-server = "0.20";
-      tasty = "1.4";
-      tasty-hedgehog = "1.4.0.0";
+      polysemy-test = "0.6.0.0";
+      prelate = "0.5.0.0";
+      servant = "0.19.1";
+      servant-client = "0.19";
+      servant-server = "0.19.2";
+      tasty = "1.2.2";
+      tasty-hedgehog = "1.3.0.0";
       time = "1.12.2";
-      warp = "3.4.0";
+      warp = "3.3.21";
     };
   };
   initial = {
@@ -295,6 +295,10 @@
         version = "0.3.1";
         hash = "0qjdz2fxxszbns7cszhnkwm8x8l3xlnad6iydx2snfi416sypiy0";
       };
+      constraints = {
+        version = "0.13.4";
+        hash = "0lzg6adirmig37246cpbak6rk459kdfi312kc0rpcapk660zp9ws";
+      };
       contiguous = {
         version = "0.6.4.2";
         hash = "1vkqnggzniw24241lrmww7bmpprcpn12z5rrskxpq33wmad3wvsz";
@@ -312,8 +316,8 @@
         hash = "0z9q5qb3yz4phvj1wq06dld745m98yk4gvkmj1vkq7hda0mn182a";
       };
       free = {
-        version = "5.2";
-        hash = "0b646kh0jwyswi548z1maqjircac4c80zfm0fz06jr0yd0ydrjq1";
+        version = "5.1.10";
+        hash = "1s67yl7wnrxnljmpyihwlaj40h3rayymd9nqx9z0s05nlga2xsll";
       };
       generic-lens = {
         version = "2.2.2.0";
@@ -332,20 +336,20 @@
         hash = "0ccwgfkb1n31wwfysdhc1mqpcnnxnczwmz3d4avm9yn9a5m1nh4s";
       };
       hedgehog = {
-        version = "1.2";
-        hash = "1jak5p9qhnv8zq761wxbdygpj107llpi66m6d7hiaywymqq47giw";
+        version = "1.1.2";
+        hash = "0zp9al4d4h3vf2h7cqf6zmvzpmjr7w69kcp7fmw97m9c7h7ggniv";
       };
       hsc2hs = {
         version = "0.68.10";
         hash = "0wdg17kicnp6qbgynha216vihx7nnsglvhn5c089dqpa14hg35zw";
       };
       http-api-data = {
-        version = "0.5.1";
-        hash = "0mk0dkfq6rrrw4kh5c4b68ykzaynh2w7gkqbxffs220cbjipapva";
+        version = "0.5";
+        hash = "1ibh9zlj4s7q5wfryfj2b83kipl8fnvfli74p8293304prsj0hkz";
       };
       http-client = {
-        version = "0.7.0";
-        hash = "1hr6a1rfksaddw3cvi4g40jq5xn2mxpcd9309v8fxbiw66hbs7bh";
+        version = "0.5.13.1";
+        hash = "0xrs5l0n8jw4v7ckw5gvv7ijdwd0c1jl0196n5x84nhnx7jbqj7c";
       };
       http-client-tls = {
         version = "0.3.0";
@@ -359,21 +363,17 @@
         version = "0.8.1.1";
         hash = "10rxh1brpi9gsjrhgf5227z1gxrliipmiagp6j300jdgpf3rk8f3";
       };
-      http-semantics = {
-        version = "0.0.0";
-        hash = "0jdlakynqm1vm22kb1g1g1mh7h0ihk7mx8l2zzvdaqmqn10lwmh4";
-      };
       http-types = {
         version = "0.12.3";
         hash = "0239y1r25n7wnnf2ci5lajj0rf35j2ywa07f9lpccnry13zbh8dv";
       };
       http2 = {
-        version = "5.2.0";
-        hash = "12zrgymnbsc9ybz1mz0a183vzrpawrsv9hmhhsnrbxqc2im6g52k";
+        version = "3.0.3";
+        hash = "150511gq5cljkdrvkxxb4cw3yrs530p9p3nzgbip3bzrqjfm2b9k";
       };
       incipit = {
-        version = "0.10.0.1";
-        hash = "0vr1balwy6v9l15pjlyy372w0scli1wcl6395jqdkjncqm3ymdin";
+        version = "0.7.0.0";
+        hash = "1gwca88qldfn7qmx0wmpcpasr8qajyppijj8ahif8lav3pf37gvn";
       };
       incipit-core = {
         version = "0.5.1.0";
@@ -395,13 +395,13 @@
         version = "5.2.6";
         hash = "1yl3w6a99k56qk72wnlxmd61j9k00i8rvjx8h7cgdi60ib2w7a7k";
       };
+      lifted-async = {
+        version = "0.10.2.7";
+        hash = "0cgzs8sfr3l7ah5nnscpp50v5mmvc4hqf02zdi4h344dbbha10fy";
+      };
       network = {
         version = "3.1.2.9";
         hash = "0cqiv0fjsa6yi1kqal6q290bx5nakp4yayq98b6p6rmmgzv96xfy";
-      };
-      network-control = {
-        version = "0.1.4";
-        hash = "00kb50jj14661p0bfb2hgzrq93z9rjch082hp6wda65hvgxfz289";
       };
       optparse-applicative = {
         version = "0.18.1.0";
@@ -412,8 +412,8 @@
         hash = "05b84rizmrii847pq2fbvlpna796bwxha1vc01c3vxb2rhrknrf7";
       };
       path-io = {
-        version = "1.8.2";
-        hash = "063ma7gzqr5c6s8a1yv72jgll3xdajvgclbc8w0ddmqgcrb62x2k";
+        version = "1.7.0";
+        hash = "03gpa5x3fbn79bs18bl9nm394slrhc8cd2cydwca8l7yldcmy1i9";
       };
       polysemy = {
         version = "1.9.0.0";
@@ -424,36 +424,36 @@
         hash = "1wvjpl2axxhywjj7z1hjg16sxldq0x63md4rzf1mvdn8067mg35s";
       };
       polysemy-conc = {
-        version = "0.14.1.1";
-        hash = "1xli6ja9f7qx2k9956lw4h9y5ywdglhgw769afxw9d4w9avclx28";
+        version = "0.12.1.0";
+        hash = "0cm2hkr58fhxr2w5pmq01m66qmd1yfzikjx5v7c0xsk8mdjv9f6g";
       };
       polysemy-log = {
-        version = "0.11.0.0";
-        hash = "1phzwj2ig0vx1anscg3qv53ysa0f7gks37pc8gfkh2aws3qp6cda";
+        version = "0.9.0.0";
+        hash = "0ymgd7lzlgzwi895l4p754qwdy72c1g13b8drn5a970ym7zcklpg";
       };
       polysemy-plugin = {
         version = "0.4.4.0";
         hash = "08ry72bw78fis9iallzw6wsrzxnlmayq2k2yy0j79hpw4sp8knmg";
       };
       polysemy-process = {
-        version = "0.14.1.1";
-        hash = "1qvbkldhai77r2pr7wbznsb9pr0pawynmvcd31v3v8jpki3xaycr";
+        version = "0.12.1.0";
+        hash = "17hs8grh5ppbdf2vp63flwb0kahyp776jqh4c6c1amwfja4b2avc";
       };
       polysemy-resume = {
-        version = "0.9.0.1";
-        hash = "1i2bnpd3l357jhln8xl92z65b3mskz9y8z1xlha4lm0m855qyk15";
+        version = "0.7.0.0";
+        hash = "1b9agh2qd0nrbd7cc5iabkzjb7g9lnzzy3pprvn33hr54va9p928";
       };
       polysemy-test = {
-        version = "0.9.0.0";
-        hash = "1adkp48v04klsjyv8846w7ryf1fiqxb4ga69mps9vg2bp9fj5i7j";
+        version = "0.6.0.0";
+        hash = "07pi549ral22sxhja67k5b9v787q0b32ysp0bq9szhwjqgxsab46";
       };
       polysemy-time = {
         version = "0.6.0.2";
         hash = "198x2wimdzk93hz0bq2k7wjibcjvzm38m6fica1jfcbh4p531swp";
       };
       prelate = {
-        version = "0.8.0.0";
-        hash = "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
+        version = "0.5.0.0";
+        hash = "0zs75i3ij4a82aqk4i324nrn5g3vclkspgrd8qdm9jj73pvq8za5";
       };
       prettyprinter-ansi-terminal = {
         version = "1.1.3";
@@ -479,13 +479,9 @@
         version = "5.6.2";
         hash = "19gnn2br16x52lmvfjj06xblsks0wz3081z0jf0jydncbgm6kfan";
       };
-      recv = {
-        version = "0.1.0";
-        hash = "0nsis8kzq86vck8v932c53gp3ci9i0zbkny4il080rd6pxhmq1mm";
-      };
       resourcet = {
-        version = "1.3.0";
-        hash = "0ffmm850z3n95vyj33gfqk606kfn6d50b9bnylqn8y4zrcv5yjmk";
+        version = "1.2.6";
+        hash = "0k96r6mx6zf0nr5y7xjzyhizx80svjfa3a47hcyys10y08rgqvln";
       };
       run-st = {
         version = "0.1.3.3";
@@ -504,24 +500,28 @@
         hash = "0sknyh441xrna6w6d65j189n59najbp8h7g2ndr9qswxh7z2qaf1";
       };
       servant = {
-        version = "0.20.1";
-        hash = "0sfm498h5n0ffwfx6fwrjxif6j34mcy0h91kpq9y3asyaaqw76y2";
+        version = "0.19.1";
+        hash = "1bb06s6b6wfd3il5jc04h0qlg7w4260kqd05y7jd8x70h1hx8nm7";
       };
       servant-client = {
-        version = "0.20";
-        hash = "0iv254h277vfmmwq14807bcdwyi0xccs6dl5k75gqgwn3aawza11";
+        version = "0.19";
+        hash = "1l0yjal6piigx7makvg8xgn1gz90fjr8kflsaf8ilkvlfrglfqmz";
       };
       servant-client-core = {
-        version = "0.20";
-        hash = "0yp41xpvzrqazjvmlvfj0hs19ilsxwwsv3bkxzc3kd3i841bbr98";
+        version = "0.19";
+        hash = "0z20rmavxajq2fv7889x17gym4c7hkllmp5xzmw25c9pcjkq96zx";
       };
       servant-server = {
-        version = "0.20";
-        hash = "0ryjsm35qnmkrz9mdm34irvphx0s8898a6kz041akjn6hry09dcj";
+        version = "0.19.2";
+        hash = "18gb42ym5q34v7ny0xs0mlwf9z4n6jk63fsacw124039b8yami8w";
       };
       simple-sendfile = {
         version = "0.2.31";
         hash = "0cxxgg46b709lk5302jcipipg0yx0aqlzn5h28a6ds9sk3lx6rsi";
+      };
+      singleton-bool = {
+        version = "0.1.6";
+        hash = "1pycigjhy86c8v6np7hdrp9m5cgzvmyk1gjgvif89pv3s513mww3";
       };
       socks = {
         version = "0.6.1";
@@ -540,12 +540,16 @@
         hash = "06rfwj2bb8m2by6h2xja69r45rghmil9ali5i89khfh46nnadjpq";
       };
       tasty = {
-        version = "1.4";
-        hash = "0wmnc2538ia9vgz8394hg6wjfd4zxgyfk4k6j5gdhic6hpjfdw7f";
+        version = "1.2.2";
+        hash = "07vyy71nxl7q00akjcghsqd1lz9yf7lfr9kicr2q4ydfj9xkv8bw";
       };
       tasty-hedgehog = {
-        version = "1.4.0.0";
-        hash = "131zswqfl4azl6ylxlqpr5ilr0l6qvjs2va21mf0246pgf9dvpdx";
+        version = "1.3.0.0";
+        hash = "17q94i4rwdp1bc2wg5r8pblp8i74ivhc4nqih4w5ncmvhws0syix";
+      };
+      text-short = {
+        version = "0.1.6";
+        hash = "08rwbc2zcvbvswvy0kp14jg2wq08ls6m6grywp0srjipavzx11s3";
       };
       th-abstraction = {
         version = "0.4.5.0";
@@ -578,6 +582,10 @@
       tuples = {
         version = "0.1.0.0";
         hash = "1cn7cjrsigimwmxnw1jm1fvaw5r9k4dia9jwwbc0yx7wc9rj8gyx";
+      };
+      type-equality = {
+        version = "1.0.1";
+        hash = "1447aajfr8hv99zgv8n1f5jblfqb498cnlxz9smrvz4d4rc24mvi";
       };
       type-errors = {
         version = "0.2.0.2";
@@ -612,16 +620,16 @@
         hash = "1kwvzy9w4v76q5bk4xwq7kz9q9l8867my6zvsv731x6xkhy7wr2c";
       };
       wai-extra = {
-        version = "3.1.17";
-        hash = "0lvsv014k2fpd3rm99qkfkh47zic7wg39zgv7g7ll06515ly23w9";
+        version = "3.1.12.1";
+        hash = "0lqcvc1akb3n2ldnzafjmrybzvy8386hz1bixi05awrv89d12q9m";
       };
       wai-logger = {
         version = "2.5.0";
         hash = "1l0gspzbwkrs1dqay2rv5wz1gg49a31l3vyl741b2j2apkgamf3p";
       };
       warp = {
-        version = "3.4.0";
-        hash = "1iskx4vxb3f8b0qfqwxyljgv801sh9jw3kfc1vxxr0j0zlvy3j7r";
+        version = "3.3.21";
+        hash = "1pm3dyd2pkby8ssbpsa9vf11vzsvphljsg10wraxyi2q3cqzlyhv";
       };
       wcwidth = {
         version = "0.0.2";
