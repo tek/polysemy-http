@@ -6,7 +6,30 @@
     prelate.url = "git+https://git.tryp.io/tek/prelate";
   };
 
-  outputs = { hix, prelate, ... }: hix.lib.pro ({config, lib, ...}: {
+  outputs = { hix, prelate, ... }: hix.lib.pro ({config, lib, ...}: let
+
+    jailbreaks910 = {hackage, jailbreak, unbreak, ...}: {
+      bytebuild = jailbreak;
+      chronos = jailbreak;
+      incipit = jailbreak;
+      incipit-base = jailbreak;
+      incipit-core = jailbreak;
+      polysemy-chronos = jailbreak;
+      polysemy-conc = jailbreak;
+      polysemy-log = jailbreak;
+      polysemy-process = jailbreak unbreak;
+      polysemy-resume = jailbreak;
+      polysemy-test = jailbreak unbreak;
+      polysemy-time = jailbreak;
+    };
+
+    overrides910 = api@{hackage, jailbreak, unbreak, ...}: jailbreaks910 api // {
+      byte-order = jailbreak;
+      exon = hackage "1.7.1.0" "16vf84nnpivxw4a46g7jsy2hg4lpla7grkv3gp8nd69zlv43777l";
+      prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
+    };
+
+  in {
     ghcVersions = ["ghc94" "ghc96" "ghc98" "ghc910"];
     hackage.versionFile = "ops/version.nix";
     deps = [prelate];
@@ -47,7 +70,6 @@
           "hedgehog"
           "http-client"
           "network"
-          "polysemy-test"
           "servant"
           "servant-server"
           "servant-client"
@@ -83,30 +105,18 @@
     managed = {
       enable = true;
       lower.enable = true;
-      latest.compiler = "ghc98";
-      envs.solverOverrides = {hackage, jailbreak, unbreak, ...}: {
-        incipit = jailbreak;
-        polysemy-test = jailbreak unbreak;
-        polysemy-conc = jailbreak;
-        polysemy-log = jailbreak;
-        polysemy-process = unbreak;
-        prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
-      };
+      latest.compiler = "ghc910";
+      envs.solverOverrides = overrides910;
+      envs.verbatim.globalOverrides = true;
     };
 
-    envs.latest.overrides = {hackage, jailbreak, unbreak, ...}: {
-      incipit = jailbreak;
-      polysemy-test = jailbreak unbreak;
-      polysemy-conc = jailbreak;
-      polysemy-log = jailbreak;
-      polysemy-process = unbreak;
-      prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
-    };
+    envs.latest.overrides = jailbreaks910;
+
+    envs.ghc910.overrides = overrides910;
 
     envs.lower.overrides = {hackage, jailbreak, unbreak, ...}: {
       polysemy-test = jailbreak unbreak;
       polysemy-process = unbreak;
-      prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
     };
 
     overrides = {hackage, ...}: {

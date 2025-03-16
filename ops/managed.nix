@@ -7,7 +7,7 @@
       };
       base = {
         lower = "4.17.2.1";
-        upper = "4.20";
+        upper = "4.21";
       };
       case-insensitive = {
         lower = "1.2.0.11";
@@ -19,7 +19,7 @@
       };
       hedgehog = {
         lower = "1.1.2";
-        upper = "1.5";
+        upper = "1.6";
       };
       http-client = {
         lower = "0.5.13.1";
@@ -45,17 +45,13 @@
         lower = "0.4.4.0";
         upper = "0.5";
       };
-      polysemy-test = {
-        lower = "0.6.0.0";
-        upper = null;
-      };
       prelate = {
         lower = "0.5.0.0";
         upper = "0.9";
       };
       servant = {
         lower = "0.19.1";
-        upper = null;
+        upper = "0.21";
       };
       servant-client = {
         lower = "0.19";
@@ -67,7 +63,7 @@
       };
       tasty = {
         lower = "1.2.2";
-        upper = "1.5";
+        upper = "1.6";
       };
       tasty-hedgehog = {
         lower = "1.3.0.0";
@@ -86,20 +82,21 @@
   versions = {
     latest = {
       aeson = "2.2.3.0";
-      base = "4.19.2.0";
+      base = "4.20.0.0";
       case-insensitive = "1.2.1.0";
       exon = "1.7.2.0";
-      hedgehog = "1.4";
+      hedgehog = "1.5";
       http-client = "0.7.18";
       http-client-tls = "0.3.6.4";
       http-types = "0.12.4";
       network = "3.1.4.0";
       polysemy = "1.9.2.0";
-      polysemy-plugin = "0.4.5.2";
+      polysemy-plugin = "0.4.5.3";
       prelate = "0.8.0.0";
+      servant = "0.20.2";
       servant-client = "0.20.2";
       servant-server = "0.20.2";
-      tasty = "1.4.3";
+      tasty = "1.5.3";
       tasty-hedgehog = "1.4.0.2";
       time = "1.12.2";
       warp = "3.4.7";
@@ -116,7 +113,6 @@
       network = "3.1.2.9";
       polysemy = "1.9.0.0";
       polysemy-plugin = "0.4.4.0";
-      polysemy-test = "0.6.0.0";
       prelate = "0.5.0.0";
       servant = "0.19.1";
       servant-client = "0.19";
@@ -140,7 +136,6 @@
       network = "3.1.2.9";
       polysemy = "1.9.0.0";
       polysemy-plugin = "0.4.4.0";
-      polysemy-test = "0.9.0.0";
       prelate = "0.8.0.0";
       servant = "0.20.1";
       servant-client = "0.20";
@@ -153,9 +148,9 @@
   };
   overrides = {
     latest = {
-      auto-update = {
-        version = "0.2.6";
-        hash = "0sp25j3fcgmfr2zv1ccg1id1iynj3azinjg23g0vy1m1m7gnmkzi";
+      cabal-doctest = {
+        version = "1.0.11";
+        hash = "152rqpicqpvigjpy4rf1kjlwny1c7ys1r0r123wdjafvv1igflii";
       };
       exon = {
         version = "1.7.2.0";
@@ -165,6 +160,10 @@
         version = "3.2.5";
         hash = "0872c6clb0p7js9g3p8xn2xfr97d0zqi8rp8zlxl5hpy5q32jlli";
       };
+      hedgehog = {
+        version = "1.5";
+        hash = "1hz8xrg5p6vplvcj8c7pgidqnwqjmqahs9dla50nqpbcbdh932ll";
+      };
       http-client = {
         version = "0.7.18";
         hash = "0dchgz63m1n6v32ph275r3hlv5grz54zlfcgwiaipai3b45imiks";
@@ -173,17 +172,13 @@
         version = "0.3.6.4";
         hash = "1f8br94l5kywpsfvpmw54b1v6nx1yapslzrwiswsf6vf8kwfjjzg";
       };
-      http-semantics = {
-        version = "0.3.0";
-        hash = "0ghj37jr5bsz047p6i66ddkwc9mxkfpbw14nd54slmj1lpwn5z4a";
+      polysemy-plugin = {
+        version = "0.4.5.3";
+        hash = "1c2agk21jj7fwdj6xkagq0prvxknp3zr6q1f480wizssibcvm7y6";
       };
-      http2 = {
-        version = "5.3.9";
-        hash = "19lzz6y1rzsbyfswfp9zg9gszmimvfib72dg60x6f19lvmnziga8";
-      };
-      network-control = {
-        version = "0.1.4";
-        hash = "00kb50jj14661p0bfb2hgzrq93z9rjch082hp6wda65hvgxfz289";
+      polysemy-test = {
+        version = "0.10.0.1";
+        hash = "1sp9iag1brknmdy0qvmgnmynwc4gbg1jy21w584x1m2hpqi25p6j";
       };
       prelate = {
         version = "0.8.0.0";
@@ -197,9 +192,13 @@
         version = "0.20.2";
         hash = "1xp86ha73fkqbsxyycr0wga0k106vfb4kpjyzh055l2qb47kyj9j";
       };
-      time-manager = {
-        version = "0.2.2";
-        hash = "1ja8pimvy07b05ifkrg6q0lzs3kh0k2dmncwjdxl81199r559vf5";
+      tasty = {
+        version = "1.5.3";
+        hash = "1xjlmgsww34asjl9rcwbziw5l4qqbvi5l4b7qvzf4dc7hqkpq1rs";
+      };
+      tasty-hedgehog = {
+        version = "1.4.0.2";
+        hash = "04kg2qdnsqzzmj3xggy2jcgidlp21lsjkz4sfnbq7b1yhrv2vbbc";
       };
       wai-app-static = {
         version = "3.1.9";
@@ -212,10 +211,6 @@
       wai-logger = {
         version = "2.5.0";
         hash = "1l0gspzbwkrs1dqay2rv5wz1gg49a31l3vyl741b2j2apkgamf3p";
-      };
-      warp = {
-        version = "3.4.7";
-        hash = "1bc3g094d2j0w6wkh1g1hw0br3kcl4v3mczmyxhq2rcpkzwqjwa1";
       };
     };
     lower = {
