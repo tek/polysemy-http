@@ -89,12 +89,12 @@ library
     , base >=4.17.2.1 && <4.20
     , case-insensitive >=1.2.0.11 && <1.3
     , exon >=1.4.0.0 && <1.8
-    , http-client >=0.7.0 && <0.8
+    , http-client >=0.5.13.1 && <0.8
     , http-client-tls >=0.3.0 && <0.4
     , http-types >=0.12.3 && <0.13
     , polysemy >=1.9.0.0 && <1.10
     , polysemy-plugin >=0.4.4.0 && <0.5
-    , prelate >=0.8.0.0 && <0.9
+    , prelate >=0.5.0.0 && <0.9
     , time >=1.12.2 && <1.13
   mixins:
       base hiding (Prelude)
@@ -155,20 +155,20 @@ test-suite integration
       aeson >=2.1.0.0 && <2.3
     , base >=4.17.2.1 && <4.20
     , exon >=1.4.0.0 && <1.8
-    , hedgehog >=1.2 && <1.5
-    , http-client >=0.7.0 && <0.8
+    , hedgehog >=1.1.2 && <1.5
+    , http-client >=0.5.13.1 && <0.8
     , network >=3.1.2.9 && <3.2
     , polysemy >=1.9.0.0 && <1.10
     , polysemy-http
     , polysemy-plugin >=0.4.4.0 && <0.5
-    , polysemy-test >=0.9.0.0
-    , prelate >=0.8.0.0 && <0.9
-    , servant >=0.20.1
-    , servant-client ==0.20.*
-    , servant-server ==0.20.*
-    , tasty ==1.4.*
-    , tasty-hedgehog >=1.4.0.0 && <1.5
-    , warp >=3.4.0 && <3.5
+    , polysemy-test >=0.6.0.0
+    , prelate >=0.5.0.0 && <0.9
+    , servant >=0.19.1
+    , servant-client >=0.19 && <0.21
+    , servant-server >=0.19.2 && <0.21
+    , tasty >=1.2.2 && <1.5
+    , tasty-hedgehog >=1.3.0.0 && <1.5
+    , warp >=3.3.21 && <3.5
   mixins:
       base hiding (Prelude)
     , prelate (Prelate as Prelude)
@@ -225,14 +225,14 @@ test-suite polysemy-http-test
   build-depends:
       base >=4.17.2.1 && <4.20
     , exon >=1.4.0.0 && <1.8
-    , hedgehog >=1.2 && <1.5
-    , http-client >=0.7.0 && <0.8
+    , hedgehog >=1.1.2 && <1.5
+    , http-client >=0.5.13.1 && <0.8
     , polysemy >=1.9.0.0 && <1.10
     , polysemy-http
     , polysemy-plugin >=0.4.4.0 && <0.5
-    , prelate >=0.8.0.0 && <0.9
-    , tasty ==1.4.*
-    , tasty-hedgehog >=1.4.0.0 && <1.5
+    , prelate >=0.5.0.0 && <0.9
+    , tasty >=1.2.2 && <1.5
+    , tasty-hedgehog >=1.3.0.0 && <1.5
   mixins:
       base hiding (Prelude)
     , prelate (Prelate as Prelude)
