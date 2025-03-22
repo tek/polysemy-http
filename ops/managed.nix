@@ -86,7 +86,7 @@
       case-insensitive = "1.2.1.0";
       exon = "1.7.2.0";
       hedgehog = "1.5";
-      http-client = "0.7.18";
+      http-client = "0.7.19";
       http-client-tls = "0.3.6.4";
       http-types = "0.12.4";
       network = "3.1.4.0";
@@ -165,8 +165,8 @@
         hash = "1hz8xrg5p6vplvcj8c7pgidqnwqjmqahs9dla50nqpbcbdh932ll";
       };
       http-client = {
-        version = "0.7.18";
-        hash = "0dchgz63m1n6v32ph275r3hlv5grz54zlfcgwiaipai3b45imiks";
+        version = "0.7.19";
+        hash = "1qciglcaik1a96flj07fhqx2h692kgcv63hinffr35ka22wrg3i9";
       };
       http-client-tls = {
         version = "0.3.6.4";

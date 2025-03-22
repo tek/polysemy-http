@@ -275,8 +275,8 @@ mkDerivation {
 ;
   http-client = {
   meta = {
-    sha256 = "0dchgz63m1n6v32ph275r3hlv5grz54zlfcgwiaipai3b45imiks";
-    ver = "0.7.18";
+    sha256 = "1qciglcaik1a96flj07fhqx2h692kgcv63hinffr35ka22wrg3i9";
+    ver = "0.7.19";
   };
   drv = { mkDerivation, array, async, base, base64-bytestring
 , blaze-builder, bytestring, case-insensitive, containers, cookie
@@ -287,8 +287,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "http-client";
-  version = "0.7.18";
-  src = /nix/store/y2gjdz3hcl4k474lxaq7kqqybkacp4wd-source;
+  version = "0.7.19";
+  src = /nix/store/62hi01g26a69zq8zj61cx5xhbg3fdy1g-source;
   libraryHaskellDepends = [
     array async base base64-bytestring blaze-builder bytestring
     case-insensitive containers cookie deepseq exceptions filepath
