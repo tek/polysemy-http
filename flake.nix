@@ -106,18 +106,9 @@
       enable = true;
       lower.enable = true;
       latest.compiler = "ghc910";
-      envs.solverOverrides = overrides910;
-      envs.verbatim.globalOverrides = true;
     };
-
-    envs.latest.overrides = jailbreaks910;
 
     envs.ghc910.overrides = overrides910;
-
-    envs.lower.overrides = {hackage, jailbreak, unbreak, ...}: {
-      polysemy-test = jailbreak unbreak;
-      polysemy-process = unbreak;
-    };
 
     overrides = {hackage, ...}: {
       prelate = hackage "0.8.0.0" "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
