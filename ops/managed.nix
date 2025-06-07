@@ -97,13 +97,13 @@
       polysemy = "1.9.2.0";
       polysemy-plugin = "0.4.5.3";
       prelate = "0.8.0.0";
-      servant = "0.20.2";
-      servant-client = "0.20.2";
-      servant-server = "0.20.2";
+      servant = "0.20.3.0";
+      servant-client = "0.20.3.0";
+      servant-server = "0.20.3.0";
       tasty = "1.5.3";
       tasty-hedgehog = "1.4.0.2";
       time = "1.12.2";
-      warp = "3.4.7";
+      warp = "3.4.8";
     };
     lower = {
       aeson = "2.1.0.0";
@@ -177,6 +177,11 @@
       fast-logger = {
         version = "3.2.5";
         hash = "0872c6clb0p7js9g3p8xn2xfr97d0zqi8rp8zlxl5hpy5q32jlli";
+        repo = "hackage.haskell.org";
+      };
+      generics-sop = {
+        version = "0.5.1.4";
+        hash = "0ai089kly1cajn4djqnplkg2jmnapqlb3crrsyvfnadcyzc9h3km";
         repo = "hackage.haskell.org";
       };
       hedgehog = {
@@ -262,14 +267,24 @@
         hash = "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
         repo = "hackage.haskell.org";
       };
+      servant = {
+        version = "0.20.3.0";
+        hash = "0vgppwv8fzfi1wc7n72lqrj49xfn8ymjh1balpsphhj4bc7n6lvi";
+        repo = "hackage.haskell.org";
+      };
       servant-client = {
-        version = "0.20.2";
-        hash = "06z73lqxfp4r5rfv9xfb7a0vr2k2aia95qfcg21rwzyhrc77fndk";
+        version = "0.20.3.0";
+        hash = "0xlf354mcvg3cg8nqfi1aqfym686qcyy1yv46fg9fxchms9njczr";
+        repo = "hackage.haskell.org";
+      };
+      servant-client-core = {
+        version = "0.20.3.0";
+        hash = "0yv0asv77zjclnvadjb2hxjghnmz5rnba4akg237x3ssh50i52ca";
         repo = "hackage.haskell.org";
       };
       servant-server = {
-        version = "0.20.2";
-        hash = "1xp86ha73fkqbsxyycr0wga0k106vfb4kpjyzh055l2qb47kyj9j";
+        version = "0.20.3.0";
+        hash = "053d5j5sxki31v8d5b73jx53bfhz76pm8xyb99n0rk1gxc8rg18x";
         repo = "hackage.haskell.org";
       };
       tasty = {
@@ -295,6 +310,11 @@
       wai-logger = {
         version = "2.5.0";
         hash = "1l0gspzbwkrs1dqay2rv5wz1gg49a31l3vyl741b2j2apkgamf3p";
+        repo = "hackage.haskell.org";
+      };
+      warp = {
+        version = "3.4.8";
+        hash = "1sx9kv01ic8d588sfzn6hrbl0g0nnmz864xslrgviw0krix9v6i5";
         repo = "hackage.haskell.org";
       };
     };
