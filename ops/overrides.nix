@@ -170,6 +170,33 @@ hix-build-tools = {
 hls = {
 };
 latest = {
+  base16-bytestring = {
+  meta = {
+    sha256 = "0r3p5q5zxcrk5cbnwdcm435pgx3yjv3slidpjxdsvigdxizq4fyv";
+    url = "https://hackage.haskell.org";
+    ver = "1.0.2.0";
+  };
+  drv = { mkDerivation, base, bytestring, criterion, deepseq, HUnit, lib
+, QuickCheck, test-framework, test-framework-hunit
+, test-framework-quickcheck2
+}:
+mkDerivation {
+  pname = "base16-bytestring";
+  version = "1.0.2.0";
+  src = /nix/store/shvmdimg1b58p4i0zja0x71lq0yn8w13-source;
+  libraryHaskellDepends = [ base bytestring ];
+  testHaskellDepends = [
+    base bytestring HUnit QuickCheck test-framework
+    test-framework-hunit test-framework-quickcheck2
+  ];
+  benchmarkHaskellDepends = [ base bytestring criterion deepseq ];
+  homepage = "http://github.com/haskell/base16-bytestring";
+  description = "RFC 4648-compliant Base16 encodings for ByteStrings";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   bytebuild = {
   meta = {
     sha256 = "0r14dmwywpr91qrnck3lb269hn8nmfmfwww11yglggn6fmjv6ks7";
@@ -225,6 +252,36 @@ mkDerivation {
 ;
 }
 ;
+  cborg = {
+  meta = {
+    sha256 = "01brd08j3vr163l3v9cg1yq3sr4m5nfdadgg7dc3i2ksmfyj60bl";
+    url = "https://hackage.haskell.org";
+    ver = "0.2.10.0";
+  };
+  drv = { mkDerivation, aeson, array, base, base-orphans, base16-bytestring
+, base64-bytestring, bytestring, containers, deepseq, ghc-bignum
+, ghc-prim, half, lib, primitive, QuickCheck, random, scientific
+, tasty, tasty-hunit, tasty-quickcheck, text, vector
+}:
+mkDerivation {
+  pname = "cborg";
+  version = "0.2.10.0";
+  src = /nix/store/xv89xq355wjkfccjh203zbzlq1s4rhag-source;
+  libraryHaskellDepends = [
+    array base bytestring containers deepseq ghc-bignum ghc-prim half
+    primitive text
+  ];
+  testHaskellDepends = [
+    aeson array base base-orphans base16-bytestring base64-bytestring
+    bytestring deepseq half primitive QuickCheck random scientific
+    tasty tasty-hunit tasty-quickcheck text vector
+  ];
+  description = "Concise Binary Object Representation (CBOR)";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   chronos = {
   meta = {
     sha256 = "037h68ji0f362irn9n9qwvr7d1ff6inpbc8d5wa4d63223713k9m";
@@ -256,6 +313,52 @@ mkDerivation {
   ];
   homepage = "https://github.com/byteverse/chronos";
   description = "A high-performance time library";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  crypton-connection = {
+  meta = {
+    sha256 = "1l5yr5nck4vyi55pyc7j1zarfcs196gbxjlwljs7s7v2r3h43jcc";
+    url = "https://hackage.haskell.org";
+    ver = "0.4.5";
+  };
+  drv = { mkDerivation, base, bytestring, containers, crypton-socks
+, crypton-x509-store, crypton-x509-system, data-default, lib
+, network, tls
+}:
+mkDerivation {
+  pname = "crypton-connection";
+  version = "0.4.5";
+  src = /nix/store/19svh548rwpqfdj2wqjwb2d7vc5jnr8z-source;
+  libraryHaskellDepends = [
+    base bytestring containers crypton-socks crypton-x509-store
+    crypton-x509-system data-default network tls
+  ];
+  homepage = "https://github.com/kazu-yamamoto/crypton-connection";
+  description = "Simple and easy network connection API";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  crypton-socks = {
+  meta = {
+    sha256 = "1cbshd13dmc0092cani21hqyi3w22whvxah94yqsy4nqwmyihvlv";
+    url = "https://hackage.haskell.org";
+    ver = "0.6.2";
+  };
+  drv = { mkDerivation, base, bytestring, cereal, lib, network }:
+mkDerivation {
+  pname = "crypton-socks";
+  version = "0.6.2";
+  src = /nix/store/gl2l6474k14c8qxzlnjqgb2bscpa0bhg-source;
+  isLibrary = true;
+  isExecutable = true;
+  libraryHaskellDepends = [ base bytestring cereal network ];
+  homepage = "http://github.com/mpilgrem/crypton-socks";
+  description = "SOCKS Protocol Version 5";
   license = lib.licenses.bsd3;
 }
 ;
@@ -341,6 +444,30 @@ mkDerivation {
 ;
 }
 ;
+  half = {
+  meta = {
+    sha256 = "1g2ps399367z24bsikrzjvvrz2di7z29sk5micz2ypvhx6fis0zp";
+    url = "https://hackage.haskell.org";
+    ver = "0.3.3";
+  };
+  drv = { mkDerivation, base, binary, bytestring, deepseq, lib, QuickCheck
+, tasty, tasty-quickcheck, template-haskell
+}:
+mkDerivation {
+  pname = "half";
+  version = "0.3.3";
+  src = /nix/store/g0lxill7qsjgm45r67v0yr54hdypfsd9-source;
+  libraryHaskellDepends = [ base binary deepseq template-haskell ];
+  testHaskellDepends = [
+    base binary bytestring QuickCheck tasty tasty-quickcheck
+  ];
+  homepage = "http://github.com/ekmett/half";
+  description = "Half-precision floating-point";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   hedgehog = {
   meta = {
     sha256 = "1hz8xrg5p6vplvcj8c7pgidqnwqjmqahs9dla50nqpbcbdh932ll";
@@ -371,6 +498,35 @@ mkDerivation {
   homepage = "https://hedgehog.qa";
   description = "Release with confidence";
   license = lib.licenses.bsd3;
+}
+;
+}
+;
+  hsc2hs = {
+  meta = {
+    sha256 = "0wdg17kicnp6qbgynha216vihx7nnsglvhn5c089dqpa14hg35zw";
+    url = "https://hackage.haskell.org";
+    ver = "0.68.10";
+  };
+  drv = { mkDerivation, base, containers, directory, filepath, HUnit, lib
+, process, test-framework, test-framework-hunit
+}:
+mkDerivation {
+  pname = "hsc2hs";
+  version = "0.68.10";
+  src = /nix/store/14zlpg12331kakcpz0pn3f05xyg8ql8l-source;
+  isLibrary = false;
+  isExecutable = true;
+  enableSeparateDataOutput = true;
+  executableHaskellDepends = [
+    base containers directory filepath process
+  ];
+  testHaskellDepends = [
+    base HUnit test-framework test-framework-hunit
+  ];
+  description = "A preprocessor that helps with writing Haskell bindings to C code";
+  license = lib.licenses.bsd3;
+  mainProgram = "hsc2hs";
 }
 ;
 }
@@ -444,6 +600,74 @@ mkDerivation {
 ;
 }
 ;
+  http-semantics = {
+  meta = {
+    sha256 = "0ghj37jr5bsz047p6i66ddkwc9mxkfpbw14nd54slmj1lpwn5z4a";
+    url = "https://hackage.haskell.org";
+    ver = "0.3.0";
+  };
+  drv = { mkDerivation, array, base, bytestring, case-insensitive
+, http-types, lib, network, network-byte-order, time-manager
+, utf8-string
+}:
+mkDerivation {
+  pname = "http-semantics";
+  version = "0.3.0";
+  src = /nix/store/z0xln7l5vllxji997ryy10n1l30kyxlx-source;
+  libraryHaskellDepends = [
+    array base bytestring case-insensitive http-types network
+    network-byte-order time-manager utf8-string
+  ];
+  homepage = "https://github.com/kazu-yamamoto/http-semantics";
+  description = "HTTP senmatics libarry";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  http2 = {
+  meta = {
+    sha256 = "025l7sxg9jhhkhxzlhylnh2b1phdk3vml3m573lvldcy812hpvjk";
+    url = "https://hackage.haskell.org";
+    ver = "5.3.10";
+  };
+  drv = { mkDerivation, aeson, aeson-pretty, array, async, base
+, base16-bytestring, bytestring, case-insensitive, containers
+, criterion, crypton, directory, filepath, Glob, hspec
+, hspec-discover, http-semantics, http-types, iproute, lib, network
+, network-byte-order, network-control, network-run, random, stm
+, text, time-manager, typed-process, unix-time
+, unordered-containers, utf8-string, vector
+}:
+mkDerivation {
+  pname = "http2";
+  version = "5.3.10";
+  src = /nix/store/a0gmdw2nfgvhkx9324785l3g4y3v3632-source;
+  isLibrary = true;
+  isExecutable = true;
+  libraryHaskellDepends = [
+    array async base bytestring case-insensitive containers
+    http-semantics http-types iproute network network-byte-order
+    network-control stm time-manager unix-time utf8-string
+  ];
+  testHaskellDepends = [
+    aeson aeson-pretty async base base16-bytestring bytestring crypton
+    directory filepath Glob hspec http-semantics http-types network
+    network-byte-order network-run random text typed-process
+    unordered-containers vector
+  ];
+  testToolDepends = [ hspec-discover ];
+  benchmarkHaskellDepends = [
+    array base bytestring case-insensitive containers criterion
+    network-byte-order stm
+  ];
+  homepage = "https://github.com/kazu-yamamoto/http2";
+  description = "HTTP/2 library";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   incipit = {
   meta = {
     sha256 = "1r3y2wp8wz1ii28a6wb76z6w3sgiah158kwsadrr13w6iryhq047";
@@ -506,6 +730,59 @@ mkDerivation {
   homepage = "https://github.com/tek/incipit-core#readme";
   description = "A Prelude for Polysemy";
   license = "BSD-2-Clause-Patent";
+}
+;
+}
+;
+  iproute = {
+  meta = {
+    sha256 = "1a6kjmm0kqqalyc8qbaa6pwnz7nlclfphqmnxxq8f4yhaa4xd19j";
+    url = "https://hackage.haskell.org";
+    ver = "1.7.15";
+  };
+  drv = { mkDerivation, appar, base, byteorder, bytestring, containers
+, hspec, hspec-discover, lib, network, QuickCheck, safe
+}:
+mkDerivation {
+  pname = "iproute";
+  version = "1.7.15";
+  src = /nix/store/gdwcbg2qyimz5idhkvq8hlkhi91dbwbc-source;
+  libraryHaskellDepends = [
+    appar base byteorder bytestring containers network
+  ];
+  testHaskellDepends = [
+    appar base byteorder bytestring containers hspec network QuickCheck
+    safe
+  ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "http://www.mew.org/~kazu/proj/iproute/";
+  description = "IP Routing Table";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  network = {
+  meta = {
+    sha256 = "08frm9gm422b9aqlmmzflj0yr80ic0ip8s4gsmr0izhizzab5420";
+    url = "https://hackage.haskell.org";
+    ver = "3.2.7.0";
+  };
+  drv = { mkDerivation, base, bytestring, deepseq, directory, hspec
+, hspec-discover, HUnit, lib, QuickCheck, stm, temporary
+}:
+mkDerivation {
+  pname = "network";
+  version = "3.2.7.0";
+  src = /nix/store/by1l1hnknbgz55laqvjjhnspng615l90-source;
+  libraryHaskellDepends = [ base bytestring deepseq directory stm ];
+  testHaskellDepends = [
+    base bytestring directory hspec HUnit QuickCheck temporary
+  ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "https://github.com/haskell/network";
+  description = "Low-level networking interface";
+  license = lib.licenses.bsd3;
 }
 ;
 }
@@ -769,6 +1046,67 @@ mkDerivation {
 ;
 }
 ;
+  recv = {
+  meta = {
+    sha256 = "1hdwkg5isw7aknmjil7fqgbp1y53wgcdndq1aph81zh89xxy33p2";
+    url = "https://hackage.haskell.org";
+    ver = "0.1.1";
+  };
+  drv = { mkDerivation, base, bytestring, hspec, hspec-discover, lib
+, network
+}:
+mkDerivation {
+  pname = "recv";
+  version = "0.1.1";
+  src = /nix/store/i4v2pi47xaxn56lxxc9vaqzwjlrczy8x-source;
+  libraryHaskellDepends = [ base bytestring network ];
+  testHaskellDepends = [ base bytestring hspec network ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "http://github.com/yesodweb/wai";
+  description = "Efficient network recv";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  serialise = {
+  meta = {
+    sha256 = "1f1slh4n0l6wdq5dn44zigiglf03i8nw9g33i572hmxarwir0qlq";
+    url = "https://hackage.haskell.org";
+    ver = "0.2.6.1";
+  };
+  drv = { mkDerivation, aeson, array, base, binary, bytestring, cborg
+, cereal, cereal-vector, containers, criterion, deepseq, directory
+, fail, filepath, ghc-prim, half, hashable, lib, pretty, primitive
+, QuickCheck, quickcheck-instances, semigroups, store, strict, tar
+, tasty, tasty-hunit, tasty-quickcheck, text, these, time
+, unordered-containers, vector, zlib
+}:
+mkDerivation {
+  pname = "serialise";
+  version = "0.2.6.1";
+  src = /nix/store/dbx70dk9cxgcsnwp8s4fkq28m92mqz0c-source;
+  libraryHaskellDepends = [
+    array base bytestring cborg containers ghc-prim half hashable
+    primitive strict text these time unordered-containers vector
+  ];
+  testHaskellDepends = [
+    base bytestring cborg containers directory filepath primitive
+    QuickCheck quickcheck-instances tasty tasty-hunit tasty-quickcheck
+    text time unordered-containers vector
+  ];
+  benchmarkHaskellDepends = [
+    aeson array base binary bytestring cborg cereal cereal-vector
+    containers criterion deepseq directory fail filepath ghc-prim half
+    pretty semigroups store tar text time vector zlib
+  ];
+  homepage = "https://github.com/well-typed/cborg";
+  description = "A binary serialisation library for Haskell values";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   servant = {
   meta = {
     sha256 = "0vgppwv8fzfi1wc7n72lqrj49xfn8ymjh1balpsphhj4bc7n6lvi";
@@ -917,6 +1255,63 @@ mkDerivation {
 ;
 }
 ;
+  simple-sendfile = {
+  meta = {
+    sha256 = "0pwkrx671knwly65najq72jqg7h6nfkmf215jrb8bp8jj4g2vd14";
+    url = "https://hackage.haskell.org";
+    ver = "0.2.32";
+  };
+  drv = { mkDerivation, base, bytestring, conduit, conduit-extra, directory
+, easy-file, hspec, hspec-discover, HUnit, lib, network, process
+, resourcet, unix
+}:
+mkDerivation {
+  pname = "simple-sendfile";
+  version = "0.2.32";
+  src = /nix/store/g0mm1gqyrll58mmxd37vbkwdbnkaahja-source;
+  libraryHaskellDepends = [ base bytestring network unix ];
+  testHaskellDepends = [
+    base bytestring conduit conduit-extra directory easy-file hspec
+    HUnit network process resourcet
+  ];
+  testToolDepends = [ hspec-discover ];
+  description = "Cross platform library for the sendfile system call";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  streaming-commons = {
+  meta = {
+    sha256 = "13adg89zx9qzirw9ibmz70qnbwgnhmzjkbp4fh6l6qskfh1fyysm";
+    url = "https://hackage.haskell.org";
+    ver = "0.2.3.0";
+  };
+  drv = { mkDerivation, array, async, base, bytestring, deepseq, directory
+, gauge, hspec, hspec-discover, lib, network, process, QuickCheck
+, random, stm, text, transformers, unix, zlib
+}:
+mkDerivation {
+  pname = "streaming-commons";
+  version = "0.2.3.0";
+  src = /nix/store/q593j5vlsjdl3pyknc6xl6a8zi7xx48b-source;
+  libraryHaskellDepends = [
+    array async base bytestring directory network process random stm
+    text transformers unix zlib
+  ];
+  testHaskellDepends = [
+    array async base bytestring deepseq hspec network QuickCheck text
+    unix zlib
+  ];
+  testToolDepends = [ hspec-discover ];
+  benchmarkHaskellDepends = [ base bytestring deepseq gauge text ];
+  homepage = "https://github.com/fpco/streaming-commons";
+  description = "Common lower-level functions needed by various streaming data libraries";
+  license = lib.licenses.mit;
+}
+;
+}
+;
   tasty = {
   meta = {
     sha256 = "1xjlmgsww34asjl9rcwbziw5l4qqbvi5l4b7qvzf4dc7hqkpq1rs";
@@ -961,6 +1356,66 @@ mkDerivation {
   homepage = "https://github.com/qfpl/tasty-hedgehog";
   description = "Integration for tasty and hedgehog";
   license = lib.licenses.bsd3;
+}
+;
+}
+;
+  tls = {
+  meta = {
+    sha256 = "11rxsmwhv6g4298a0355v6flz4n6gw64qw3iha7z0ka3nv7vq4vv";
+    url = "https://hackage.haskell.org";
+    ver = "2.1.6";
+  };
+  drv = { mkDerivation, asn1-encoding, asn1-types, async, base
+, base16-bytestring, bytestring, cereal, crypton, crypton-x509
+, crypton-x509-store, crypton-x509-validation, data-default
+, hourglass, hspec, hspec-discover, lib, memory, mtl, network
+, QuickCheck, serialise, transformers, unix-time
+}:
+mkDerivation {
+  pname = "tls";
+  version = "2.1.6";
+  src = /nix/store/4g184asmh7zbkamx91k1s3r6mflsvh8w-source;
+  isLibrary = true;
+  isExecutable = true;
+  libraryHaskellDepends = [
+    asn1-encoding asn1-types base base16-bytestring bytestring cereal
+    crypton crypton-x509 crypton-x509-store crypton-x509-validation
+    data-default memory mtl network serialise transformers unix-time
+  ];
+  testHaskellDepends = [
+    asn1-types async base bytestring crypton crypton-x509
+    crypton-x509-validation hourglass hspec QuickCheck serialise
+  ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "https://github.com/haskell-tls/hs-tls";
+  description = "TLS protocol native implementation";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  wai = {
+  meta = {
+    sha256 = "1vxagql34hjvnrw0116kx6z5wnj4gcddf36kfs65f6zr2ib6c11l";
+    url = "https://hackage.haskell.org";
+    ver = "3.2.4";
+  };
+  drv = { mkDerivation, base, bytestring, hspec, hspec-discover, http-types
+, lib, network, text, vault
+}:
+mkDerivation {
+  pname = "wai";
+  version = "3.2.4";
+  src = /nix/store/7h7d6p4j6rf8rh6mkgqxh05dmb88mwdl-source;
+  libraryHaskellDepends = [
+    base bytestring http-types network text vault
+  ];
+  testHaskellDepends = [ base bytestring hspec ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "https://github.com/yesodweb/wai";
+  description = "Web Application Interface";
+  license = lib.licenses.mit;
 }
 ;
 }

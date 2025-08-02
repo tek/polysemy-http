@@ -35,7 +35,7 @@
       };
       network = {
         lower = "3.1.2.9";
-        upper = "3.2";
+        upper = "3.3";
       };
       polysemy = {
         lower = "1.9.0.0";
@@ -93,7 +93,7 @@
       http-client = "0.7.19";
       http-client-tls = "0.3.6.4";
       http-types = "0.12.4";
-      network = "3.1.4.0";
+      network = "3.2.7.0";
       polysemy = "1.9.2.0";
       polysemy-plugin = "0.4.5.3";
       prelate = "0.8.0.0";
@@ -152,6 +152,11 @@
   };
   overrides = {
     latest = {
+      base16-bytestring = {
+        version = "1.0.2.0";
+        hash = "0r3p5q5zxcrk5cbnwdcm435pgx3yjv3slidpjxdsvigdxizq4fyv";
+        repo = "hackage.haskell.org";
+      };
       bytebuild = {
         version = "0.3.16.2";
         hash = "0r14dmwywpr91qrnck3lb269hn8nmfmfwww11yglggn6fmjv6ks7";
@@ -163,11 +168,26 @@
         hash = "152rqpicqpvigjpy4rf1kjlwny1c7ys1r0r123wdjafvv1igflii";
         repo = "hackage.haskell.org";
       };
+      cborg = {
+        version = "0.2.10.0";
+        hash = "01brd08j3vr163l3v9cg1yq3sr4m5nfdadgg7dc3i2ksmfyj60bl";
+        repo = "hackage.haskell.org";
+      };
       chronos = {
         version = "1.1.6.1";
         hash = "037h68ji0f362irn9n9qwvr7d1ff6inpbc8d5wa4d63223713k9m";
         repo = "hackage.haskell.org";
         revision = true;
+      };
+      crypton-connection = {
+        version = "0.4.5";
+        hash = "1l5yr5nck4vyi55pyc7j1zarfcs196gbxjlwljs7s7v2r3h43jcc";
+        repo = "hackage.haskell.org";
+      };
+      crypton-socks = {
+        version = "0.6.2";
+        hash = "1cbshd13dmc0092cani21hqyi3w22whvxah94yqsy4nqwmyihvlv";
+        repo = "hackage.haskell.org";
       };
       exon = {
         version = "1.7.2.0";
@@ -184,9 +204,19 @@
         hash = "0ai089kly1cajn4djqnplkg2jmnapqlb3crrsyvfnadcyzc9h3km";
         repo = "hackage.haskell.org";
       };
+      half = {
+        version = "0.3.3";
+        hash = "1g2ps399367z24bsikrzjvvrz2di7z29sk5micz2ypvhx6fis0zp";
+        repo = "hackage.haskell.org";
+      };
       hedgehog = {
         version = "1.5";
         hash = "1hz8xrg5p6vplvcj8c7pgidqnwqjmqahs9dla50nqpbcbdh932ll";
+        repo = "hackage.haskell.org";
+      };
+      hsc2hs = {
+        version = "0.68.10";
+        hash = "0wdg17kicnp6qbgynha216vihx7nnsglvhn5c089dqpa14hg35zw";
         repo = "hackage.haskell.org";
       };
       http-client = {
@@ -197,6 +227,16 @@
       http-client-tls = {
         version = "0.3.6.4";
         hash = "1f8br94l5kywpsfvpmw54b1v6nx1yapslzrwiswsf6vf8kwfjjzg";
+        repo = "hackage.haskell.org";
+      };
+      http-semantics = {
+        version = "0.3.0";
+        hash = "0ghj37jr5bsz047p6i66ddkwc9mxkfpbw14nd54slmj1lpwn5z4a";
+        repo = "hackage.haskell.org";
+      };
+      http2 = {
+        version = "5.3.10";
+        hash = "025l7sxg9jhhkhxzlhylnh2b1phdk3vml3m573lvldcy812hpvjk";
         repo = "hackage.haskell.org";
       };
       incipit = {
@@ -216,6 +256,16 @@
         hash = "04lyzycvqxyjqcd703cd33lnlk5va9wj3czpsybah0ybydnrwabd";
         repo = "hackage.haskell.org";
         revision = true;
+      };
+      iproute = {
+        version = "1.7.15";
+        hash = "1a6kjmm0kqqalyc8qbaa6pwnz7nlclfphqmnxxq8f4yhaa4xd19j";
+        repo = "hackage.haskell.org";
+      };
+      network = {
+        version = "3.2.7.0";
+        hash = "08frm9gm422b9aqlmmzflj0yr80ic0ip8s4gsmr0izhizzab5420";
+        repo = "hackage.haskell.org";
       };
       polysemy-chronos = {
         version = "0.7.0.0";
@@ -267,6 +317,16 @@
         hash = "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
         repo = "hackage.haskell.org";
       };
+      recv = {
+        version = "0.1.1";
+        hash = "1hdwkg5isw7aknmjil7fqgbp1y53wgcdndq1aph81zh89xxy33p2";
+        repo = "hackage.haskell.org";
+      };
+      serialise = {
+        version = "0.2.6.1";
+        hash = "1f1slh4n0l6wdq5dn44zigiglf03i8nw9g33i572hmxarwir0qlq";
+        repo = "hackage.haskell.org";
+      };
       servant = {
         version = "0.20.3.0";
         hash = "0vgppwv8fzfi1wc7n72lqrj49xfn8ymjh1balpsphhj4bc7n6lvi";
@@ -287,6 +347,16 @@
         hash = "053d5j5sxki31v8d5b73jx53bfhz76pm8xyb99n0rk1gxc8rg18x";
         repo = "hackage.haskell.org";
       };
+      simple-sendfile = {
+        version = "0.2.32";
+        hash = "0pwkrx671knwly65najq72jqg7h6nfkmf215jrb8bp8jj4g2vd14";
+        repo = "hackage.haskell.org";
+      };
+      streaming-commons = {
+        version = "0.2.3.0";
+        hash = "13adg89zx9qzirw9ibmz70qnbwgnhmzjkbp4fh6l6qskfh1fyysm";
+        repo = "hackage.haskell.org";
+      };
       tasty = {
         version = "1.5.3";
         hash = "1xjlmgsww34asjl9rcwbziw5l4qqbvi5l4b7qvzf4dc7hqkpq1rs";
@@ -295,6 +365,16 @@
       tasty-hedgehog = {
         version = "1.4.0.2";
         hash = "04kg2qdnsqzzmj3xggy2jcgidlp21lsjkz4sfnbq7b1yhrv2vbbc";
+        repo = "hackage.haskell.org";
+      };
+      tls = {
+        version = "2.1.6";
+        hash = "11rxsmwhv6g4298a0355v6flz4n6gw64qw3iha7z0ka3nv7vq4vv";
+        repo = "hackage.haskell.org";
+      };
+      wai = {
+        version = "3.2.4";
+        hash = "1vxagql34hjvnrw0116kx6z5wnj4gcddf36kfs65f6zr2ib6c11l";
         repo = "hackage.haskell.org";
       };
       wai-app-static = {
