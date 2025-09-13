@@ -19,7 +19,7 @@
       };
       hedgehog = {
         lower = "1.1.2";
-        upper = "1.6";
+        upper = "1.7";
       };
       http-client = {
         lower = "0.5.13.1";
@@ -89,7 +89,7 @@
       base = "4.20.0.0";
       case-insensitive = "1.2.1.0";
       exon = "1.7.2.0";
-      hedgehog = "1.5";
+      hedgehog = "1.6";
       http-client = "0.7.19";
       http-client-tls = "0.3.6.4";
       http-types = "0.12.4";
@@ -210,8 +210,8 @@
         repo = "hackage.haskell.org";
       };
       hedgehog = {
-        version = "1.5";
-        hash = "1hz8xrg5p6vplvcj8c7pgidqnwqjmqahs9dla50nqpbcbdh932ll";
+        version = "1.6";
+        hash = "1z3lry3pbni71hlvm2qkjjnhw3spgxh8pm1slhp55aszfmk4zsp6";
         repo = "hackage.haskell.org";
       };
       hsc2hs = {
@@ -396,6 +396,12 @@
         version = "3.4.8";
         hash = "1sx9kv01ic8d588sfzn6hrbl0g0nnmz864xslrgviw0krix9v6i5";
         repo = "hackage.haskell.org";
+      };
+      wide-word = {
+        version = "0.1.6.0";
+        hash = "07vgylw2p7sm6iisq8p9gy185v7pl163bz2a4g41a1gasd45cwy1";
+        repo = "hackage.haskell.org";
+        revision = true;
       };
     };
     lower = {

@@ -470,9 +470,9 @@ mkDerivation {
 ;
   hedgehog = {
   meta = {
-    sha256 = "1hz8xrg5p6vplvcj8c7pgidqnwqjmqahs9dla50nqpbcbdh932ll";
+    sha256 = "1z3lry3pbni71hlvm2qkjjnhw3spgxh8pm1slhp55aszfmk4zsp6";
     url = "https://hackage.haskell.org";
-    ver = "1.5";
+    ver = "1.6";
   };
   drv = { mkDerivation, ansi-terminal, async, barbies, base, bytestring
 , concurrent-output, containers, deepseq, directory, erf
@@ -483,8 +483,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "hedgehog";
-  version = "1.5";
-  src = /nix/store/asphc2qzd1cykd892r5fnhflbd8cwana-source;
+  version = "1.6";
+  src = /nix/store/myr3rqcqplhg4cw16h6pxddczgqy5gj6-source;
   libraryHaskellDepends = [
     ansi-terminal async barbies base bytestring concurrent-output
     containers deepseq directory erf exceptions lifted-async mmorph
@@ -1560,6 +1560,34 @@ mkDerivation {
   homepage = "http://github.com/yesodweb/wai";
   description = "A fast, light-weight web server for WAI applications";
   license = lib.licenses.mit;
+}
+;
+}
+;
+  wide-word = {
+  meta = {
+    sha256 = "07vgylw2p7sm6iisq8p9gy185v7pl163bz2a4g41a1gasd45cwy1";
+    url = "https://hackage.haskell.org";
+    ver = "0.1.6.0";
+  };
+  drv = { mkDerivation, base, binary, bytestring, deepseq, ghc-prim
+, hashable, hedgehog, lib, primitive, QuickCheck
+, quickcheck-classes, semirings
+}:
+mkDerivation {
+  pname = "wide-word";
+  version = "0.1.6.0";
+  src = /nix/store/cvi6iklnc68y99bamipn2n0wi2cfl9gl-source;
+  libraryHaskellDepends = [
+    base binary deepseq ghc-prim hashable primitive
+  ];
+  testHaskellDepends = [
+    base binary bytestring ghc-prim hedgehog primitive QuickCheck
+    quickcheck-classes semirings
+  ];
+  homepage = "https://github.com/erikd/wide-word";
+  description = "Data types for large but fixed width signed and unsigned integers";
+  license = lib.licenses.bsd2;
 }
 ;
 }
