@@ -470,9 +470,9 @@ mkDerivation {
 ;
   hedgehog = {
   meta = {
-    sha256 = "1z3lry3pbni71hlvm2qkjjnhw3spgxh8pm1slhp55aszfmk4zsp6";
+    sha256 = "04cjnz4i1qs3v9bza8a3ry1czapwqgxazhywkjzq2rg1544gjmby";
     url = "https://hackage.haskell.org";
-    ver = "1.6";
+    ver = "1.7";
   };
   drv = { mkDerivation, ansi-terminal, async, barbies, base, bytestring
 , concurrent-output, containers, deepseq, directory, erf
@@ -483,8 +483,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "hedgehog";
-  version = "1.6";
-  src = /nix/store/myr3rqcqplhg4cw16h6pxddczgqy5gj6-source;
+  version = "1.7";
+  src = /nix/store/piimk6ymh2yg2m74npn5p2znh3wvard4-source;
   libraryHaskellDepends = [
     ansi-terminal async barbies base bytestring concurrent-output
     containers deepseq directory erf exceptions lifted-async mmorph
@@ -495,7 +495,7 @@ mkDerivation {
   testHaskellDepends = [
     base containers mmorph mtl pretty-show text transformers
   ];
-  homepage = "https://hedgehog.qa";
+  homepage = "http://github.com/hedgehogqa/haskell-hedgehog";
   description = "Release with confidence";
   license = lib.licenses.bsd3;
 }
