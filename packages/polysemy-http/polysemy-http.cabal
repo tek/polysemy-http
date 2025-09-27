@@ -155,7 +155,7 @@ test-suite integration
       aeson >=2.1.0.0 && <2.3
     , base >=4.17.2.1 && <4.21
     , exon >=1.4.0.0 && <1.8
-    , hedgehog >=1.1.2 && <1.7
+    , hedgehog >=1.1.2 && <1.8
     , http-client >=0.5.13.1 && <0.8
     , network >=3.1.2.9 && <3.3
     , polysemy >=1.9.0.0 && <1.10
@@ -224,7 +224,7 @@ test-suite polysemy-http-test
   build-depends:
       base >=4.17.2.1 && <4.21
     , exon >=1.4.0.0 && <1.8
-    , hedgehog >=1.1.2 && <1.7
+    , hedgehog >=1.1.2 && <1.8
     , http-client >=0.5.13.1 && <0.8
     , polysemy >=1.9.0.0 && <1.10
     , polysemy-http
