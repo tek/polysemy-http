@@ -103,7 +103,7 @@
       tasty = "1.5.3";
       tasty-hedgehog = "1.4.0.2";
       time = "1.12.2";
-      warp = "3.4.9";
+      warp = "3.4.10";
     };
     lower = {
       aeson = "2.1.0.0";
@@ -230,13 +230,13 @@
         repo = "hackage.haskell.org";
       };
       http-semantics = {
-        version = "0.3.0";
-        hash = "0ghj37jr5bsz047p6i66ddkwc9mxkfpbw14nd54slmj1lpwn5z4a";
+        version = "0.4.0";
+        hash = "0p9qb38z9khk91cy78lv8f66693xyxn9yy87mnwwpghaa7kk67df";
         repo = "hackage.haskell.org";
       };
       http2 = {
-        version = "5.3.10";
-        hash = "025l7sxg9jhhkhxzlhylnh2b1phdk3vml3m573lvldcy812hpvjk";
+        version = "5.4.0";
+        hash = "1wa88jb5hk64g4v320jsj4sfldcpwkjjvpxvxh30yvdmvraidq9x";
         repo = "hackage.haskell.org";
       };
       incipit = {
@@ -367,6 +367,11 @@
         hash = "04kg2qdnsqzzmj3xggy2jcgidlp21lsjkz4sfnbq7b1yhrv2vbbc";
         repo = "hackage.haskell.org";
       };
+      time-manager = {
+        version = "0.2.4";
+        hash = "176y8svag2fbmvicxgxkhv36gbaak2id3zbwaf40sbaqgpgpy2xh";
+        repo = "hackage.haskell.org";
+      };
       tls = {
         version = "2.1.6";
         hash = "11rxsmwhv6g4298a0355v6flz4n6gw64qw3iha7z0ka3nv7vq4vv";
@@ -393,8 +398,8 @@
         repo = "hackage.haskell.org";
       };
       warp = {
-        version = "3.4.9";
-        hash = "10w2jppqgabggzainmb5jycx5791li7raakrhzr3b4cxsa51dmjc";
+        version = "3.4.10";
+        hash = "1fd5vbjsnv0hiimqbnscfx0xcgkv70h8dqh43mps6hkyckm1prlp";
         repo = "hackage.haskell.org";
       };
       wide-word = {

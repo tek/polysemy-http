@@ -602,9 +602,9 @@ mkDerivation {
 ;
   http-semantics = {
   meta = {
-    sha256 = "0ghj37jr5bsz047p6i66ddkwc9mxkfpbw14nd54slmj1lpwn5z4a";
+    sha256 = "0p9qb38z9khk91cy78lv8f66693xyxn9yy87mnwwpghaa7kk67df";
     url = "https://hackage.haskell.org";
-    ver = "0.3.0";
+    ver = "0.4.0";
   };
   drv = { mkDerivation, array, base, bytestring, case-insensitive
 , http-types, lib, network, network-byte-order, time-manager
@@ -612,14 +612,14 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "http-semantics";
-  version = "0.3.0";
-  src = /nix/store/z0xln7l5vllxji997ryy10n1l30kyxlx-source;
+  version = "0.4.0";
+  src = /nix/store/35kaqbzwiimp8g5wrmr0kcb3sbzxrg6a-source;
   libraryHaskellDepends = [
     array base bytestring case-insensitive http-types network
     network-byte-order time-manager utf8-string
   ];
   homepage = "https://github.com/kazu-yamamoto/http-semantics";
-  description = "HTTP senmatics libarry";
+  description = "HTTP semantics library";
   license = lib.licenses.bsd3;
 }
 ;
@@ -627,9 +627,9 @@ mkDerivation {
 ;
   http2 = {
   meta = {
-    sha256 = "025l7sxg9jhhkhxzlhylnh2b1phdk3vml3m573lvldcy812hpvjk";
+    sha256 = "1wa88jb5hk64g4v320jsj4sfldcpwkjjvpxvxh30yvdmvraidq9x";
     url = "https://hackage.haskell.org";
-    ver = "5.3.10";
+    ver = "5.4.0";
   };
   drv = { mkDerivation, aeson, aeson-pretty, array, async, base
 , base16-bytestring, bytestring, case-insensitive, containers
@@ -641,8 +641,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "http2";
-  version = "5.3.10";
-  src = /nix/store/a0gmdw2nfgvhkx9324785l3g4y3v3632-source;
+  version = "5.4.0";
+  src = /nix/store/4pzq6yz3cn52w31fqnd99jx3fdxhrmrl-source;
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
@@ -1360,6 +1360,25 @@ mkDerivation {
 ;
 }
 ;
+  time-manager = {
+  meta = {
+    sha256 = "176y8svag2fbmvicxgxkhv36gbaak2id3zbwaf40sbaqgpgpy2xh";
+    url = "https://hackage.haskell.org";
+    ver = "0.2.4";
+  };
+  drv = { mkDerivation, auto-update, base, containers, lib, stm }:
+mkDerivation {
+  pname = "time-manager";
+  version = "0.2.4";
+  src = /nix/store/cqg844kyfzasd4k75c5sh30gb705myx3-source;
+  libraryHaskellDepends = [ auto-update base containers stm ];
+  homepage = "http://github.com/yesodweb/wai";
+  description = "Scalable timer";
+  license = lib.licenses.mit;
+}
+;
+}
+;
   tls = {
   meta = {
     sha256 = "11rxsmwhv6g4298a0355v6flz4n6gw64qw3iha7z0ka3nv7vq4vv";
@@ -1522,9 +1541,9 @@ mkDerivation {
 ;
   warp = {
   meta = {
-    sha256 = "10w2jppqgabggzainmb5jycx5791li7raakrhzr3b4cxsa51dmjc";
+    sha256 = "1fd5vbjsnv0hiimqbnscfx0xcgkv70h8dqh43mps6hkyckm1prlp";
     url = "https://hackage.haskell.org";
-    ver = "3.4.9";
+    ver = "3.4.10";
   };
   drv = { mkDerivation, array, async, auto-update, base, bsb-http-chunked
 , bytestring, case-insensitive, containers, criterion, crypton-x509
@@ -1535,8 +1554,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "warp";
-  version = "3.4.9";
-  src = /nix/store/w1py357a2s5bsisb78lk4bqn14qjj5sn-source;
+  version = "3.4.10";
+  src = /nix/store/1qzhv74lsi7vqc2wlbpfgm7wbv19xzn0-source;
   libraryHaskellDepends = [
     array async auto-update base bsb-http-chunked bytestring
     case-insensitive containers crypton-x509 ghc-prim hashable
