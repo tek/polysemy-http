@@ -103,7 +103,7 @@
       tasty = "1.5.3";
       tasty-hedgehog = "1.4.0.2";
       time = "1.12.2";
-      warp = "3.4.10";
+      warp = "3.4.11";
     };
     lower = {
       aeson = "2.1.0.0";
@@ -398,8 +398,8 @@
         repo = "hackage.haskell.org";
       };
       warp = {
-        version = "3.4.10";
-        hash = "1fd5vbjsnv0hiimqbnscfx0xcgkv70h8dqh43mps6hkyckm1prlp";
+        version = "3.4.11";
+        hash = "197cwr7aky7psm3in7cha5ni6qzmm0ah7qd4hibsr37rpmgw1nlv";
         repo = "hackage.haskell.org";
       };
       wide-word = {
