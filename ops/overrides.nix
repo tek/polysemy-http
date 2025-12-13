@@ -1541,9 +1541,9 @@ mkDerivation {
 ;
   warp = {
   meta = {
-    sha256 = "1fd5vbjsnv0hiimqbnscfx0xcgkv70h8dqh43mps6hkyckm1prlp";
+    sha256 = "197cwr7aky7psm3in7cha5ni6qzmm0ah7qd4hibsr37rpmgw1nlv";
     url = "https://hackage.haskell.org";
-    ver = "3.4.10";
+    ver = "3.4.11";
   };
   drv = { mkDerivation, array, async, auto-update, base, bsb-http-chunked
 , bytestring, case-insensitive, containers, criterion, crypton-x509
@@ -1554,8 +1554,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "warp";
-  version = "3.4.10";
-  src = /nix/store/1qzhv74lsi7vqc2wlbpfgm7wbv19xzn0-source;
+  version = "3.4.11";
+  src = /nix/store/6kb8vwa106fxg6n55p2nlrm92cznnx7c-source;
   libraryHaskellDepends = [
     array async auto-update base bsb-http-chunked bytestring
     case-insensitive containers crypton-x509 ghc-prim hashable
@@ -1573,7 +1573,7 @@ mkDerivation {
   benchmarkHaskellDepends = [
     array auto-update base bytestring case-insensitive containers
     criterion crypton-x509 ghc-prim hashable http-date http-types
-    network recv streaming-commons text time-manager unix vault wai
+    network recv stm streaming-commons text time-manager unix vault wai
     word8
   ];
   homepage = "http://github.com/yesodweb/wai";
