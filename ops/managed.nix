@@ -27,7 +27,7 @@
       };
       http-client-tls = {
         lower = "0.3.0";
-        upper = "0.4";
+        upper = "0.5";
       };
       http-types = {
         lower = "0.12.3";
@@ -91,7 +91,7 @@
       exon = "1.7.2.0";
       hedgehog = "1.7";
       http-client = "0.7.19";
-      http-client-tls = "0.3.6.4";
+      http-client-tls = "0.4.0";
       http-types = "0.12.4";
       network = "3.2.8.0";
       polysemy = "1.9.2.0";
@@ -152,6 +152,11 @@
   };
   overrides = {
     latest = {
+      base16 = {
+        version = "1.0";
+        hash = "0rhjm2b4mpp6lr2cgppsls2z1ipfx6rc681cpj88pvf5p6jf5fd4";
+        repo = "hackage.haskell.org";
+      };
       base16-bytestring = {
         version = "1.0.2.0";
         hash = "0r3p5q5zxcrk5cbnwdcm435pgx3yjv3slidpjxdsvigdxizq4fyv";
@@ -178,6 +183,11 @@
         hash = "037h68ji0f362irn9n9qwvr7d1ff6inpbc8d5wa4d63223713k9m";
         repo = "hackage.haskell.org";
         revision = true;
+      };
+      cryptohash-md5 = {
+        version = "0.11.101.0";
+        hash = "0y38ybbd67864nw9p326a7bi7ss8b9y1vi88702y8h07zvyi2d84";
+        repo = "hackage.haskell.org";
       };
       crypton-connection = {
         version = "0.4.5";
@@ -225,8 +235,8 @@
         repo = "hackage.haskell.org";
       };
       http-client-tls = {
-        version = "0.3.6.4";
-        hash = "1f8br94l5kywpsfvpmw54b1v6nx1yapslzrwiswsf6vf8kwfjjzg";
+        version = "0.4.0";
+        hash = "1qgwh3zip36pbjn7c5pn1l6zv044d6l77mnariz66bdhwy9hrx1s";
         repo = "hackage.haskell.org";
       };
       http-semantics = {
