@@ -1373,17 +1373,17 @@ mkDerivation {
 ;
   tasty = {
   meta = {
-    sha256 = "1xjlmgsww34asjl9rcwbziw5l4qqbvi5l4b7qvzf4dc7hqkpq1rs";
+    sha256 = "0x6khif6n0rzfgkvrbiagg1sj0lwmjfr6qarjnjwmb9ywdk7598b";
     url = "https://hackage.haskell.org";
-    ver = "1.5.3";
+    ver = "1.5.4";
   };
   drv = { mkDerivation, ansi-terminal, base, containers, lib
 , optparse-applicative, stm, tagged, transformers, unix
 }:
 mkDerivation {
   pname = "tasty";
-  version = "1.5.3";
-  src = /nix/store/9028fgac7afc6vw6is37lvq4p8gqpa7m-source;
+  version = "1.5.4";
+  src = /nix/store/mk9c6p551r7vmw9l8cgqrc0k3phszvbi-source;
   libraryHaskellDepends = [
     ansi-terminal base containers optparse-applicative stm tagged
     transformers unix
