@@ -100,7 +100,7 @@
       servant = "0.20.3.0";
       servant-client = "0.20.3.0";
       servant-server = "0.20.3.0";
-      tasty = "1.5.3";
+      tasty = "1.5.4";
       tasty-hedgehog = "1.4.0.2";
       time = "1.12.2";
       warp = "3.4.12";
@@ -368,8 +368,8 @@
         repo = "hackage.haskell.org";
       };
       tasty = {
-        version = "1.5.3";
-        hash = "1xjlmgsww34asjl9rcwbziw5l4qqbvi5l4b7qvzf4dc7hqkpq1rs";
+        version = "1.5.4";
+        hash = "0x6khif6n0rzfgkvrbiagg1sj0lwmjfr6qarjnjwmb9ywdk7598b";
         repo = "hackage.haskell.org";
       };
       tasty-hedgehog = {
