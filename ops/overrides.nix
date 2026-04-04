@@ -449,6 +449,32 @@ mkDerivation {
 ;
 }
 ;
+  extra = {
+  meta = {
+    sha256 = "0q3hyffi11dazq9n25r508spvmblx21wipfw10hfkxcazv5l1pg2";
+    url = "https://hackage.haskell.org";
+    ver = "1.8.1";
+  };
+  drv = { mkDerivation, base, clock, directory, filepath, lib, process
+, QuickCheck, quickcheck-instances, time, unix
+}:
+mkDerivation {
+  pname = "extra";
+  version = "1.8.1";
+  src = /nix/store/9zwhpi55dgbzha6m99xdkxl7531p0bl9-source;
+  libraryHaskellDepends = [
+    base clock directory filepath process time unix
+  ];
+  testHaskellDepends = [
+    base directory filepath QuickCheck quickcheck-instances unix
+  ];
+  homepage = "https://github.com/ndmitchell/extra#readme";
+  description = "Extra functions I use";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   fast-logger = {
   meta = {
     sha256 = "0872c6clb0p7js9g3p8xn2xfr97d0zqi8rp8zlxl5hpy5q32jlli";
@@ -1080,9 +1106,9 @@ mkDerivation {
 ;
   prelate = {
   meta = {
-    sha256 = "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
+    sha256 = "031cv6wjf8c6bfr29jikkydagnk4y2yk081nkbj307fk4nzgvjsw";
     url = "https://hackage.haskell.org";
-    ver = "0.8.0.0";
+    ver = "0.9.0.0";
   };
   drv = { mkDerivation, aeson, base, exon, extra, generic-lens, incipit
 , lib, microlens, microlens-ghc, polysemy-chronos, polysemy-conc
@@ -1091,8 +1117,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "prelate";
-  version = "0.8.0.0";
-  src = /nix/store/lcscd0phqsi00p0x86vhkpd8krkwf5bz-source;
+  version = "0.9.0.0";
+  src = /nix/store/r93bggfcmfsm1p8kqrrisivly8i58pns-source;
   libraryHaskellDepends = [
     aeson base exon extra generic-lens incipit microlens microlens-ghc
     polysemy-chronos polysemy-conc polysemy-log polysemy-process

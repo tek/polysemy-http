@@ -94,7 +94,7 @@ library
     , http-types >=0.12.3 && <0.13
     , polysemy >=1.9.0.0 && <1.10
     , polysemy-plugin >=0.4.4.0 && <0.5
-    , prelate >=0.5.0.0 && <0.9
+    , prelate >=0.5.0.0 && <0.10
     , time >=1.12.2 && <1.13
   mixins:
       base hiding (Prelude)
@@ -161,7 +161,7 @@ test-suite integration
     , polysemy >=1.9.0.0 && <1.10
     , polysemy-http
     , polysemy-plugin >=0.4.4.0 && <0.5
-    , prelate >=0.5.0.0 && <0.9
+    , prelate >=0.5.0.0 && <0.10
     , servant >=0.19.1 && <0.21
     , servant-client >=0.19 && <0.21
     , servant-server >=0.19.2 && <0.21
@@ -229,7 +229,7 @@ test-suite polysemy-http-test
     , polysemy >=1.9.0.0 && <1.10
     , polysemy-http
     , polysemy-plugin >=0.4.4.0 && <0.5
-    , prelate >=0.5.0.0 && <0.9
+    , prelate >=0.5.0.0 && <0.10
     , tasty >=1.2.2 && <1.6
     , tasty-hedgehog >=1.3.0.0 && <1.5
   mixins:
