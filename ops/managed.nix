@@ -51,7 +51,7 @@
       };
       prelate = {
         lower = "0.5.0.0";
-        upper = "0.9";
+        upper = "0.10";
       };
       servant = {
         lower = "0.19.1";
@@ -96,7 +96,7 @@
       network = "3.2.8.0";
       polysemy = "1.9.2.0";
       polysemy-plugin = "0.4.5.3";
-      prelate = "0.8.0.0";
+      prelate = "0.9.0.0";
       servant = "0.20.3.0";
       servant-client = "0.20.3.0";
       servant-server = "0.20.3.0";
@@ -202,6 +202,11 @@
       exon = {
         version = "1.7.2.0";
         hash = "0hg271cvjqm4ps75qpnirq9nvjwpwb03mcbn1a364jrysrj6bg3b";
+        repo = "hackage.haskell.org";
+      };
+      extra = {
+        version = "1.8.1";
+        hash = "0q3hyffi11dazq9n25r508spvmblx21wipfw10hfkxcazv5l1pg2";
         repo = "hackage.haskell.org";
       };
       fast-logger = {
@@ -323,8 +328,8 @@
         revision = true;
       };
       prelate = {
-        version = "0.8.0.0";
-        hash = "0id72rbynmbb15ld8pv8nijll3k50x2mrpcqsv8dkbs7q05fn9vg";
+        version = "0.9.0.0";
+        hash = "031cv6wjf8c6bfr29jikkydagnk4y2yk081nkbj307fk4nzgvjsw";
         repo = "hackage.haskell.org";
       };
       recv = {
