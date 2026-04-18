@@ -170,6 +170,51 @@ hix-build-tools = {
 hls = {
 };
 latest = {
+  aeson = {
+  meta = {
+    sha256 = "1hf13pxldfyv49c4518s44zfspg6r54wylimca7kp59lhh5w099j";
+    url = "https://hackage.haskell.org";
+    ver = "2.2.4.1";
+  };
+  drv = { mkDerivation, base, base-compat, base-orphans, base16-bytestring
+, bytestring, character-ps, containers, data-fix, deepseq, Diff
+, directory, dlist, exceptions, filepath, generic-deriving
+, generically, hashable, indexed-traversable, integer-conversion
+, integer-logarithms, lib, network-uri, OneTuple, primitive
+, QuickCheck, quickcheck-instances, scientific, semialign, strict
+, tagged, tasty, tasty-golden, tasty-hunit, tasty-quickcheck
+, template-haskell, text, text-iso8601, text-short, th-abstraction
+, these, time, time-compat, unordered-containers, uuid-types
+, vector, witherable
+}:
+mkDerivation {
+  pname = "aeson";
+  version = "2.2.4.1";
+  src = /nix/store/nqg2r8cak468751py2zaz1ck629jcpfz-source;
+  libraryHaskellDepends = [
+    base bytestring character-ps containers data-fix deepseq dlist
+    exceptions hashable indexed-traversable integer-conversion
+    integer-logarithms network-uri OneTuple primitive QuickCheck
+    scientific semialign strict tagged template-haskell text
+    text-iso8601 text-short th-abstraction these time time-compat
+    unordered-containers uuid-types vector witherable
+  ];
+  testHaskellDepends = [
+    base base-compat base-orphans base16-bytestring bytestring
+    containers data-fix Diff directory dlist filepath generic-deriving
+    generically hashable indexed-traversable integer-logarithms
+    network-uri OneTuple QuickCheck quickcheck-instances scientific
+    strict tagged tasty tasty-golden tasty-hunit tasty-quickcheck text
+    text-short these time time-compat unordered-containers uuid-types
+    vector
+  ];
+  homepage = "https://github.com/haskell/aeson";
+  description = "Fast JSON parsing and encoding";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   base16 = {
   meta = {
     sha256 = "0rhjm2b4mpp6lr2cgppsls2z1ipfx6rc681cpj88pvf5p6jf5fd4";
@@ -867,6 +912,62 @@ mkDerivation {
   testToolDepends = [ hspec-discover ];
   homepage = "https://github.com/haskell/network";
   description = "Low-level networking interface";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  path = {
+  meta = {
+    sha256 = "16hgrkvd27c9vp5447d1dv3b3fi0fv0jfig10h2j37mzk4850wg8";
+    url = "https://hackage.haskell.org";
+    ver = "0.9.6";
+  };
+  drv = { mkDerivation, aeson, base, bytestring, deepseq, exceptions
+, filepath, genvalidity, genvalidity-hspec, hashable, hspec, lib
+, QuickCheck, template-haskell, text, validity-bytestring
+}:
+mkDerivation {
+  pname = "path";
+  version = "0.9.6";
+  src = /nix/store/17x0d7bdy3wg6nq9zw20ndi417gy13ck-source;
+  libraryHaskellDepends = [
+    aeson base deepseq exceptions filepath hashable template-haskell
+    text
+  ];
+  testHaskellDepends = [
+    aeson base bytestring exceptions filepath genvalidity
+    genvalidity-hspec hspec QuickCheck template-haskell
+    validity-bytestring
+  ];
+  doHaddock = false;
+  description = "Support for well-typed paths";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  path-io = {
+  meta = {
+    sha256 = "063ma7gzqr5c6s8a1yv72jgll3xdajvgclbc8w0ddmqgcrb62x2k";
+    url = "https://hackage.haskell.org";
+    ver = "1.8.2";
+  };
+  drv = { mkDerivation, base, containers, directory, dlist, exceptions
+, filepath, hspec, lib, path, temporary, time, transformers
+, unix-compat
+}:
+mkDerivation {
+  pname = "path-io";
+  version = "1.8.2";
+  src = /nix/store/y2n6qszdsqdfhhbw4fl146qzyj1sa7zb-source;
+  libraryHaskellDepends = [
+    base containers directory dlist exceptions filepath path temporary
+    time transformers unix-compat
+  ];
+  testHaskellDepends = [ base exceptions hspec path unix-compat ];
+  homepage = "https://github.com/mrkkrp/path-io";
+  description = "Interface to ‘directory’ package for users of ‘path’";
   license = lib.licenses.bsd3;
 }
 ;
@@ -1626,42 +1727,41 @@ mkDerivation {
 ;
   warp = {
   meta = {
-    sha256 = "0m4wj459j7fhav4i05df5nmbnzb1j8qwjdxcwacx81jv03bm1p33";
+    sha256 = "1wzgkc0kikvy76fdvcyli5gsk5ndd3wg88ixhl73jg4jjy9gqslf";
     url = "https://hackage.haskell.org";
-    ver = "3.4.12";
+    ver = "3.4.13";
   };
   drv = { mkDerivation, array, async, auto-update, base, bsb-http-chunked
 , bytestring, case-insensitive, containers, criterion, crypton-x509
-, directory, ghc-prim, hashable, hspec, hspec-discover, http-client
+, directory, hashable, hspec, hspec-discover, http-client
 , http-date, http-types, http2, iproute, lib, network, process
 , QuickCheck, recv, simple-sendfile, stm, streaming-commons, text
 , time-manager, unix, vault, wai, word8
 }:
 mkDerivation {
   pname = "warp";
-  version = "3.4.12";
-  src = /nix/store/kq79facjidfd5zmkkmfv9ng9wsz42vw2-source;
+  version = "3.4.13";
+  src = /nix/store/59wsrrf81i47his2hlwx844ab9v1ck3n-source;
   libraryHaskellDepends = [
     array async auto-update base bsb-http-chunked bytestring
-    case-insensitive containers crypton-x509 ghc-prim hashable
-    http-date http-types http2 iproute network recv simple-sendfile stm
+    case-insensitive containers crypton-x509 hashable http-date
+    http-types http2 iproute network recv simple-sendfile stm
     streaming-commons text time-manager unix vault wai word8
   ];
   testHaskellDepends = [
     array async auto-update base bsb-http-chunked bytestring
-    case-insensitive containers crypton-x509 directory ghc-prim
-    hashable hspec http-client http-date http-types http2 iproute
-    network process QuickCheck recv simple-sendfile stm
-    streaming-commons text time-manager unix vault wai word8
+    case-insensitive containers crypton-x509 directory hashable hspec
+    http-client http-date http-types http2 iproute network process
+    QuickCheck recv simple-sendfile stm streaming-commons text
+    time-manager unix vault wai word8
   ];
   testToolDepends = [ hspec-discover ];
   benchmarkHaskellDepends = [
     array auto-update base bytestring case-insensitive containers
-    criterion crypton-x509 ghc-prim hashable http-date http-types
-    network recv stm streaming-commons text time-manager unix vault wai
-    word8
+    criterion crypton-x509 hashable http-date http-types network recv
+    stm streaming-commons text time-manager unix vault wai word8
   ];
-  homepage = "http://github.com/yesodweb/wai";
+  homepage = "https://github.com/yesodweb/wai";
   description = "A fast, light-weight web server for WAI applications";
   license = lib.licenses.mit;
 }
