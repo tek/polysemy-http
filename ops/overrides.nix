@@ -469,17 +469,17 @@ mkDerivation {
 ;
   exon = {
   meta = {
-    sha256 = "0hg271cvjqm4ps75qpnirq9nvjwpwb03mcbn1a364jrysrj6bg3b";
+    sha256 = "0pz4v9zcj4cqgdw7biwb9799gpi46kily9lmgjbcl16ypv2a3nfm";
     url = "https://hackage.haskell.org";
-    ver = "1.7.2.0";
+    ver = "1.7.3.0";
   };
   drv = { mkDerivation, base, criterion, ghc, hedgehog, incipit-base, lib
 , parsec, tasty, tasty-hedgehog, template-haskell
 }:
 mkDerivation {
   pname = "exon";
-  version = "1.7.2.0";
-  src = /nix/store/scamv6qgdfzmlicp6wsk76vg2ls6kznd-source;
+  version = "1.7.3.0";
+  src = /nix/store/2l026l6cj0c2zsvaw8v3nai4cmchfjig-source;
   libraryHaskellDepends = [
     base ghc incipit-base parsec template-haskell
   ];
@@ -1207,9 +1207,9 @@ mkDerivation {
 ;
   prelate = {
   meta = {
-    sha256 = "031cv6wjf8c6bfr29jikkydagnk4y2yk081nkbj307fk4nzgvjsw";
+    sha256 = "0pbfaxl06gxkzqbj6f96jf3xv0g59cwawvw4xsw2h8bnszq43zyz";
     url = "https://hackage.haskell.org";
-    ver = "0.9.0.0";
+    ver = "0.9.0.2";
   };
   drv = { mkDerivation, aeson, base, exon, extra, generic-lens, incipit
 , lib, microlens, microlens-ghc, polysemy-chronos, polysemy-conc
@@ -1218,8 +1218,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "prelate";
-  version = "0.9.0.0";
-  src = /nix/store/r93bggfcmfsm1p8kqrrisivly8i58pns-source;
+  version = "0.9.0.2";
+  src = /nix/store/q4a8a9pvvh69nc9jx3bqmqdl6hlv6ygk-source;
   libraryHaskellDepends = [
     aeson base exon extra generic-lens incipit microlens microlens-ghc
     polysemy-chronos polysemy-conc polysemy-log polysemy-process
