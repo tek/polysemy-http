@@ -172,9 +172,9 @@ hls = {
 latest = {
   aeson = {
   meta = {
-    sha256 = "192lzdpmiwinxq1wb9kzw3jfapxz1b5hwl31i4abfrhxrx4i72j6";
+    sha256 = "0xmdq5pgp66c2wr3ibsh38br7j5zynk9i8i2hvqp820bxh9hi1cw";
     url = "https://hackage.haskell.org";
-    ver = "2.2.5.0";
+    ver = "2.3.0.0";
   };
   drv = { mkDerivation, base, base-compat, base-orphans, base16-bytestring
 , bytestring, character-ps, containers, data-fix, deepseq, Diff
@@ -189,8 +189,8 @@ latest = {
 }:
 mkDerivation {
   pname = "aeson";
-  version = "2.2.5.0";
-  src = /nix/store/yl1i23wml2v07kcfhgs5j4z0chjz830h-source;
+  version = "2.3.0.0";
+  src = /nix/store/1z6q5lrhpqviwcmj7zwpvlq9wnxcid7n-source;
   libraryHaskellDepends = [
     base bytestring character-ps containers data-fix deepseq dlist
     exceptions hashable indexed-traversable integer-conversion
@@ -1541,6 +1541,38 @@ mkDerivation {
   ];
   homepage = "https://github.com/qfpl/tasty-hedgehog";
   description = "Integration for tasty and hedgehog";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  text-iso8601 = {
+  meta = {
+    sha256 = "0qh0lgfd0rav0wa93chi983jyhdqzalrj5ywrvv65fnig111nv0h";
+    url = "https://hackage.haskell.org";
+    ver = "0.2.0.0";
+  };
+  drv = { mkDerivation, attoparsec, attoparsec-iso8601, base
+, integer-conversion, lib, QuickCheck, quickcheck-instances, tasty
+, tasty-bench, tasty-hunit, tasty-quickcheck, text, time
+, time-compat
+}:
+mkDerivation {
+  pname = "text-iso8601";
+  version = "0.2.0.0";
+  src = /nix/store/9bm8nrk1gi4sl187jgbncq7048h74miy-source;
+  libraryHaskellDepends = [
+    base integer-conversion text time time-compat
+  ];
+  testHaskellDepends = [
+    base QuickCheck quickcheck-instances tasty tasty-hunit
+    tasty-quickcheck text time-compat
+  ];
+  benchmarkHaskellDepends = [
+    attoparsec attoparsec-iso8601 base tasty-bench text
+  ];
+  homepage = "https://github.com/haskell/aeson";
+  description = "Converting time to and from ISO 8601 text";
   license = lib.licenses.bsd3;
 }
 ;
