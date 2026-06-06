@@ -660,6 +660,38 @@ mkDerivation {
 ;
 }
 ;
+  http-api-data = {
+  meta = {
+    sha256 = "16brcql82mhdwynhi2lchp5vlmrll1p306cpd4f5xymr4mqdk9aq";
+    url = "https://hackage.haskell.org";
+    ver = "0.6.1";
+  };
+  drv = { mkDerivation, base, bytestring, containers, cookie, hashable
+, hspec, hspec-discover, http-types, HUnit, lib, QuickCheck
+, quickcheck-instances, tagged, text, text-iso8601, time-compat
+, transformers, unordered-containers, uuid-types
+}:
+mkDerivation {
+  pname = "http-api-data";
+  version = "0.6.1";
+  src = /nix/store/np6j30l3asm30cki81kmdks7klggpqz4-source;
+  libraryHaskellDepends = [
+    base bytestring containers cookie hashable http-types tagged text
+    text-iso8601 time-compat transformers unordered-containers
+    uuid-types
+  ];
+  testHaskellDepends = [
+    base bytestring cookie hspec HUnit QuickCheck quickcheck-instances
+    text time-compat unordered-containers uuid-types
+  ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "http://github.com/fizruk/http-api-data";
+  description = "Converting to/from HTTP API data like URL pieces, headers and query parameters";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   http-client = {
   meta = {
     sha256 = "1qciglcaik1a96flj07fhqx2h692kgcv63hinffr35ka22wrg3i9";
@@ -750,6 +782,35 @@ mkDerivation {
   ];
   homepage = "https://github.com/kazu-yamamoto/http-semantics";
   description = "HTTP semantics library";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
+  http-types = {
+  meta = {
+    sha256 = "03agd5nziqxcinspg5zgzkwnsj0d26x3v8359ih5q8ag26nz0pv3";
+    url = "https://hackage.haskell.org";
+    ver = "0.12.5";
+  };
+  drv = { mkDerivation, array, base, bytestring, case-insensitive, doctest
+, filepath, hspec, hspec-discover, hspec-golden, lib, QuickCheck
+, quickcheck-instances, text
+}:
+mkDerivation {
+  pname = "http-types";
+  version = "0.12.5";
+  src = /nix/store/f7i4acx75kxl84p1xk90vchmjfyqk5zj-source;
+  libraryHaskellDepends = [
+    array base bytestring case-insensitive text
+  ];
+  testHaskellDepends = [
+    base bytestring case-insensitive doctest filepath hspec
+    hspec-golden QuickCheck quickcheck-instances text
+  ];
+  testToolDepends = [ hspec-discover ];
+  homepage = "https://github.com/Vlix/http-types";
+  description = "Generic HTTP types for Haskell (for both client and server code)";
   license = lib.licenses.bsd3;
 }
 ;

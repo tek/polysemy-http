@@ -92,7 +92,7 @@
       hedgehog = "1.7";
       http-client = "0.7.19";
       http-client-tls = "0.4.0";
-      http-types = "0.12.4";
+      http-types = "0.12.5";
       network = "3.2.8.0";
       polysemy = "1.9.2.0";
       polysemy-plugin = "0.4.5.3";
@@ -238,6 +238,11 @@
         hash = "0wdg17kicnp6qbgynha216vihx7nnsglvhn5c089dqpa14hg35zw";
         repo = "hackage.haskell.org";
       };
+      http-api-data = {
+        version = "0.6.1";
+        hash = "16brcql82mhdwynhi2lchp5vlmrll1p306cpd4f5xymr4mqdk9aq";
+        repo = "hackage.haskell.org";
+      };
       http-client = {
         version = "0.7.19";
         hash = "1qciglcaik1a96flj07fhqx2h692kgcv63hinffr35ka22wrg3i9";
@@ -251,6 +256,11 @@
       http-semantics = {
         version = "0.4.0";
         hash = "0p9qb38z9khk91cy78lv8f66693xyxn9yy87mnwwpghaa7kk67df";
+        repo = "hackage.haskell.org";
+      };
+      http-types = {
+        version = "0.12.5";
+        hash = "03agd5nziqxcinspg5zgzkwnsj0d26x3v8359ih5q8ag26nz0pv3";
         repo = "hackage.haskell.org";
       };
       http2 = {
