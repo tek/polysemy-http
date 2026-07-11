@@ -172,9 +172,9 @@ hls = {
 latest = {
   aeson = {
   meta = {
-    sha256 = "0xmdq5pgp66c2wr3ibsh38br7j5zynk9i8i2hvqp820bxh9hi1cw";
+    sha256 = "0s1jb8ymlp0qkmx3qjj03239yxbxy3sg74krv5yp9kg4pwylsrdx";
     url = "https://hackage.haskell.org";
-    ver = "2.3.0.0";
+    ver = "2.3.1.0";
   };
   drv = { mkDerivation, base, base-compat, base-orphans, base16-bytestring
 , bytestring, character-ps, containers, data-fix, deepseq, Diff
@@ -189,8 +189,8 @@ latest = {
 }:
 mkDerivation {
   pname = "aeson";
-  version = "2.3.0.0";
-  src = /nix/store/1z6q5lrhpqviwcmj7zwpvlq9wnxcid7n-source;
+  version = "2.3.1.0";
+  src = /nix/store/gncda49p5l4jlxjlnd37kjarplmk1hvq-source;
   libraryHaskellDepends = [
     base bytestring character-ps containers data-fix deepseq dlist
     exceptions hashable indexed-traversable integer-conversion
