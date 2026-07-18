@@ -1820,9 +1820,9 @@ mkDerivation {
 ;
   warp = {
   meta = {
-    sha256 = "0d3gqliksqv63hm1pk06bni4z4yy7076g0h58fy0ci5xc4bbcf1r";
+    sha256 = "1ijvmywmbclga45n5m26a76hnnjz88161vdgn3sf6x5sa190wyj6";
     url = "https://hackage.haskell.org";
-    ver = "3.4.13.1";
+    ver = "3.4.14";
   };
   drv = { mkDerivation, array, async, auto-update, base, bsb-http-chunked
 , bytestring, case-insensitive, containers, criterion, crypton-x509
@@ -1833,8 +1833,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "warp";
-  version = "3.4.13.1";
-  src = /nix/store/3nrkavzvnv4k11n5bywnj5pwb03rr0wm-source;
+  version = "3.4.14";
+  src = /nix/store/mhs0dqdssrlr8pmx3d04m15gmc1q2vv1-source;
   libraryHaskellDepends = [
     array async auto-update base bsb-http-chunked bytestring
     case-insensitive containers crypton-x509 hashable http-date
