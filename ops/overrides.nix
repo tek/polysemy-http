@@ -1695,17 +1695,17 @@ mkDerivation {
 ;
   wai = {
   meta = {
-    sha256 = "1vxagql34hjvnrw0116kx6z5wnj4gcddf36kfs65f6zr2ib6c11l";
+    sha256 = "17ay74pj72jhzvs60xqmhx50qrc0779mac3a1f4vfnfmp57z8s1y";
     url = "https://hackage.haskell.org";
-    ver = "3.2.4";
+    ver = "3.2.5";
   };
   drv = { mkDerivation, base, bytestring, hspec, hspec-discover, http-types
 , lib, network, text, vault
 }:
 mkDerivation {
   pname = "wai";
-  version = "3.2.4";
-  src = /nix/store/7h7d6p4j6rf8rh6mkgqxh05dmb88mwdl-source;
+  version = "3.2.5";
+  src = /nix/store/xjiqglpgjdqzakbr1r47dsirmaq4c16j-source;
   libraryHaskellDepends = [
     base bytestring http-types network text vault
   ];
@@ -1820,39 +1820,40 @@ mkDerivation {
 ;
   warp = {
   meta = {
-    sha256 = "1ijvmywmbclga45n5m26a76hnnjz88161vdgn3sf6x5sa190wyj6";
+    sha256 = "0h2mfi209n9jdsnbzjb2mdh0gkpbdh0vgg1ynwwrc7m6fcb7a46k";
     url = "https://hackage.haskell.org";
-    ver = "3.4.14";
+    ver = "3.4.15";
   };
-  drv = { mkDerivation, array, async, auto-update, base, bsb-http-chunked
+  drv = { mkDerivation, async, auto-update, base, bsb-http-chunked
 , bytestring, case-insensitive, containers, criterion, crypton-x509
 , directory, hashable, hspec, hspec-discover, http-client
-, http-date, http-types, http2, iproute, lib, network, process
-, QuickCheck, recv, simple-sendfile, stm, streaming-commons, text
-, time-manager, unix, vault, wai, word8
+, http-date, http-semantics, http-types, http2, iproute, lib
+, network, process, QuickCheck, recv, simple-sendfile, stm
+, streaming-commons, text, time-manager, unix, vault, wai, word8
 }:
 mkDerivation {
   pname = "warp";
-  version = "3.4.14";
-  src = /nix/store/mhs0dqdssrlr8pmx3d04m15gmc1q2vv1-source;
+  version = "3.4.15";
+  src = /nix/store/pwkjnn4rxmysvnp9l5j5mkshz2mdvn89-source;
   libraryHaskellDepends = [
-    array async auto-update base bsb-http-chunked bytestring
-    case-insensitive containers crypton-x509 hashable http-date
+    async auto-update base bsb-http-chunked bytestring case-insensitive
+    containers crypton-x509 hashable http-date http-semantics
     http-types http2 iproute network recv simple-sendfile stm
     streaming-commons text time-manager unix vault wai word8
   ];
   testHaskellDepends = [
-    array async auto-update base bsb-http-chunked bytestring
-    case-insensitive containers crypton-x509 directory hashable hspec
-    http-client http-date http-types http2 iproute network process
+    async auto-update base bsb-http-chunked bytestring case-insensitive
+    containers crypton-x509 directory hashable hspec http-client
+    http-date http-semantics http-types http2 iproute network process
     QuickCheck recv simple-sendfile stm streaming-commons text
     time-manager unix vault wai word8
   ];
   testToolDepends = [ hspec-discover ];
   benchmarkHaskellDepends = [
-    array auto-update base bytestring case-insensitive containers
-    criterion crypton-x509 hashable http-date http-types network recv
-    stm streaming-commons text time-manager unix vault wai word8
+    async auto-update base bsb-http-chunked bytestring case-insensitive
+    containers criterion crypton-x509 hashable http-date http-types
+    http2 iproute network recv simple-sendfile stm streaming-commons
+    text time-manager unix vault wai word8
   ];
   homepage = "https://github.com/yesodweb/wai";
   description = "A fast, light-weight web server for WAI applications";

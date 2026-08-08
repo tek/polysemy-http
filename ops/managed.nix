@@ -103,7 +103,7 @@
       tasty = "1.5.4";
       tasty-hedgehog = "1.4.0.2";
       time = "1.12.2";
-      warp = "3.4.14";
+      warp = "3.4.15";
     };
     lower = {
       aeson = "2.1.0.0";
@@ -417,8 +417,8 @@
         repo = "hackage.haskell.org";
       };
       wai = {
-        version = "3.2.4";
-        hash = "1vxagql34hjvnrw0116kx6z5wnj4gcddf36kfs65f6zr2ib6c11l";
+        version = "3.2.5";
+        hash = "17ay74pj72jhzvs60xqmhx50qrc0779mac3a1f4vfnfmp57z8s1y";
         repo = "hackage.haskell.org";
       };
       wai-app-static = {
@@ -437,8 +437,8 @@
         repo = "hackage.haskell.org";
       };
       warp = {
-        version = "3.4.14";
-        hash = "1ijvmywmbclga45n5m26a76hnnjz88161vdgn3sf6x5sa190wyj6";
+        version = "3.4.15";
+        hash = "0h2mfi209n9jdsnbzjb2mdh0gkpbdh0vgg1ynwwrc7m6fcb7a46k";
         repo = "hackage.haskell.org";
       };
       wide-word = {
