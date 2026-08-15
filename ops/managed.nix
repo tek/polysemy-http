@@ -92,7 +92,7 @@
       hedgehog = "1.7";
       http-client = "0.7.19";
       http-client-tls = "0.4.0";
-      http-types = "0.12.5";
+      http-types = "0.12.6";
       network = "3.2.8.0";
       polysemy = "1.9.2.0";
       polysemy-plugin = "0.4.5.3";
@@ -259,8 +259,8 @@
         repo = "hackage.haskell.org";
       };
       http-types = {
-        version = "0.12.5";
-        hash = "03agd5nziqxcinspg5zgzkwnsj0d26x3v8359ih5q8ag26nz0pv3";
+        version = "0.12.6";
+        hash = "1f5jgdalm09lw9bda9fwdlylm29f1nc6lx04ax2m6gv76r8xaskc";
         repo = "hackage.haskell.org";
       };
       http2 = {

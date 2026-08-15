@@ -789,21 +789,19 @@ mkDerivation {
 ;
   http-types = {
   meta = {
-    sha256 = "03agd5nziqxcinspg5zgzkwnsj0d26x3v8359ih5q8ag26nz0pv3";
+    sha256 = "1f5jgdalm09lw9bda9fwdlylm29f1nc6lx04ax2m6gv76r8xaskc";
     url = "https://hackage.haskell.org";
-    ver = "0.12.5";
+    ver = "0.12.6";
   };
-  drv = { mkDerivation, array, base, bytestring, case-insensitive, doctest
+  drv = { mkDerivation, base, bytestring, case-insensitive, doctest
 , filepath, hspec, hspec-discover, hspec-golden, lib, QuickCheck
 , quickcheck-instances, text
 }:
 mkDerivation {
   pname = "http-types";
-  version = "0.12.5";
-  src = /nix/store/f7i4acx75kxl84p1xk90vchmjfyqk5zj-source;
-  libraryHaskellDepends = [
-    array base bytestring case-insensitive text
-  ];
+  version = "0.12.6";
+  src = /nix/store/x1pj4hx0c649yh4qxancrm82syzlz73p-source;
+  libraryHaskellDepends = [ base bytestring case-insensitive text ];
   testHaskellDepends = [
     base bytestring case-insensitive doctest filepath hspec
     hspec-golden QuickCheck quickcheck-instances text
