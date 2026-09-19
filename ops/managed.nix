@@ -85,7 +85,7 @@
   };
   versions = {
     latest = {
-      aeson = "2.3.1.0";
+      aeson = "2.3.2.0";
       base = "4.20.0.0";
       case-insensitive = "1.2.1.0";
       exon = "1.7.3.0";
@@ -153,8 +153,8 @@
   overrides = {
     latest = {
       aeson = {
-        version = "2.3.1.0";
-        hash = "0s1jb8ymlp0qkmx3qjj03239yxbxy3sg74krv5yp9kg4pwylsrdx";
+        version = "2.3.2.0";
+        hash = "0kd3l4hkgvr9ihrv88mpy2nw02cc287g1zwi9imwj7d8n6ch6rzr";
         repo = "hackage.haskell.org";
       };
       base16 = {
