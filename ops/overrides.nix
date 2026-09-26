@@ -1293,17 +1293,17 @@ mkDerivation {
 ;
   recv = {
   meta = {
-    sha256 = "1hdwkg5isw7aknmjil7fqgbp1y53wgcdndq1aph81zh89xxy33p2";
+    sha256 = "12cs8cibkx6mz6593x708j3wj4iv76ga90sc7v31bg0dzzgphpdd";
     url = "https://hackage.haskell.org";
-    ver = "0.1.1";
+    ver = "0.1.2";
   };
   drv = { mkDerivation, base, bytestring, hspec, hspec-discover, lib
 , network
 }:
 mkDerivation {
   pname = "recv";
-  version = "0.1.1";
-  src = /nix/store/i4v2pi47xaxn56lxxc9vaqzwjlrczy8x-source;
+  version = "0.1.2";
+  src = /nix/store/vq25grkjiv5w8a723md53zbaqbzn81sa-source;
   libraryHaskellDepends = [ base bytestring network ];
   testHaskellDepends = [ base bytestring hspec network ];
   testToolDepends = [ hspec-discover ];
@@ -1818,11 +1818,11 @@ mkDerivation {
 ;
   warp = {
   meta = {
-    sha256 = "0h2mfi209n9jdsnbzjb2mdh0gkpbdh0vgg1ynwwrc7m6fcb7a46k";
+    sha256 = "03sn2vjpy99xhkj7yi80hc00hr7aaskwjypv6crknj1arhc7h4pd";
     url = "https://hackage.haskell.org";
-    ver = "3.4.15";
+    ver = "3.4.16";
   };
-  drv = { mkDerivation, async, auto-update, base, bsb-http-chunked
+  drv = { mkDerivation, array, async, auto-update, base, bsb-http-chunked
 , bytestring, case-insensitive, containers, criterion, crypton-x509
 , directory, hashable, hspec, hspec-discover, http-client
 , http-date, http-semantics, http-types, http2, iproute, lib
@@ -1831,8 +1831,8 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "warp";
-  version = "3.4.15";
-  src = /nix/store/pwkjnn4rxmysvnp9l5j5mkshz2mdvn89-source;
+  version = "3.4.16";
+  src = /nix/store/z6dbar4cl8pyfb21336m65zb11qwzwfq-source;
   libraryHaskellDepends = [
     async auto-update base bsb-http-chunked bytestring case-insensitive
     containers crypton-x509 hashable http-date http-semantics
@@ -1848,10 +1848,10 @@ mkDerivation {
   ];
   testToolDepends = [ hspec-discover ];
   benchmarkHaskellDepends = [
-    async auto-update base bsb-http-chunked bytestring case-insensitive
-    containers criterion crypton-x509 hashable http-date http-types
-    http2 iproute network recv simple-sendfile stm streaming-commons
-    text time-manager unix vault wai word8
+    array async auto-update base bsb-http-chunked bytestring
+    case-insensitive containers criterion crypton-x509 hashable
+    http-date http-types http2 iproute network recv simple-sendfile stm
+    streaming-commons text time-manager unix vault wai word8
   ];
   homepage = "https://github.com/yesodweb/wai";
   description = "A fast, light-weight web server for WAI applications";
