@@ -95,7 +95,7 @@
       http-types = "0.12.6";
       network = "3.2.9.0";
       polysemy = "1.9.2.0";
-      polysemy-plugin = "0.4.5.3";
+      polysemy-plugin = "0.4.6.0";
       prelate = "0.9.0.2";
       servant = "0.20.3.0";
       servant-client = "0.20.3.0";
@@ -321,8 +321,8 @@
         repo = "hackage.haskell.org";
       };
       polysemy-plugin = {
-        version = "0.4.5.3";
-        hash = "1c2agk21jj7fwdj6xkagq0prvxknp3zr6q1f480wizssibcvm7y6";
+        version = "0.4.6.0";
+        hash = "178ixfs2awk6h635janfw5qln2fgdm325ggqp866zj5qabm6brd8";
         repo = "hackage.haskell.org";
       };
       polysemy-process = {

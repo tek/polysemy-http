@@ -1121,9 +1121,9 @@ mkDerivation {
 ;
   polysemy-plugin = {
   meta = {
-    sha256 = "1c2agk21jj7fwdj6xkagq0prvxknp3zr6q1f480wizssibcvm7y6";
+    sha256 = "178ixfs2awk6h635janfw5qln2fgdm325ggqp866zj5qabm6brd8";
     url = "https://hackage.haskell.org";
-    ver = "0.4.5.3";
+    ver = "0.4.6.0";
   };
   drv = { mkDerivation, base, Cabal, cabal-doctest, containers, doctest
 , ghc, ghc-tcplugins-extra, hspec, hspec-discover
@@ -1132,16 +1132,15 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "polysemy-plugin";
-  version = "0.4.5.3";
-  src = /nix/store/vhdv7p7lqiarmgai5l0n44yqgczljkb5-source;
+  version = "0.4.6.0";
+  src = /nix/store/9ca8bj26j8c16h12lhfg8qqhgzjmhmlz-source;
   setupHaskellDepends = [ base Cabal cabal-doctest ];
   libraryHaskellDepends = [
     base containers ghc ghc-tcplugins-extra polysemy syb transformers
   ];
   testHaskellDepends = [
-    base containers doctest ghc ghc-tcplugins-extra hspec
-    hspec-discover inspection-testing polysemy should-not-typecheck syb
-    transformers
+    base containers doctest ghc hspec hspec-discover inspection-testing
+    polysemy should-not-typecheck syb transformers
   ];
   testToolDepends = [ hspec-discover ];
   homepage = "https://github.com/polysemy-research/polysemy#readme";
