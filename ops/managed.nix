@@ -93,14 +93,14 @@
       http-client = "0.7.19";
       http-client-tls = "0.4.0";
       http-types = "0.12.6";
-      network = "3.2.9.0";
+      network = "3.2.11.0";
       polysemy = "1.9.2.0";
-      polysemy-plugin = "0.4.5.3";
+      polysemy-plugin = "0.4.6.0";
       prelate = "0.9.0.2";
       servant = "0.20.3.0";
       servant-client = "0.20.3.0";
       servant-server = "0.20.3.0";
-      tasty = "1.5.4";
+      tasty = "1.5.5";
       tasty-hedgehog = "1.4.0.2";
       time = "1.12.2";
       warp = "3.4.16";
@@ -291,8 +291,8 @@
         repo = "hackage.haskell.org";
       };
       network = {
-        version = "3.2.9.0";
-        hash = "1vabvmmyypr8p2y7skw62i3q7m0dl9ia930x8ivfd3ad4nd5a92n";
+        version = "3.2.11.0";
+        hash = "1srwpsgy3kk2alag5s9s6lggr04hy4y58cfjmh59v8xsrmn6zmpy";
         repo = "hackage.haskell.org";
       };
       path = {
@@ -321,8 +321,8 @@
         repo = "hackage.haskell.org";
       };
       polysemy-plugin = {
-        version = "0.4.5.3";
-        hash = "1c2agk21jj7fwdj6xkagq0prvxknp3zr6q1f480wizssibcvm7y6";
+        version = "0.4.6.0";
+        hash = "178ixfs2awk6h635janfw5qln2fgdm325ggqp866zj5qabm6brd8";
         repo = "hackage.haskell.org";
       };
       polysemy-process = {
@@ -392,8 +392,8 @@
         repo = "hackage.haskell.org";
       };
       tasty = {
-        version = "1.5.4";
-        hash = "0x6khif6n0rzfgkvrbiagg1sj0lwmjfr6qarjnjwmb9ywdk7598b";
+        version = "1.5.5";
+        hash = "1h1myhp1g5y6iwzx0m29w5s7vpay9cm3c83jr4g2c4mpjjyqixil";
         repo = "hackage.haskell.org";
       };
       tasty-hedgehog = {
