@@ -953,20 +953,20 @@ mkDerivation {
 ;
   network = {
   meta = {
-    sha256 = "1vabvmmyypr8p2y7skw62i3q7m0dl9ia930x8ivfd3ad4nd5a92n";
+    sha256 = "1srwpsgy3kk2alag5s9s6lggr04hy4y58cfjmh59v8xsrmn6zmpy";
     url = "https://hackage.haskell.org";
-    ver = "3.2.9.0";
+    ver = "3.2.11.0";
   };
   drv = { mkDerivation, base, bytestring, deepseq, directory, hspec
 , hspec-discover, HUnit, lib, QuickCheck, stm, temporary
 }:
 mkDerivation {
   pname = "network";
-  version = "3.2.9.0";
-  src = /nix/store/qy024c9fsahgrw9vch9aaxcxg9xgc6nc-source;
+  version = "3.2.11.0";
+  src = /nix/store/f1j19sczqqawb3lkzwb67vyss90shbqc-source;
   libraryHaskellDepends = [ base bytestring deepseq directory stm ];
   testHaskellDepends = [
-    base bytestring directory hspec HUnit QuickCheck temporary
+    base bytestring directory hspec HUnit QuickCheck stm temporary
   ];
   testToolDepends = [ hspec-discover ];
   homepage = "https://github.com/haskell/network";
@@ -1121,9 +1121,9 @@ mkDerivation {
 ;
   polysemy-plugin = {
   meta = {
-    sha256 = "1c2agk21jj7fwdj6xkagq0prvxknp3zr6q1f480wizssibcvm7y6";
+    sha256 = "178ixfs2awk6h635janfw5qln2fgdm325ggqp866zj5qabm6brd8";
     url = "https://hackage.haskell.org";
-    ver = "0.4.5.3";
+    ver = "0.4.6.0";
   };
   drv = { mkDerivation, base, Cabal, cabal-doctest, containers, doctest
 , ghc, ghc-tcplugins-extra, hspec, hspec-discover
@@ -1132,16 +1132,15 @@ mkDerivation {
 }:
 mkDerivation {
   pname = "polysemy-plugin";
-  version = "0.4.5.3";
-  src = /nix/store/vhdv7p7lqiarmgai5l0n44yqgczljkb5-source;
+  version = "0.4.6.0";
+  src = /nix/store/9ca8bj26j8c16h12lhfg8qqhgzjmhmlz-source;
   setupHaskellDepends = [ base Cabal cabal-doctest ];
   libraryHaskellDepends = [
     base containers ghc ghc-tcplugins-extra polysemy syb transformers
   ];
   testHaskellDepends = [
-    base containers doctest ghc ghc-tcplugins-extra hspec
-    hspec-discover inspection-testing polysemy should-not-typecheck syb
-    transformers
+    base containers doctest ghc hspec hspec-discover inspection-testing
+    polysemy should-not-typecheck syb transformers
   ];
   testToolDepends = [ hspec-discover ];
   homepage = "https://github.com/polysemy-research/polysemy#readme";
@@ -1559,20 +1558,21 @@ mkDerivation {
 ;
   tasty = {
   meta = {
-    sha256 = "0x6khif6n0rzfgkvrbiagg1sj0lwmjfr6qarjnjwmb9ywdk7598b";
+    sha256 = "1h1myhp1g5y6iwzx0m29w5s7vpay9cm3c83jr4g2c4mpjjyqixil";
     url = "https://hackage.haskell.org";
-    ver = "1.5.4";
+    ver = "1.5.5";
   };
   drv = { mkDerivation, ansi-terminal, base, containers, lib
-, optparse-applicative, stm, tagged, transformers, unix
+, optparse-applicative, stm, tagged, terminal-size, transformers
+, unix
 }:
 mkDerivation {
   pname = "tasty";
-  version = "1.5.4";
-  src = /nix/store/mk9c6p551r7vmw9l8cgqrc0k3phszvbi-source;
+  version = "1.5.5";
+  src = /nix/store/gwzfh5abyj417yd1r8zcmdyp7fsam3nh-source;
   libraryHaskellDepends = [
     ansi-terminal base containers optparse-applicative stm tagged
-    transformers unix
+    terminal-size transformers unix
   ];
   homepage = "https://github.com/UnkindPartition/tasty";
   description = "Modern and extensible testing framework";
