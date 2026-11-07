@@ -87,13 +87,13 @@
     latest = {
       aeson = "2.3.2.0";
       base = "4.20.0.0";
-      case-insensitive = "1.2.1.0";
+      case-insensitive = "1.2.2.0";
       exon = "1.7.3.0";
       hedgehog = "1.7";
       http-client = "0.7.19";
       http-client-tls = "0.4.0";
       http-types = "0.12.6";
-      network = "3.2.11.0";
+      network = "3.2.12.0";
       polysemy = "1.9.2.0";
       polysemy-plugin = "0.4.6.0";
       prelate = "0.9.0.2";
@@ -178,6 +178,11 @@
         hash = "152rqpicqpvigjpy4rf1kjlwny1c7ys1r0r123wdjafvv1igflii";
         repo = "hackage.haskell.org";
       };
+      case-insensitive = {
+        version = "1.2.2.0";
+        hash = "1s17d9zhrmxd7hhbmrq01ngm3c0q4kcspd6zgjsydaqr6nn18p66";
+        repo = "hackage.haskell.org";
+      };
       cborg = {
         version = "0.2.10.0";
         hash = "01brd08j3vr163l3v9cg1yq3sr4m5nfdadgg7dc3i2ksmfyj60bl";
@@ -253,6 +258,11 @@
         hash = "1qgwh3zip36pbjn7c5pn1l6zv044d6l77mnariz66bdhwy9hrx1s";
         repo = "hackage.haskell.org";
       };
+      http-media = {
+        version = "0.8.1.1";
+        hash = "10rxh1brpi9gsjrhgf5227z1gxrliipmiagp6j300jdgpf3rk8f3";
+        repo = "hackage.haskell.org";
+      };
       http-semantics = {
         version = "0.4.0";
         hash = "0p9qb38z9khk91cy78lv8f66693xyxn9yy87mnwwpghaa7kk67df";
@@ -291,8 +301,8 @@
         repo = "hackage.haskell.org";
       };
       network = {
-        version = "3.2.11.0";
-        hash = "1srwpsgy3kk2alag5s9s6lggr04hy4y58cfjmh59v8xsrmn6zmpy";
+        version = "3.2.12.0";
+        hash = "094zds8q9g0ian464p9lnpnpzp1ncxsz2lk91aysm0n329qrxd9q";
         repo = "hackage.haskell.org";
       };
       path = {
