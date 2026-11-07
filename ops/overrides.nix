@@ -329,6 +329,33 @@ mkDerivation {
 ;
 }
 ;
+  case-insensitive = {
+  meta = {
+    sha256 = "1s17d9zhrmxd7hhbmrq01ngm3c0q4kcspd6zgjsydaqr6nn18p66";
+    url = "https://hackage.haskell.org";
+    ver = "1.2.2.0";
+  };
+  drv = { mkDerivation, base, bytestring, criterion, deepseq, hashable
+, HUnit, lib, tasty, tasty-hunit, template-haskell, text
+}:
+mkDerivation {
+  pname = "case-insensitive";
+  version = "1.2.2.0";
+  src = /nix/store/pp1zcb95vzp08pf8l5br16hgrwn9vqfa-source;
+  libraryHaskellDepends = [
+    base bytestring deepseq hashable template-haskell text
+  ];
+  testHaskellDepends = [
+    base bytestring HUnit tasty tasty-hunit template-haskell text
+  ];
+  benchmarkHaskellDepends = [ base bytestring criterion deepseq ];
+  homepage = "https://github.com/basvandijk/case-insensitive";
+  description = "Case insensitive string comparison";
+  license = lib.licenses.bsd3;
+}
+;
+}
+;
   cborg = {
   meta = {
     sha256 = "01brd08j3vr163l3v9cg1yq3sr4m5nfdadgg7dc3i2ksmfyj60bl";
@@ -762,6 +789,33 @@ mkDerivation {
 ;
 }
 ;
+  http-media = {
+  meta = {
+    sha256 = "10rxh1brpi9gsjrhgf5227z1gxrliipmiagp6j300jdgpf3rk8f3";
+    url = "https://hackage.haskell.org";
+    ver = "0.8.1.1";
+  };
+  drv = { mkDerivation, base, bytestring, case-insensitive, containers, lib
+, QuickCheck, tasty, tasty-quickcheck, utf8-string
+}:
+mkDerivation {
+  pname = "http-media";
+  version = "0.8.1.1";
+  src = /nix/store/c8a025lc33zcddnmgcbyzncykdi89zzi-source;
+  libraryHaskellDepends = [
+    base bytestring case-insensitive containers utf8-string
+  ];
+  testHaskellDepends = [
+    base bytestring case-insensitive containers QuickCheck tasty
+    tasty-quickcheck utf8-string
+  ];
+  homepage = "https://github.com/zmthy/http-media";
+  description = "Processing HTTP Content-Type and Accept headers";
+  license = lib.licenses.mit;
+}
+;
+}
+;
   http-semantics = {
   meta = {
     sha256 = "0p9qb38z9khk91cy78lv8f66693xyxn9yy87mnwwpghaa7kk67df";
@@ -953,17 +1007,17 @@ mkDerivation {
 ;
   network = {
   meta = {
-    sha256 = "1srwpsgy3kk2alag5s9s6lggr04hy4y58cfjmh59v8xsrmn6zmpy";
+    sha256 = "094zds8q9g0ian464p9lnpnpzp1ncxsz2lk91aysm0n329qrxd9q";
     url = "https://hackage.haskell.org";
-    ver = "3.2.11.0";
+    ver = "3.2.12.0";
   };
   drv = { mkDerivation, base, bytestring, deepseq, directory, hspec
 , hspec-discover, HUnit, lib, QuickCheck, stm, temporary
 }:
 mkDerivation {
   pname = "network";
-  version = "3.2.11.0";
-  src = /nix/store/f1j19sczqqawb3lkzwb67vyss90shbqc-source;
+  version = "3.2.12.0";
+  src = /nix/store/7gaivmhrwlif0507d3p09jia5clxmx4a-source;
   libraryHaskellDepends = [ base bytestring deepseq directory stm ];
   testHaskellDepends = [
     base bytestring directory hspec HUnit QuickCheck stm temporary
