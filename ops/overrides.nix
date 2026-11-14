@@ -1007,17 +1007,17 @@ mkDerivation {
 ;
   network = {
   meta = {
-    sha256 = "094zds8q9g0ian464p9lnpnpzp1ncxsz2lk91aysm0n329qrxd9q";
+    sha256 = "1l1sjbkskdpnp0i3lygy45352qwzqcnxmp957bh1amr6xklmxm9p";
     url = "https://hackage.haskell.org";
-    ver = "3.2.12.0";
+    ver = "3.2.13.0";
   };
   drv = { mkDerivation, base, bytestring, deepseq, directory, hspec
 , hspec-discover, HUnit, lib, QuickCheck, stm, temporary
 }:
 mkDerivation {
   pname = "network";
-  version = "3.2.12.0";
-  src = /nix/store/7gaivmhrwlif0507d3p09jia5clxmx4a-source;
+  version = "3.2.13.0";
+  src = /nix/store/81v9r7fi3hk6yp28h5d4fpqlapcb8ivj-source;
   libraryHaskellDepends = [ base bytestring deepseq directory stm ];
   testHaskellDepends = [
     base bytestring directory hspec HUnit QuickCheck stm temporary
