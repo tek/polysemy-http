@@ -93,7 +93,7 @@
       http-client = "0.7.19";
       http-client-tls = "0.4.0";
       http-types = "0.12.6";
-      network = "3.2.13.0";
+      network = "3.2.14.0";
       polysemy = "1.9.2.0";
       polysemy-plugin = "0.4.6.0";
       prelate = "0.9.0.2";
@@ -301,8 +301,8 @@
         repo = "hackage.haskell.org";
       };
       network = {
-        version = "3.2.13.0";
-        hash = "1l1sjbkskdpnp0i3lygy45352qwzqcnxmp957bh1amr6xklmxm9p";
+        version = "3.2.14.0";
+        hash = "1nzadrx8iawx941mba6zdw39v0v81xa81mv954dmxzb1378jsq59";
         repo = "hackage.haskell.org";
       };
       path = {
